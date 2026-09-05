@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+/*
+  Onramp design tokens.
+
+  Light is the primary surface: this is a product a student opens between
+  classes, and a university career service would put it on a projector. Dark is
+  fully supported because a lot of the target user's screen time is at night.
+
+  Three semantic colours carry the core idea and are used nowhere else, so the
+  gap map reads without a legend:
+    evidence  - you already have this, traced to a unit
+    partial   - touched on, not demonstrated
+    gap       - the delta, the thing the roadmap is about
+*/
+
+:root {
+  --bg: oklch(99% 0.004 265);
+  --bg-subtle: oklch(97.2% 0.005 265);
+  --bg-raised: oklch(100% 0 0);
+  --border: oklch(91% 0.007 265);
+  --border-strong: oklch(84% 0.011 265);
+
+  --fg: oklch(21% 0.02 265);
+  --fg-muted: oklch(48% 0.017 265);
+  --fg-subtle: oklch(62% 0.014 265);
+
+  --accent: oklch(51% 0.19 274);
+  --accent-hover: oklch(45% 0.19 274);
+  --accent-fg: oklch(99% 0 0);
+  --accent-subtle: oklch(96% 0.024 274);
+  --accent-border: oklch(88% 0.06 274);
+
+  --evidence: oklch(52% 0.13 172);
+  --evidence-subtle: oklch(96% 0.03 172);
+  --evidence-border: oklch(86% 0.07 172);
+
+  --partial: oklch(56% 0.13 245);
+  --partial-subtle: oklch(96% 0.03 245);
+  --partial-border: oklch(87% 0.06 245);
+
+  --gap: oklch(60% 0.15 62);
+  --gap-subtle: oklch(97% 0.035 75);
+  --gap-border: oklch(88% 0.08 70);
+
+  --danger: oklch(55% 0.2 25);
+
+  --radius: 0.75rem;
+  --shadow-sm: 0 1px 2px oklch(21% 0.02 265 / 0.05);
+  --shadow: 0 1px 3px oklch(21% 0.02 265 / 0.07), 0 4px 16px oklch(21% 0.02 265 / 0.05);
+  --shadow-lg: 0 2px 6px oklch(21% 0.02 265 / 0.06), 0 12px 40px oklch(21% 0.02 265 / 0.09);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: oklch(17% 0.014 265);
+    --bg-subtle: oklch(20.5% 0.016 265);
+    --bg-raised: oklch(23% 0.017 265);
+    --border: oklch(30% 0.017 265);
+    --border-strong: oklch(38% 0.02 265);
+
+    --fg: oklch(96% 0.005 265);
+    --fg-muted: oklch(72% 0.014 265);
+    --fg-subtle: oklch(58% 0.015 265);
+
+    --accent: oklch(70% 0.16 274);
+    --accent-hover: oklch(77% 0.15 274);
+    --accent-fg: oklch(17% 0.02 274);
+    --accent-subtle: oklch(28% 0.06 274);
+    --accent-border: oklch(40% 0.09 274);
+
+    --evidence: oklch(72% 0.13 172);
+    --evidence-subtle: oklch(27% 0.05 172);
+    --evidence-border: oklch(38% 0.07 172);
+
+    --partial: oklch(72% 0.12 245);
+    --partial-subtle: oklch(27% 0.05 245);
+    --partial-border: oklch(38% 0.07 245);
+
+    --gap: oklch(78% 0.14 72);
+    --gap-subtle: oklch(29% 0.055 70);
+    --gap-border: oklch(40% 0.08 70);
+
+    --danger: oklch(68% 0.17 25);
+
+    --shadow-sm: 0 1px 2px oklch(0% 0 0 / 0.3);
+    --shadow: 0 1px 3px oklch(0% 0 0 / 0.4), 0 4px 16px oklch(0% 0 0 / 0.3);
+    --shadow-lg: 0 2px 6px oklch(0% 0 0 / 0.45), 0 12px 40px oklch(0% 0 0 / 0.4);
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-bg-raised: var(--bg-raised);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-accent-border: var(--accent-border);
+  --color-evidence: var(--evidence);
+  --color-evidence-subtle: var(--evidence-subtle);
+  --color-evidence-border: var(--evidence-border);
+  --color-partial: var(--partial);
+  --color-partial-subtle: var(--partial-subtle);
+  --color-partial-border: var(--partial-border);
+  --color-gap: var(--gap);
+  --color-gap-subtle: var(--gap-subtle);
+  --color-gap-border: var(--gap-border);
+  --color-danger: var(--danger);
+
+  --font-sans: var(--font-sans-var);
+  --font-mono: var(--font-mono-var);
+
+  --radius-card: var(--radius);
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans-var), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Accessibility: a visible, consistent focus ring everywhere. prd.md §8 commits
+   to keyboard navigability, and the default ring disappears against our accent. */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Wide content scrolls inside its own container; the page body never does. */
+.scroll-x {
+  overflow-x: auto;
+  scrollbar-width: thin;
+}

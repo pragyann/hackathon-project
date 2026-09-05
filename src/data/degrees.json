@@ -1,0 +1,103 @@
+{
+  "source": {
+    "publisher": "The University of Melbourne",
+    "product": "University Handbook 2026",
+    "url": "https://handbook.unimelb.edu.au/2026",
+    "note": "Public course information, retrieved 6 September 2026. Unit content is quoted for matching only."
+  },
+  "degrees": [
+    {
+      "id": "unimelb-bsci-cis",
+      "institution": "University of Melbourne",
+      "name": "Bachelor of Science (Computing and Software Systems)",
+      "durationYears": 3,
+      "units": [
+        {
+          "code": "COMP10001",
+          "title": "Foundations of Computing",
+          "level": "Undergraduate level 1",
+          "points": 12.5,
+          "description": "Solving problems in areas such as business, biology, physics, chemistry, engineering, humanities, and social sciences often requires manipulating, analysing, and visualising data through computer programming. This subject teaches students with little or no background in computer programming how to design and write basic programs using a high-level procedural programming language, and to solve simple problems using these skills. This subject is the first subject in the Computing & Software Systems and the Informatics majors, and introduces students to programming and the basics of algorithmic thinking. INDICATIVE CONTENT Fundamental programming constructs; fundamental data structures; abstraction; basic program structures; algorithmic problem solving, testing and debugging; introduction to the Web, multimedia and visualisation. Examples of projects that students complete are: A text analytics “library” consisting of a series of independent functions to calculate/extract different things given a document/document collection as input A video recommender system, broken down into a series of functions An AI player for an online card game, designed such that students play off against each other (and against the class) at the end of semester Please view this video for further information: Foundations of Computing",
+          "learningOutcomes": "On Completion of this subject,the student is expected to: Use the fundamental programming constructs (sequence, alternation, selection) Use the fundamental data structures (arrays, records, lists, associative arrays) Use abstraction constructs such as functions Understand and employ some basic program structures Understand and employ some basic algorithmic problem-solving techniques Read, write, and debug simple, small programs",
+          "source": "https://handbook.unimelb.edu.au/2026/subjects/comp10001",
+          "yearLevel": 1,
+          "kind": "core"
+        },
+        {
+          "code": "COMP10002",
+          "title": "Foundations of Algorithms",
+          "level": "Undergraduate level 1",
+          "points": 12.5,
+          "description": "In many projects, it is important for programmers to have fine control over low-level details of program execution, and to be able to assess the cost of a design decision on likely overall program performance. This subject introduces students to a system programming language that gives programmers this kind of control, explores a range of standard data structures and algorithmic techniques, and shows how to apply them to frequently encountered problems. INDICATIVE CONTENT Introduction to computer organization Machine level representation of data Programming in a system programming language Pointers and dynamic memory allocation Program semantics and arguments about correctness Induction and recursion Basic searching algorithms (linear and binary) String algorithms (such as KMP, BMH, and index-based techniques) Basic sorting algorithms (such as selection sort, insertion sort, quicksort) Basic data structures (such as binary search trees and hash tables) Asymptotic complexity Standard software development tools such as debuggers.",
+          "learningOutcomes": "INTENDED LEARNING OUTCOMES (ILO) On completion of this subject the student should be able to: Read, write, test and debug typical small-scale programs in a system programming language such as C Discuss, analyse, implement, and apply standard data structures such as linked lists, binary search trees, and hash tables Discuss, analyse, and apply a range of sorting and searching algorithms Develop and present logical arguments for the correctness of a given algorithm Choose between different algorithms and data structures for simple problems by analysing their complexity and relative cost when given a description of an application scenario Use a command line interface and standard development tools for programming",
+          "source": "https://handbook.unimelb.edu.au/2026/subjects/comp10002",
+          "yearLevel": 1,
+          "kind": "core"
+        },
+        {
+          "code": "COMP20003",
+          "title": "Algorithms and Data Structures",
+          "level": "Undergraduate level 2",
+          "points": 12.5,
+          "description": "Programmers can choose between several representations of data. These will have different strengths and weaknesses, and each will require its own set of algorithms. Students will be introduced to the most frequently used data structures and their associated algorithms. The emphasis will be on justification of algorithm correctness, on analysis of algorithm performance, and on choosing the right data structure for the problem at hand. Leading up to an exam with a programming component, quality implementation of algorithms and data structures is emphasized. This subject, or its cognate COMP20007 Design of Algorithms, is a prerequisite for many 300-level subjects in the Computing and Software Systems major. INDICATIVE CONTENT Topics include: justification of algorithm correctness; asymptotic and empirical analysis of algorithm performance; algorithms for sorting and searching, including fundamental data structures such as trees and hash tables; and graph algorithms. Please view this video for further information: Algorithms and Data Structures",
+          "learningOutcomes": "Present arguments for the correctness or incorrectness of a given algorithm Reason about and evaluate the efficiency behaviour of a given algorithm Choose appropriate data structures and algorithms for a given problem Implement the chosen data structures and algorithms.",
+          "source": "https://handbook.unimelb.edu.au/2026/subjects/comp20003",
+          "yearLevel": 2,
+          "kind": "core"
+        },
+        {
+          "code": "COMP20005",
+          "title": "Intro. to Numerical Computation in C",
+          "level": "Undergraduate level 2",
+          "points": 12.5,
+          "description": "Many engineering disciplines make use of numerical solutions to computational problems. In this subject students will be introduced to the key elements of programming in a high level language, and will then use that skill to explore methods for solving numerical problems in a range of discipline areas. INDICATIVE CONTENT Algorithmic problem solving Fundamental data types: numbers and characters Approximation and errors in numerical computation Fundamental program structures: sequencing, selection, repetition, functions Simple data storage structures, variables, arrays, and structures Roots of equations and of linear algebraic equations Curve fitting and splines Interpolation and extrapolation Numerical differentiation and integration",
+          "learningOutcomes": "Design, develop, and implement typical small-scale numerical programs in a high-level programming language Plan, design, and implement appropriate testing regimes to allow validation and debugging of those programs Develop and present arguments relating to the correctness of such programs, from both a logical point of view and a numeric-soundness point of view Describe the range of techniques available for creating computational solutions to scientific and engineering problems, and be able to evaluate and choose between alternative approaches when provided with a computational problem Describe the general concepts that apply when computers are used to solve numerical problems, including being able to calculate floating point and integer representations Describe the underlying theory behind a range of numerical algorithms used in scientific and engineering software packages",
+          "source": "https://handbook.unimelb.edu.au/2026/subjects/comp20005",
+          "yearLevel": 2,
+          "kind": "elective"
+        }
+      ]
+    },
+    {
+      "id": "unimelb-bsci-datascience",
+      "institution": "University of Melbourne",
+      "name": "Bachelor of Science (Data Science)",
+      "durationYears": 3,
+      "units": [
+        {
+          "code": "COMP10001",
+          "title": "Foundations of Computing",
+          "level": "Undergraduate level 1",
+          "points": 12.5,
+          "description": "Solving problems in areas such as business, biology, physics, chemistry, engineering, humanities, and social sciences often requires manipulating, analysing, and visualising data through computer programming. This subject teaches students with little or no background in computer programming how to design and write basic programs using a high-level procedural programming language, and to solve simple problems using these skills. This subject is the first subject in the Computing & Software Systems and the Informatics majors, and introduces students to programming and the basics of algorithmic thinking. INDICATIVE CONTENT Fundamental programming constructs; fundamental data structures; abstraction; basic program structures; algorithmic problem solving, testing and debugging; introduction to the Web, multimedia and visualisation. Examples of projects that students complete are: A text analytics “library” consisting of a series of independent functions to calculate/extract different things given a document/document collection as input A video recommender system, broken down into a series of functions An AI player for an online card game, designed such that students play off against each other (and against the class) at the end of semester Please view this video for further information: Foundations of Computing",
+          "learningOutcomes": "On Completion of this subject,the student is expected to: Use the fundamental programming constructs (sequence, alternation, selection) Use the fundamental data structures (arrays, records, lists, associative arrays) Use abstraction constructs such as functions Understand and employ some basic program structures Understand and employ some basic algorithmic problem-solving techniques Read, write, and debug simple, small programs",
+          "source": "https://handbook.unimelb.edu.au/2026/subjects/comp10001",
+          "yearLevel": 1,
+          "kind": "core"
+        },
+        {
+          "code": "COMP10002",
+          "title": "Foundations of Algorithms",
+          "level": "Undergraduate level 1",
+          "points": 12.5,
+          "description": "In many projects, it is important for programmers to have fine control over low-level details of program execution, and to be able to assess the cost of a design decision on likely overall program performance. This subject introduces students to a system programming language that gives programmers this kind of control, explores a range of standard data structures and algorithmic techniques, and shows how to apply them to frequently encountered problems. INDICATIVE CONTENT Introduction to computer organization Machine level representation of data Programming in a system programming language Pointers and dynamic memory allocation Program semantics and arguments about correctness Induction and recursion Basic searching algorithms (linear and binary) String algorithms (such as KMP, BMH, and index-based techniques) Basic sorting algorithms (such as selection sort, insertion sort, quicksort) Basic data structures (such as binary search trees and hash tables) Asymptotic complexity Standard software development tools such as debuggers.",
+          "learningOutcomes": "INTENDED LEARNING OUTCOMES (ILO) On completion of this subject the student should be able to: Read, write, test and debug typical small-scale programs in a system programming language such as C Discuss, analyse, implement, and apply standard data structures such as linked lists, binary search trees, and hash tables Discuss, analyse, and apply a range of sorting and searching algorithms Develop and present logical arguments for the correctness of a given algorithm Choose between different algorithms and data structures for simple problems by analysing their complexity and relative cost when given a description of an application scenario Use a command line interface and standard development tools for programming",
+          "source": "https://handbook.unimelb.edu.au/2026/subjects/comp10002",
+          "yearLevel": 1,
+          "kind": "core"
+        },
+        {
+          "code": "COMP20008",
+          "title": "Elements of Data Processing",
+          "level": "Undergraduate level 2",
+          "points": 12.5,
+          "description": "Data processing is fundamental to computing and data science. This subject covers various aspects of data processing including database management, representation and analysis of data, information retrieval, visualisation and reporting, and cloud computing. This subject includes an emphasis on both tools and underlying foundations. INDICATIVE CONTENT The subject's focus is on the data pipeline, and activities known colloquially as 'data wrangling'. Indicative topics covered include: Capturing data (data ingress) Data representation and storage Cleaning, normalisation and filling in missing data (imputation) Combing multiple sources of data (data integration) Query languages and processing Scripting to support the data pipeline Visualisation and presentation",
+          "learningOutcomes": "Having completed this subject the student is expected to: ILO 1 - Be able to describe the relationship of the data pipeline to data science ILO 2 - Be able to develop and critically evaluate alternative approaches to components of typical data pipelines ILO 3 - Apply data processing methodologies to preparing data while managing data quality, system scalability, and usability for decision making ILO 4 - Communicate effectively about data processing methodologies",
+          "source": "https://handbook.unimelb.edu.au/2026/subjects/comp20008",
+          "yearLevel": 2,
+          "kind": "core"
+        }
+      ]
+    }
+  ]
+}

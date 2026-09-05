@@ -1,0 +1,4306 @@
+{
+  "generatedFrom": {
+    "onet": {
+      "version": "O*NET 31.0 Database",
+      "publisher": "U.S. Department of Labor, Employment and Training Administration",
+      "licence": "CC BY 4.0",
+      "url": "https://www.onetcenter.org/database.html"
+    },
+    "ivi": {
+      "version": "Internet Vacancy Index, July 2026",
+      "publisher": "Jobs and Skills Australia",
+      "licence": "CC BY 4.0",
+      "url": "https://www.jobsandskills.gov.au/data/internet-vacancy-index"
+    }
+  },
+  "roles": [
+    {
+      "id": "software-developer",
+      "title": "Software Developer",
+      "onetCode": "15-1252.00",
+      "onetTitle": "Software Developers",
+      "description": "Research, design, and develop computer and network software or specialized utility programs. Analyze user needs and develop software solutions, applying principles and techniques of computer science, engineering, and mathematical analysis. Update software or enhance existing software capabilities. May work with computer hardware engineers to integrate hardware and software systems, and develop specifications and performance requirements. May maintain databases within an application area, working individually or coordinating database development as part of a team.",
+      "anzscoCode": "2613",
+      "mappingConfidence": "high",
+      "mappingNote": "ANZSCO 2613 Software and Applications Programmers is a direct match.",
+      "coreTasks": [
+        "Analyze user needs and software requirements to determine feasibility of design within time and cost constraints.",
+        "Develop or direct software system testing or validation procedures, programming, or documentation.",
+        "Confer with systems analysts, engineers, programmers and others to design systems and to obtain information on project limitations and capabilities, performance requirements and interfaces.",
+        "Modify existing software to correct errors, adapt it to new hardware, or upgrade interfaces and improve performance.",
+        "Prepare reports or correspondence concerning project specifications, activities, or status.",
+        "Analyze information to determine, recommend, and plan installation of a new system or modification of an existing system.",
+        "Store, retrieve, and manipulate data for analysis of system capabilities and requirements.",
+        "Design, develop and modify software systems, using scientific analysis and mathematical models to predict and measure outcomes and consequences of design.",
+        "Determine system performance standards.",
+        "Consult with customers or other departments on project status, proposals, or technical issues, such as software system design or maintenance.",
+        "Confer with data processing or project managers to obtain information on limitations or capabilities for data processing projects."
+      ],
+      "technologies": [
+        {
+          "name": "Amazon Web Services AWS software",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Apache Kafka",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Atlassian JIRA",
+          "category": "Content workflow software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "C",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "C#",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "C++",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Cascading style sheets CSS",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Docker",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Git",
+          "category": "File versioning software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "GitHub",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Go",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Google Angular",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Hypertext markup language HTML",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "IBM Terraform",
+          "category": "Configuration management software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "JavaScript",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Jenkins CI",
+          "category": "Enterprise application integration software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Kubernetes",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Linux",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Microsoft Azure software",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "NoSQL",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Node.js",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Oracle Java",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "PostgreSQL",
+          "category": "Object oriented data base management software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Python",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "React",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Spring Boot",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Spring Framework",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Structured query language SQL",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "TypeScript",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "AJAX",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Adobe Acrobat",
+          "category": "Document management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Adobe After Effects",
+          "category": "Video creation and editing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Adobe Creative Cloud software",
+          "category": "Graphics or photo imaging software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Adobe Illustrator",
+          "category": "Graphics or photo imaging software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Adobe InDesign",
+          "category": "Desktop publishing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Adobe Photoshop",
+          "category": "Graphics or photo imaging software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Alteryx software",
+          "category": "Business intelligence and data analysis software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon DynamoDB",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon Elastic Compute Cloud EC2",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon Redshift",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon Web Services AWS CloudFormation",
+          "category": "Cloud-based management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Ansible software",
+          "category": "Expert system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Airflow",
+          "category": "Procedure management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Cassandra",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Hadoop",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Hive",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Maven",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Spark",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Subversion SVN",
+          "category": "File versioning software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Tomcat",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apple iOS",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apple macOS",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Atlassian Bitbucket",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Atlassian Confluence",
+          "category": "Project management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Bash",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Bootstrap",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Border Gateway Protocol BGP",
+          "category": "Switch or router software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Chef",
+          "category": "Configuration management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Cisco Webex",
+          "category": "Video conferencing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Django",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "ESRI ArcGIS software",
+          "category": "Map creation software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Eclipse IDE",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Elasticsearch",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Extensible markup language XML",
+          "category": "Enterprise application integration software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Figma",
+          "category": "Graphical user interface development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "GitLab",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Google Analytics",
+          "category": "Data mining software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Google Android",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Google Docs",
+          "category": "Word processing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Google Looker Analytics",
+          "category": "Business intelligence and data analysis software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Google Sheets",
+          "category": "Spreadsheet software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Grafana Labs Grafana Cloud",
+          "category": "Graphical user interface development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "GraphQL",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Hibernate ORM",
+          "category": "Object oriented data base management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "IBM DB2",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "IBM SPSS Statistics",
+          "category": "Analytical or scientific software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "IBM WebSphere MQ",
+          "category": "Cloud-based management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Informatica software",
+          "category": "Metadata management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "JUnit",
+          "category": "Program testing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "JavaScript Object Notation JSON",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Marketo Marketing Automation",
+          "category": "Sales and marketing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft .NET Framework",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft ASP.NET",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Access",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Active Directory",
+          "category": "Internet directory services software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Active Server Pages ASP",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Excel",
+          "category": "Spreadsheet software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Office software",
+          "category": "Office suite software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Outlook",
+          "category": "Electronic mail software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Power Automate",
+          "category": "Enterprise application integration software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Power BI",
+          "category": "Business intelligence and data analysis software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Power Platform software",
+          "category": "Enterprise application integration software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft PowerPoint",
+          "category": "Presentation software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft PowerShell",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Project",
+          "category": "Project management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SQL Server",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SQL Server Integration Services SSIS",
+          "category": "Enterprise application integration software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SQL Server Reporting Services SSRS",
+          "category": "Data base reporting software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SharePoint",
+          "category": "Document management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Team Foundation Server",
+          "category": "Project management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Teams",
+          "category": "Project management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visio",
+          "category": "Process mapping and design software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visual Basic",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visual Basic for Applications VBA",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visual Studio",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Windows",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Windows Server",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Word",
+          "category": "Word processing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "MongoDB",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "MySQL",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle Cloud software",
+          "category": "Cloud-based management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle Database",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle Java 2 Platform Enterprise Edition J2EE",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle PL/SQL",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle PeopleSoft",
+          "category": "Enterprise resource planning ERP software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle Primavera Enterprise Project Portfolio Management",
+          "category": "Project management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle SQL Developer",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "PHP",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Perl",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Prometheus",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Puppet",
+          "category": "Configuration management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "PyTorch",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "R",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Red Hat Enterprise Linux",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Red Hat OpenShift",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Redis",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Ruby",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "SAP ERP",
+          "category": "Enterprise resource planning ERP software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "SAP software",
+          "category": "Enterprise resource planning ERP software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "SAS",
+          "category": "Analytical or scientific software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Salesforce software",
+          "category": "Customer relationship management CRM software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Scala",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Selenium",
+          "category": "Program testing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "ServiceNow",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Shell script",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Slack",
+          "category": "Cloud-based data access and sharing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Snowflake",
+          "category": "Data mining software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Splunk Enterprise",
+          "category": "Cloud-based management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Swift",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Tableau",
+          "category": "Business intelligence and data analysis software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "TensorFlow",
+          "category": "Analytical or scientific software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Teradata Database",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "The MathWorks MATLAB",
+          "category": "Analytical or scientific software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Transact-SQL",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Trimble SketchUp Pro",
+          "category": "Graphics or photo imaging software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "UNIX",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "UNIX Shell",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Vue.js",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "WordPress",
+          "category": "Web page creation and editing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Workday software",
+          "category": "Enterprise resource planning ERP software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Zoom",
+          "category": "Video conferencing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "jQuery",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "RESTful API",
+          "category": "Web platform development software",
+          "hot": false,
+          "inDemand": true
+        }
+      ],
+      "essentialSkills": [
+        {
+          "name": "Critical Thinking",
+          "importance": 3.88
+        },
+        {
+          "name": "Reading Comprehension",
+          "importance": 3.5
+        },
+        {
+          "name": "Active Learning",
+          "importance": 3.5
+        },
+        {
+          "name": "Active Listening",
+          "importance": 3.38
+        },
+        {
+          "name": "Writing",
+          "importance": 3.25
+        },
+        {
+          "name": "Speaking",
+          "importance": 3.12
+        },
+        {
+          "name": "Monitoring",
+          "importance": 3.0
+        },
+        {
+          "name": "Mathematics",
+          "importance": 2.75
+        },
+        {
+          "name": "Learning Strategies",
+          "importance": 2.62
+        },
+        {
+          "name": "Science",
+          "importance": 2.12
+        }
+      ],
+      "demand": {
+        "anzscoTitle": "Software and Applications Programmers",
+        "latestMonth": "July 2026",
+        "latestAds": 3049,
+        "peakAds": 8753,
+        "peakIsHistoric": true,
+        "yearOnYearPct": -17.0,
+        "byState": {
+          "NSW": 1068,
+          "VIC": 823,
+          "QLD": 477,
+          "SA": 162,
+          "WA": 221,
+          "TAS": 25,
+          "NT": 13,
+          "ACT": 260
+        },
+        "trend": [
+          7996,
+          8360,
+          8272,
+          8054,
+          6967,
+          6879,
+          7204,
+          8753,
+          8547,
+          8294,
+          7559,
+          7849,
+          7841,
+          7750,
+          7563,
+          7175,
+          6269,
+          5949,
+          5695,
+          6468,
+          6128,
+          6018,
+          5388,
+          5329,
+          5294,
+          5163,
+          5100,
+          4647,
+          4025,
+          3751,
+          3822,
+          4237,
+          4280,
+          4223,
+          4042,
+          3872,
+          3847,
+          3948,
+          4073,
+          3851,
+          3440,
+          3337,
+          3428,
+          3846,
+          3828,
+          3763,
+          3566,
+          3674,
+          3589,
+          3713,
+          3530,
+          3377,
+          2978,
+          2943,
+          3029,
+          3456,
+          3385,
+          3392,
+          3079,
+          3049
+        ]
+      }
+    },
+    {
+      "id": "data-analyst",
+      "title": "Data Analyst",
+      "onetCode": "15-2051.01",
+      "onetTitle": "Business Intelligence Analysts",
+      "description": "Produce financial and market intelligence by querying data repositories and generating periodic reports. Devise methods for identifying data patterns and trends in available information sources.",
+      "anzscoCode": "2611",
+      "mappingConfidence": "medium",
+      "mappingNote": "Mapped to ICT Business and Systems Analysts. ANZSCO groups business analysis and data analysis together.",
+      "coreTasks": [
+        "Generate standard or custom reports summarizing business, financial, or economic data for review by executives, managers, clients, and other stakeholders.",
+        "Maintain or update business intelligence tools, databases, dashboards, systems, or methods.",
+        "Manage timely flow of business intelligence information to users.",
+        "Provide technical support for existing reports, dashboards, or other tools.",
+        "Identify and analyze industry or geographic trends with business strategy implications.",
+        "Document specifications for business intelligence or information technology reports, dashboards, or other outputs.",
+        "Create business intelligence tools or systems, including design of related databases, spreadsheets, or outputs.",
+        "Collect business intelligence data from available industry reports, public information, field reports, or purchased sources.",
+        "Disseminate information regarding tools, reports, or metadata enhancements.",
+        "Conduct or coordinate tests to ensure that intelligence is consistent with defined needs.",
+        "Synthesize current business intelligence or trend data to support recommendations for action.",
+        "Analyze competitive market strategies through analysis of related product, market, or share trends.",
+        "Identify or monitor current and potential customers, using business intelligence tools.",
+        "Communicate with customers, competitors, suppliers, professional organizations, or others to stay abreast of industry or business trends.",
+        "Maintain library of model documents, templates, or other reusable knowledge assets.",
+        "Create or review technical design documentation to ensure the accurate development of reporting solutions.",
+        "Analyze technology trends to identify markets for future product development or to improve sales of existing products."
+      ],
+      "technologies": [
+        {
+          "name": "Amazon Web Services AWS software",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Microsoft Azure software",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Microsoft Excel",
+          "category": "Spreadsheet software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Microsoft Office software",
+          "category": "Office suite software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Microsoft Power BI",
+          "category": "Business intelligence and data analysis software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Microsoft PowerPoint",
+          "category": "Presentation software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Python",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "R",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "SAP software",
+          "category": "Enterprise resource planning ERP software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "SAS",
+          "category": "Analytical or scientific software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Salesforce software",
+          "category": "Customer relationship management CRM software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Snowflake",
+          "category": "Data mining software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Structured query language SQL",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Tableau",
+          "category": "Business intelligence and data analysis software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "AJAX",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Adobe Acrobat",
+          "category": "Document management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Alteryx software",
+          "category": "Business intelligence and data analysis software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon DynamoDB",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon Elastic Compute Cloud EC2",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon Redshift",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Cassandra",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Hadoop",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Hive",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Kafka",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Spark",
+          "category": "Business intelligence and data analysis software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Tomcat",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Atlassian Confluence",
+          "category": "Project management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Atlassian JIRA",
+          "category": "Content workflow software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Bash",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "C",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "C#",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "C++",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Django",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "ESRI ArcGIS software",
+          "category": "Geographic information system",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Eclipse IDE",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Elasticsearch",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Epic Systems",
+          "category": "Medical software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Extensible markup language XML",
+          "category": "Enterprise application integration software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Facebook",
+          "category": "Web page creation and editing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Git",
+          "category": "File versioning software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "GitHub",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Go",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Google Analytics",
+          "category": "Data mining software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Google Docs",
+          "category": "Word processing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Google Looker Analytics",
+          "category": "Business intelligence and data analysis software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Hibernate ORM",
+          "category": "Object oriented data base management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Hypertext markup language HTML",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "IBM DB2",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "IBM SPSS Statistics",
+          "category": "Analytical or scientific software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Informatica software",
+          "category": "Metadata management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "JavaScript",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "JavaScript Object Notation JSON",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Linux",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "MEDITECH software",
+          "category": "Medical software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Marketo Marketing Automation",
+          "category": "Sales and marketing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft .NET Framework",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft ASP.NET",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Access",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Active Server Pages ASP",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Outlook",
+          "category": "Electronic mail software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Power Automate",
+          "category": "Enterprise application integration software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Power Platform software",
+          "category": "Enterprise application integration software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft PowerShell",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Project",
+          "category": "Project management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SQL Server",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SQL Server Integration Services SSIS",
+          "category": "Enterprise application integration software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SQL Server Reporting Services SSRS",
+          "category": "Data base reporting software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SharePoint",
+          "category": "Document management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visio",
+          "category": "Process mapping and design software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visual Basic",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visual Basic for Applications VBA",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visual Studio",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Windows Server",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Word",
+          "category": "Word processing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "MongoDB",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "MySQL",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "NoSQL",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle Cloud software",
+          "category": "Cloud-based management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle Database",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle Java",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle PL/SQL",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle PeopleSoft",
+          "category": "Enterprise resource planning ERP software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle Primavera Enterprise Project Portfolio Management",
+          "category": "Project management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle SQL Developer",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "PHP",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Perl",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "PostgreSQL",
+          "category": "Object oriented data base management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Red Hat Enterprise Linux",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Ruby",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "SAP ERP",
+          "category": "Enterprise resource planning ERP software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Scala",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Shell script",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Splunk Enterprise",
+          "category": "Cloud-based management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Swift",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Teradata Database",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "The MathWorks MATLAB",
+          "category": "Analytical or scientific software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Transact-SQL",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "UNIX",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "UNIX Shell",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "jQuery",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        }
+      ],
+      "essentialSkills": [
+        {
+          "name": "Reading Comprehension",
+          "importance": 4.0
+        },
+        {
+          "name": "Active Listening",
+          "importance": 3.88
+        },
+        {
+          "name": "Speaking",
+          "importance": 3.88
+        },
+        {
+          "name": "Critical Thinking",
+          "importance": 3.88
+        },
+        {
+          "name": "Active Learning",
+          "importance": 3.88
+        },
+        {
+          "name": "Writing",
+          "importance": 3.75
+        },
+        {
+          "name": "Mathematics",
+          "importance": 3.5
+        },
+        {
+          "name": "Monitoring",
+          "importance": 3.12
+        },
+        {
+          "name": "Learning Strategies",
+          "importance": 3.0
+        },
+        {
+          "name": "Science",
+          "importance": 1.62
+        }
+      ],
+      "demand": {
+        "anzscoTitle": "ICT Business and Systems Analysts",
+        "latestMonth": "July 2026",
+        "latestAds": 1743,
+        "peakAds": 5103,
+        "peakIsHistoric": true,
+        "yearOnYearPct": -9.4,
+        "byState": {
+          "NSW": 620,
+          "VIC": 469,
+          "QLD": 293,
+          "SA": 91,
+          "WA": 135,
+          "TAS": 15,
+          "NT": 9,
+          "ACT": 111
+        },
+        "trend": [
+          3624,
+          3885,
+          3924,
+          3934,
+          3429,
+          3284,
+          3376,
+          4086,
+          4067,
+          4090,
+          3788,
+          3905,
+          3830,
+          3737,
+          3650,
+          3481,
+          3053,
+          2984,
+          2920,
+          3484,
+          3389,
+          3423,
+          3110,
+          3094,
+          3053,
+          2965,
+          2867,
+          2616,
+          2267,
+          2123,
+          2195,
+          2478,
+          2490,
+          2422,
+          2283,
+          2210,
+          2179,
+          2225,
+          2301,
+          2149,
+          1875,
+          1800,
+          1843,
+          2094,
+          2050,
+          2026,
+          1889,
+          1925,
+          1865,
+          1886,
+          1829,
+          1748,
+          1548,
+          1529,
+          1585,
+          1893,
+          1894,
+          1863,
+          1724,
+          1743
+        ]
+      }
+    },
+    {
+      "id": "data-engineer",
+      "title": "Data Engineer",
+      "onetCode": "15-1243.00",
+      "onetTitle": "Database Architects",
+      "description": "Design strategies for enterprise databases, data warehouse systems, and multidimensional networks. Set standards for database operations, programming, query processes, and security. Model, design, and construct large relational databases or data warehouses. Create and optimize data models for warehouse infrastructure and workflow. Integrate new systems with existing warehouse structure and refine system performance and functionality.",
+      "anzscoCode": "2621",
+      "mappingConfidence": "medium",
+      "mappingNote": "Mapped to Database and Systems Administrators. ANZSCO has no distinct data-engineering code.",
+      "coreTasks": [
+        "Develop and document database architectures.",
+        "Collaborate with system architects, software architects, design analysts, and others to understand business or industry requirements.",
+        "Develop database architectural strategies at the modeling, design and implementation stages to address business or industry requirements.",
+        "Design databases to support business applications, ensuring system scalability, security, performance, and reliability.",
+        "Develop data models for applications, metadata tables, views or related database structures.",
+        "Design database applications, such as interfaces, data transfer mechanisms, global temporary tables, data partitions, and function-based indexes to enable efficient access of the generic database structure.",
+        "Develop methods for integrating different products so they work properly together, such as customizing commercial databases to fit specific needs.",
+        "Create and enforce database development standards.",
+        "Document and communicate database schemas, using accepted notations.",
+        "Develop data model describing data elements and their use, following procedures and using pen, template or computer software.",
+        "Work as part of a project team to coordinate database development and determine project scope and limitations.",
+        "Identify and evaluate industry trends in database systems to serve as a source of information and advice for upper management.",
+        "Set up database clusters, backup, or recovery processes.",
+        "Demonstrate database technical functionality, such as performance, security and reliability.",
+        "Develop load-balancing processes to eliminate down time for backup processes.",
+        "Plan and install upgrades of database management system software to enhance database performance.",
+        "Identify, evaluate and recommend hardware or software technologies to achieve desired database performance.",
+        "Test programs or databases, correct errors, and make necessary modifications.",
+        "Identify and correct deviations from database development standards.",
+        "Review project requests describing database user needs to estimate time and cost required to accomplish project.",
+        "Write and code logical and physical database descriptions, and specify identifiers of database to management system or direct others in coding descriptions.",
+        "Develop or maintain archived procedures, procedural codes, or queries for applications.",
+        "Provide technical support to junior staff or clients.",
+        "Establish and calculate optimum values for database parameters, using manuals and calculators."
+      ],
+      "technologies": [
+        {
+          "name": "Amazon Web Services AWS software",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Apache Kafka",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Apache Spark",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Microsoft Azure software",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Microsoft Excel",
+          "category": "Spreadsheet software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Microsoft Office software",
+          "category": "Office suite software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Microsoft Power BI",
+          "category": "Business intelligence and data analysis software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Microsoft PowerPoint",
+          "category": "Presentation software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Oracle Java",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Python",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Snowflake",
+          "category": "Data mining software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Structured query language SQL",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Tableau",
+          "category": "Business intelligence and data analysis software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "AJAX",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Adobe Acrobat",
+          "category": "Document management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon DynamoDB",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon Elastic Compute Cloud EC2",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon Redshift",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon Web Services AWS CloudFormation",
+          "category": "Cloud-based management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Ansible software",
+          "category": "Expert system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Airflow",
+          "category": "Procedure management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Cassandra",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Hadoop",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Hive",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Maven",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Subversion SVN",
+          "category": "File versioning software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Tomcat",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apple macOS",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Atlassian Confluence",
+          "category": "Project management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Atlassian JIRA",
+          "category": "Content workflow software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Autodesk Revit",
+          "category": "Computer aided design CAD software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Bash",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "C",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "C#",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "C++",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Cascading style sheets CSS",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Chef",
+          "category": "Configuration management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Cisco Webex",
+          "category": "Video conferencing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Django",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Docker",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "ESRI ArcGIS software",
+          "category": "Geographic information system",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Eclipse IDE",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Elasticsearch",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Epic Systems",
+          "category": "Medical software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Extensible markup language XML",
+          "category": "Enterprise application integration software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Git",
+          "category": "File versioning software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "GitHub",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Go",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Google Analytics",
+          "category": "Data mining software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Google Angular",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Google Docs",
+          "category": "Word processing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Hibernate ORM",
+          "category": "Object oriented data base management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Hypertext markup language HTML",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "IBM DB2",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "IBM SPSS Statistics",
+          "category": "Analytical or scientific software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Informatica software",
+          "category": "Metadata management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "JUnit",
+          "category": "Program testing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "JavaScript",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "JavaScript Object Notation JSON",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Linux",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft .NET Framework",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft ASP.NET",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Access",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Active Server Pages ASP",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Outlook",
+          "category": "Electronic mail software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft PowerShell",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Project",
+          "category": "Project management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SQL Server",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SQL Server Integration Services SSIS",
+          "category": "Enterprise application integration software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SQL Server Reporting Services SSRS",
+          "category": "Data base reporting software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SharePoint",
+          "category": "Document management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visio",
+          "category": "Process mapping and design software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visual Basic",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visual Basic for Applications VBA",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visual Studio",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Windows",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Windows Server",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Word",
+          "category": "Word processing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "MongoDB",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "MySQL",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "NoSQL",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Node.js",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle Database",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle PL/SQL",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle PeopleSoft",
+          "category": "Enterprise resource planning ERP software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle Primavera Enterprise Project Portfolio Management",
+          "category": "Project management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle SQL Developer",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "PHP",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Perl",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "PostgreSQL",
+          "category": "Object oriented data base management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Puppet",
+          "category": "Configuration management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "R",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "React",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Red Hat Enterprise Linux",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Red Hat OpenShift",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Ruby",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "SAP software",
+          "category": "Enterprise resource planning ERP software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "SAS",
+          "category": "Analytical or scientific software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Salesforce software",
+          "category": "Customer relationship management CRM software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Scala",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Selenium",
+          "category": "Program testing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Shell script",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Splunk Enterprise",
+          "category": "Cloud-based management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Spring Boot",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Spring Framework",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Swift",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Teradata Database",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "The MathWorks MATLAB",
+          "category": "Analytical or scientific software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Transact-SQL",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "UNIX",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "UNIX Shell",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "jQuery",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        }
+      ],
+      "essentialSkills": [
+        {
+          "name": "Reading Comprehension",
+          "importance": 3.88
+        },
+        {
+          "name": "Critical Thinking",
+          "importance": 3.88
+        },
+        {
+          "name": "Active Listening",
+          "importance": 3.5
+        },
+        {
+          "name": "Speaking",
+          "importance": 3.5
+        },
+        {
+          "name": "Active Learning",
+          "importance": 3.25
+        },
+        {
+          "name": "Writing",
+          "importance": 3.12
+        },
+        {
+          "name": "Monitoring",
+          "importance": 3.12
+        },
+        {
+          "name": "Mathematics",
+          "importance": 3.0
+        },
+        {
+          "name": "Learning Strategies",
+          "importance": 2.88
+        },
+        {
+          "name": "Science",
+          "importance": 1.88
+        }
+      ],
+      "demand": {
+        "anzscoTitle": "Database and Systems Administrators, and ICT Security Specialists",
+        "latestMonth": "July 2026",
+        "latestAds": 533,
+        "peakAds": 1900,
+        "peakIsHistoric": true,
+        "yearOnYearPct": -11.9,
+        "byState": {
+          "NSW": 171,
+          "VIC": 131,
+          "QLD": 92,
+          "SA": 32,
+          "WA": 46,
+          "TAS": 7,
+          "NT": 4,
+          "ACT": 51
+        },
+        "trend": [
+          1043,
+          1115,
+          1106,
+          1076,
+          926,
+          907,
+          944,
+          1175,
+          1201,
+          1198,
+          1117,
+          1119,
+          1110,
+          1088,
+          1074,
+          1089,
+          942,
+          933,
+          908,
+          1136,
+          1154,
+          1135,
+          1048,
+          1065,
+          1069,
+          1039,
+          985,
+          958,
+          846,
+          806,
+          788,
+          866,
+          879,
+          839,
+          786,
+          689,
+          661,
+          675,
+          714,
+          672,
+          573,
+          560,
+          568,
+          629,
+          619,
+          610,
+          608,
+          605,
+          613,
+          631,
+          627,
+          577,
+          486,
+          465,
+          489,
+          571,
+          573,
+          570,
+          529,
+          533
+        ]
+      }
+    },
+    {
+      "id": "cyber-security-analyst",
+      "title": "Cyber Security Analyst",
+      "onetCode": "15-1212.00",
+      "onetTitle": "Information Security Analysts",
+      "description": "Plan, implement, upgrade, or monitor security measures for the protection of computer networks and information. Assess system vulnerabilities for security risks and propose and implement risk mitigation strategies. May ensure appropriate security controls are in place that will safeguard digital files and vital electronic infrastructure. May respond to computer security breaches and viruses.",
+      "anzscoCode": "2621",
+      "mappingConfidence": "medium",
+      "mappingNote": "ANZSCO 2621 bundles ICT Security Specialists with database and systems administrators.",
+      "coreTasks": [
+        "Develop plans to safeguard computer files against accidental or unauthorized modification, destruction, or disclosure and to meet emergency data processing needs.",
+        "Monitor current reports of computer viruses to determine when to update virus protection systems.",
+        "Encrypt data transmissions and erect firewalls to conceal confidential information as it is being transmitted and to keep out tainted digital transfers.",
+        "Perform risk assessments and execute tests of data processing system to ensure functioning of data processing activities and security measures.",
+        "Modify computer security files to incorporate new software, correct errors, or change individual access status.",
+        "Review violations of computer security procedures and discuss procedures with violators to ensure violations are not repeated.",
+        "Document computer security and emergency measures policies, procedures, and tests.",
+        "Confer with users to discuss issues such as computer data access needs, security violations, and programming changes.",
+        "Monitor use of data files and regulate access to safeguard information in computer files.",
+        "Coordinate implementation of computer system plan with establishment personnel and outside vendors.",
+        "Train users and promote security awareness to ensure system security and to improve server and network efficiency."
+      ],
+      "technologies": [
+        {
+          "name": "Amazon Web Services AWS software",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Linux",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Microsoft Azure software",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Microsoft Excel",
+          "category": "Spreadsheet software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Microsoft Office software",
+          "category": "Office suite software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Microsoft PowerPoint",
+          "category": "Presentation software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Microsoft PowerShell",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Python",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Splunk Enterprise",
+          "category": "Cloud-based management software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "UNIX",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "AJAX",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon DynamoDB",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon Elastic Compute Cloud EC2",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon Redshift",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon Web Services AWS CloudFormation",
+          "category": "Cloud-based management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Ansible software",
+          "category": "Expert system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Cassandra",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Hadoop",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Hive",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Kafka",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Maven",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Spark",
+          "category": "Business intelligence and data analysis software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Subversion SVN",
+          "category": "File versioning software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Tomcat",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apple macOS",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Atlassian Confluence",
+          "category": "Project management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Atlassian JIRA",
+          "category": "Content workflow software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Bash",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Border Gateway Protocol BGP",
+          "category": "Switch or router software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "C",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "C#",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "C++",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Chef",
+          "category": "Configuration management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Django",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Docker",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "ESRI ArcGIS software",
+          "category": "Geographic information system",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Eclipse IDE",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Elasticsearch",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Epic Systems",
+          "category": "Medical software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Extensible markup language XML",
+          "category": "Enterprise application integration software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Git",
+          "category": "File versioning software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "GitHub",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Go",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Google Angular",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Hypertext markup language HTML",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "JavaScript",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "JavaScript Object Notation JSON",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft .NET Framework",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft ASP.NET",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Access",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Active Directory",
+          "category": "Internet directory services software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Active Server Pages ASP",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Project",
+          "category": "Project management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SQL Server",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SQL Server Integration Services SSIS",
+          "category": "Enterprise application integration software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SQL Server Reporting Services SSRS",
+          "category": "Data base reporting software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SharePoint",
+          "category": "Document management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Teams",
+          "category": "Project management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visio",
+          "category": "Process mapping and design software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visual Basic",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visual Basic for Applications VBA",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visual Studio",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Windows",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Windows Server",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Word",
+          "category": "Word processing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "MongoDB",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "MySQL",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "NoSQL",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Node.js",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle Database",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle Java",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle PL/SQL",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle PeopleSoft",
+          "category": "Enterprise resource planning ERP software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "PHP",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Perl",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "PostgreSQL",
+          "category": "Object oriented data base management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Puppet",
+          "category": "Configuration management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Red Hat Enterprise Linux",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Red Hat OpenShift",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Ruby",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "SAP software",
+          "category": "Enterprise resource planning ERP software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "SAS",
+          "category": "Analytical or scientific software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Salesforce software",
+          "category": "Customer relationship management CRM software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Scala",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Selenium",
+          "category": "Program testing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Shell script",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Spring Framework",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Structured query language SQL",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Swift",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Tableau",
+          "category": "Business intelligence and data analysis software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Teradata Database",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "The MathWorks MATLAB",
+          "category": "Analytical or scientific software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "UNIX Shell",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Firewall software",
+          "category": "Network security and virtual private network VPN equipment software",
+          "hot": false,
+          "inDemand": true
+        },
+        {
+          "name": "MITRE ATT&CK software",
+          "category": "Program testing software",
+          "hot": false,
+          "inDemand": true
+        },
+        {
+          "name": "Tenable Nessus",
+          "category": "Transaction security and virus protection software",
+          "hot": false,
+          "inDemand": true
+        },
+        {
+          "name": "eMASS",
+          "category": "Risk management data and analysis software",
+          "hot": false,
+          "inDemand": true
+        }
+      ],
+      "essentialSkills": [
+        {
+          "name": "Reading Comprehension",
+          "importance": 4.0
+        },
+        {
+          "name": "Critical Thinking",
+          "importance": 3.88
+        },
+        {
+          "name": "Active Listening",
+          "importance": 3.75
+        },
+        {
+          "name": "Speaking",
+          "importance": 3.62
+        },
+        {
+          "name": "Writing",
+          "importance": 3.5
+        },
+        {
+          "name": "Monitoring",
+          "importance": 3.38
+        },
+        {
+          "name": "Active Learning",
+          "importance": 3.25
+        },
+        {
+          "name": "Learning Strategies",
+          "importance": 2.88
+        },
+        {
+          "name": "Mathematics",
+          "importance": 2.25
+        },
+        {
+          "name": "Science",
+          "importance": 1.88
+        }
+      ],
+      "demand": {
+        "anzscoTitle": "Database and Systems Administrators, and ICT Security Specialists",
+        "latestMonth": "July 2026",
+        "latestAds": 533,
+        "peakAds": 1900,
+        "peakIsHistoric": true,
+        "yearOnYearPct": -11.9,
+        "byState": {
+          "NSW": 171,
+          "VIC": 131,
+          "QLD": 92,
+          "SA": 32,
+          "WA": 46,
+          "TAS": 7,
+          "NT": 4,
+          "ACT": 51
+        },
+        "trend": [
+          1043,
+          1115,
+          1106,
+          1076,
+          926,
+          907,
+          944,
+          1175,
+          1201,
+          1198,
+          1117,
+          1119,
+          1110,
+          1088,
+          1074,
+          1089,
+          942,
+          933,
+          908,
+          1136,
+          1154,
+          1135,
+          1048,
+          1065,
+          1069,
+          1039,
+          985,
+          958,
+          846,
+          806,
+          788,
+          866,
+          879,
+          839,
+          786,
+          689,
+          661,
+          675,
+          714,
+          672,
+          573,
+          560,
+          568,
+          629,
+          619,
+          610,
+          608,
+          605,
+          613,
+          631,
+          627,
+          577,
+          486,
+          465,
+          489,
+          571,
+          573,
+          570,
+          529,
+          533
+        ]
+      }
+    },
+    {
+      "id": "web-developer",
+      "title": "Web Developer",
+      "onetCode": "15-1254.00",
+      "onetTitle": "Web Developers",
+      "description": "Develop and implement websites, web applications, application databases, and interactive web interfaces. Evaluate code to ensure that it is properly structured, meets industry standards, and is compatible with browsers and devices. Optimize website performance, scalability, and server-side code and processes. May develop website infrastructure and integrate websites with other computer applications.",
+      "anzscoCode": "2612",
+      "mappingConfidence": "high",
+      "mappingNote": "ANZSCO 2612 Multimedia Specialists and Web Developers is a direct match.",
+      "coreTasks": [
+        "Write supporting code for Web applications or Web sites.",
+        "Design, build, or maintain Web sites, using authoring or scripting languages, content creation tools, management tools, and digital media.",
+        "Back up files from Web sites to local directories for instant recovery in case of problems.",
+        "Select programming languages, design tools, or applications.",
+        "Evaluate code to ensure that it is valid, is properly structured, meets industry standards, and is compatible with browsers, devices, or operating systems.",
+        "Develop databases that support Web applications and Web sites.",
+        "Perform Web site tests according to planned schedules, or after any Web site or product revision.",
+        "Perform or direct Web site updates.",
+        "Maintain understanding of current Web technologies or programming practices through continuing education, reading, or participation in professional conferences, workshops, or groups.",
+        "Analyze user needs to determine technical requirements.",
+        "Respond to user email inquiries, or set up automated systems to send responses.",
+        "Renew domain name registrations.",
+        "Confer with management or development teams to prioritize needs, resolve conflicts, develop content criteria, or choose solutions.",
+        "Communicate with network personnel or Web site hosting agencies to address hardware or software issues affecting Web sites.",
+        "Collaborate with management or users to develop e-commerce strategies and to integrate these strategies with Web sites.",
+        "Document test plans, testing procedures, or test results.",
+        "Establish appropriate server directory trees.",
+        "Recommend and implement performance improvements.",
+        "Document technical factors such as server load, bandwidth, database performance, and browser and device types.",
+        "Develop or implement procedures for ongoing Web site revision.",
+        "Create Web models or prototypes that include physical, interface, logical, or data models.",
+        "Provide clear, detailed descriptions of Web site specifications, such as product features, activities, software, communication protocols, programming languages, and operating systems software and hardware.",
+        "Evaluate or recommend server hardware or software."
+      ],
+      "technologies": [
+        {
+          "name": "Amazon Web Services AWS software",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Apache Kafka",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Atlassian JIRA",
+          "category": "Content workflow software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "C#",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Cascading style sheets CSS",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Docker",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Git",
+          "category": "File versioning software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "GitHub",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Go",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Google Angular",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "GraphQL",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Hypertext markup language HTML",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "JavaScript",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "JavaScript Object Notation JSON",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Jenkins CI",
+          "category": "Enterprise application integration software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Kubernetes",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Linux",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Microsoft Azure software",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "MongoDB",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "MySQL",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "NoSQL",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Node.js",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Oracle Java",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "PHP",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "PostgreSQL",
+          "category": "Object oriented data base management software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Python",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "React",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Spring Boot",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Spring Framework",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Structured query language SQL",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "TypeScript",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "Vue.js",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "WordPress",
+          "category": "Web page creation and editing software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "jQuery",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": true
+        },
+        {
+          "name": "AJAX",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Adobe Acrobat",
+          "category": "Document management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Adobe After Effects",
+          "category": "Video creation and editing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Adobe Creative Cloud software",
+          "category": "Graphics or photo imaging software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Adobe Illustrator",
+          "category": "Graphics or photo imaging software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Adobe InDesign",
+          "category": "Desktop publishing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Adobe Photoshop",
+          "category": "Graphics or photo imaging software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon DynamoDB",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon Elastic Compute Cloud EC2",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon Redshift",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Amazon Web Services AWS CloudFormation",
+          "category": "Cloud-based management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Ansible software",
+          "category": "Expert system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Cassandra",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Hadoop",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Hive",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Maven",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Spark",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Subversion SVN",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apache Tomcat",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Apple macOS",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Atlassian Bitbucket",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Atlassian Confluence",
+          "category": "Project management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Bash",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Bootstrap",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "C",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "C++",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Chef",
+          "category": "Configuration management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Cisco Webex",
+          "category": "Video conferencing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Django",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "ESRI ArcGIS software",
+          "category": "Geographic information system",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Eclipse IDE",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Elasticsearch",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Epic Systems",
+          "category": "Medical software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Extensible markup language XML",
+          "category": "Enterprise application integration software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Facebook",
+          "category": "Web page creation and editing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Figma",
+          "category": "Graphical user interface development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Google Analytics",
+          "category": "Data mining software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Google Android",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Google Docs",
+          "category": "Word processing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Hibernate ORM",
+          "category": "Object oriented data base management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "HubSpot software",
+          "category": "Sales and marketing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "IBM SPSS Statistics",
+          "category": "Analytical or scientific software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "JUnit",
+          "category": "Program testing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Marketo Marketing Automation",
+          "category": "Sales and marketing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft .NET Framework",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft ASP.NET",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Access",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Active Server Pages ASP",
+          "category": "Web platform development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Excel",
+          "category": "Spreadsheet software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Office software",
+          "category": "Office suite software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft PowerShell",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Project",
+          "category": "Project management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SQL Server",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SQL Server Integration Services SSIS",
+          "category": "Enterprise application integration software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SQL Server Reporting Services SSRS",
+          "category": "Data base reporting software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft SharePoint",
+          "category": "Document management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visio",
+          "category": "Process mapping and design software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visual Basic",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visual Basic for Applications VBA",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Visual Studio",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Windows",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Microsoft Windows Server",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle Database",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle Java 2 Platform Enterprise Edition J2EE",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Oracle PL/SQL",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Perl",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Puppet",
+          "category": "Configuration management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "R",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Red Hat Enterprise Linux",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Red Hat OpenShift",
+          "category": "Application server software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Redis",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Ruby",
+          "category": "Development environment software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "SAP software",
+          "category": "Enterprise resource planning ERP software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "SAS",
+          "category": "Analytical or scientific software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Salesforce software",
+          "category": "Customer relationship management CRM software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Scala",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Selenium",
+          "category": "Program testing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Shell script",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Slack",
+          "category": "Cloud-based data access and sharing software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Splunk Enterprise",
+          "category": "Cloud-based management software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Swift",
+          "category": "Object or component oriented development software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Tableau",
+          "category": "Business intelligence and data analysis software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Teradata Database",
+          "category": "Data base management system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "The MathWorks MATLAB",
+          "category": "Analytical or scientific software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Transact-SQL",
+          "category": "Data base user interface and query software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "Trimble SketchUp Pro",
+          "category": "Graphics or photo imaging software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "UNIX",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "UNIX Shell",
+          "category": "Operating system software",
+          "hot": true,
+          "inDemand": false
+        },
+        {
+          "name": "JavaScript framework software",
+          "category": "Web platform development software",
+          "hot": false,
+          "inDemand": true
+        },
+        {
+          "name": "RESTful API",
+          "category": "Web platform development software",
+          "hot": false,
+          "inDemand": true
+        },
+        {
+          "name": "Web application software",
+          "category": "Development environment software",
+          "hot": false,
+          "inDemand": true
+        }
+      ],
+      "essentialSkills": [
+        {
+          "name": "Critical Thinking",
+          "importance": 3.75
+        },
+        {
+          "name": "Reading Comprehension",
+          "importance": 3.62
+        },
+        {
+          "name": "Active Listening",
+          "importance": 3.5
+        },
+        {
+          "name": "Active Learning",
+          "importance": 3.5
+        },
+        {
+          "name": "Speaking",
+          "importance": 3.25
+        },
+        {
+          "name": "Writing",
+          "importance": 3.12
+        },
+        {
+          "name": "Monitoring",
+          "importance": 3.0
+        },
+        {
+          "name": "Learning Strategies",
+          "importance": 2.88
+        },
+        {
+          "name": "Mathematics",
+          "importance": 2.75
+        },
+        {
+          "name": "Science",
+          "importance": 2.0
+        }
+      ],
+      "demand": {
+        "anzscoTitle": "Multimedia Specialists and Web Developers",
+        "latestMonth": "July 2026",
+        "latestAds": 66,
+        "peakAds": 954,
+        "peakIsHistoric": true,
+        "yearOnYearPct": -22.9,
+        "byState": {
+          "NSW": 24,
+          "VIC": 23,
+          "QLD": 12,
+          "SA": 2,
+          "WA": 4,
+          "TAS": 0,
+          "NT": 1,
+          "ACT": 1
+        },
+        "trend": [
+          250,
+          246,
+          247,
+          242,
+          204,
+          193,
+          191,
+          231,
+          230,
+          227,
+          209,
+          207,
+          201,
+          189,
+          171,
+          160,
+          139,
+          142,
+          156,
+          178,
+          165,
+          142,
+          133,
+          133,
+          148,
+          134,
+          132,
+          101,
+          91,
+          90,
+          89,
+          99,
+          95,
+          110,
+          109,
+          114,
+          106,
+          103,
+          99,
+          90,
+          80,
+          77,
+          75,
+          78,
+          72,
+          76,
+          79,
+          86,
+          83,
+          85,
+          80,
+          74,
+          63,
+          65,
+          70,
+          80,
+          81,
+          77,
+          72,
+          66
+        ]
+      }
+    }
+  ]
+}
