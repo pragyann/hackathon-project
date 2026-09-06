@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Award,
   Check,
+  ChevronDown,
   Loader2,
   Mic,
   MicOff,
@@ -14,6 +15,7 @@ import {
   VolumeX,
 } from "lucide-react";
 
+import { VoiceOrb, type OrbMode } from "@/components/VoiceOrb";
 import { Badge, Button, Card, CardBody, Eyebrow, Select, Skeleton } from "@/components/ui";
 import { getRole, roles } from "@/lib/data";
 import { ARCHETYPES, COMPANIES, type ArchetypeId, type CompanyId, type Debrief, type InterviewTurn } from "@/lib/interview";
@@ -105,8 +107,70 @@ export default function InterviewPage() {
 
   const [voiceOut, setVoiceOut] = useState(true);
   const [listening, setListening] = useState(false);
+  const [speaking, setSpeaking] = useState(false);
+  const [showTranscript, setShowTranscript] = useState(false);
   const recRef = useRef<SpeechRecognitionLike | null>(null);
   const [micSupported, setMicSupported] = useState(true);
+
+  /* -- the orb's envelope: real mic RMS while listening, a synthesised
+        voice envelope while the interviewer speaks ---------------------- */
+  const levelRef = useRef(0);
+  const speakEnv = useRef<ReturnType<typeof setInterval> | null>(null);
+  const meterRef = useRef<{ ctx: AudioContext; stream: MediaStream; raf: number } | null>(null);
+
+  async function startMeter() {
+    if (meterRef.current) return;
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const ctx = new AudioContext();
+      const analyser = ctx.createAnalyser();
+      analyser.fftSize = 512;
+      ctx.createMediaStreamSource(stream).connect(analyser);
+      const buf = new Uint8Array(analyser.frequencyBinCount);
+      const holder = { ctx, stream, raf: 0 };
+      meterRef.current = holder;
+      const tick = () => {
+        analyser.getByteTimeDomainData(buf);
+        let sum = 0;
+        for (let i = 0; i < buf.length; i++) {
+          const v = (buf[i] - 128) / 128;
+          sum += v * v;
+        }
+        levelRef.current = Math.min(1, Math.sqrt(sum / buf.length) * 5);
+        holder.raf = requestAnimationFrame(tick);
+      };
+      tick();
+    } catch {
+      /* no meter — the orb just breathes */
+    }
+  }
+
+  function stopMeter() {
+    const m = meterRef.current;
+    if (!m) return;
+    cancelAnimationFrame(m.raf);
+    m.stream.getTracks().forEach((t) => t.stop());
+    m.ctx.close();
+    meterRef.current = null;
+    levelRef.current = 0;
+  }
+
+  /** Speak a turn, animating the orb with a synthesised voice envelope. */
+  function voiceTurn(text: string) {
+    if (speakEnv.current) clearInterval(speakEnv.current);
+    if (voiceOut) {
+      setSpeaking(true);
+      speakEnv.current = setInterval(() => {
+        levelRef.current = 0.22 + Math.random() * 0.55;
+      }, 110);
+    }
+    speak(text, voiceOut, () => {
+      if (speakEnv.current) clearInterval(speakEnv.current);
+      levelRef.current = 0;
+      setSpeaking(false);
+      autoListen();
+    });
+  }
 
   const scrollRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -156,7 +220,7 @@ export default function InterviewPage() {
     try {
       const { turn } = await callEngine([], "next");
       setTranscript([{ speaker: "interviewer", text: turn }]);
-      speak(turn, voiceOut, () => autoListen());
+      voiceTurn(turn);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong.");
     } finally {
@@ -176,7 +240,7 @@ export default function InterviewPage() {
     try {
       const { turn } = await callEngine(next, "next");
       setTranscript([...next, { speaker: "interviewer", text: turn }]);
-      speak(turn, voiceOut, () => autoListen());
+      voiceTurn(turn);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong.");
     } finally {
@@ -248,14 +312,17 @@ export default function InterviewPage() {
     rec.onend = () => {
       if (silence) clearTimeout(silence);
       setListening(false);
+      stopMeter();
     };
     rec.start();
     setListening(true);
+    startMeter();
   }
 
   function stopListening() {
     recRef.current?.stop();
     setListening(false);
+    stopMeter();
   }
 
   if (!ready) {
@@ -334,14 +401,33 @@ export default function InterviewPage() {
 
   /* --------------------------------------------------------------- live -- */
   if (stage === "live") {
+    const orbMode: OrbMode = busy
+      ? "thinking"
+      : speaking
+        ? "speaking"
+        : listening
+          ? "listening"
+          : "idle";
+    const lastQuestion =
+      [...transcript].reverse().find((t) => t.speaker === "interviewer")?.text ?? "";
+    const status = busy
+      ? "thinking"
+      : speaking
+        ? "speaking"
+        : listening
+          ? handsFree
+            ? "listening — a pause sends your answer"
+            : "listening"
+          : "your turn";
+
     return (
-      <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-6 py-8">
+      <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-6 py-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <Eyebrow>
               Mock interview · {company ? COMPANIES[company].name : ARCHETYPES[archetype].label}
             </Eyebrow>
-            <h1 className="mt-1 text-xl font-extrabold tracking-tight text-fg">
+            <h1 className="mt-1 text-lg font-extrabold tracking-tight text-fg">
               {role?.title ?? "Interview"}
             </h1>
           </div>
@@ -361,46 +447,56 @@ export default function InterviewPage() {
           </div>
         </div>
 
-        <div
-          ref={scrollRef}
-          className="mt-5 flex-1 space-y-3 overflow-y-auto rounded-[var(--radius)] border border-border bg-bg-raised p-4"
-          style={{ minHeight: "40vh", maxHeight: "55vh" }}
-        >
-          {transcript.map((t, i) => (
-            <div
-              key={i}
-              className={cn(
-                "max-w-[85%] whitespace-pre-wrap rounded-md px-3.5 py-2.5 text-sm leading-relaxed",
-                t.speaker === "candidate"
-                  ? "ml-auto bg-accent text-accent-fg"
-                  : "border border-border bg-bg-subtle text-fg",
-              )}
+        {/* ----------------------------------------------- the voice stage -- */}
+        <div className="relative mt-4 overflow-hidden rounded-2xl border border-sign-border bg-sign">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(42rem 24rem at 50% 0%, color-mix(in oklch, var(--sign-raised) 80%, transparent), transparent 70%)",
+            }}
+          />
+          <div className="relative flex flex-col items-center px-6 pb-7 pt-6">
+            <VoiceOrb
+              mode={orbMode}
+              levelRef={levelRef}
+              className="block h-56 w-56 sm:h-72 sm:w-72"
+            />
+
+            <p
+              className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em] text-sign-fg-muted"
+              role="status"
             >
-              {t.speaker === "interviewer" && (
-                <span className="eyebrow mb-1 block text-fg-subtle">Interviewer</span>
-              )}
-              {t.text}
-            </div>
-          ))}
-          {busy && (
-            <div className="flex items-center gap-2 text-xs text-fg-subtle">
-              <Loader2 className="size-3.5 animate-spin" aria-hidden />
-              Interviewer is thinking…
-            </div>
-          )}
-          {error && (
-            <div role="alert" className="rounded-md border border-danger/30 bg-danger/5 px-3 py-2 text-xs text-danger">
-              {error}
-            </div>
-          )}
+              {status}
+            </p>
+
+            <p
+              key={lastQuestion.slice(0, 40)}
+              className="display fade-up mt-4 max-w-xl text-center text-lg leading-snug text-sign-fg sm:text-xl"
+              aria-live="polite"
+            >
+              {busy && !lastQuestion ? "Connecting you to the room…" : lastQuestion}
+            </p>
+
+            {error && (
+              <div
+                role="alert"
+                className="mt-4 rounded-md border border-danger/40 bg-danger/10 px-3.5 py-2 text-xs text-sign-fg"
+              >
+                {error}
+              </div>
+            )}
+          </div>
         </div>
 
+        {/* ---------------------------------------------------- your reply -- */}
         <form
           onSubmit={(e) => {
             e.preventDefault();
             answer();
           }}
-          className="mt-3"
+          className="mt-4"
         >
           <div className="flex items-end gap-2">
             {micSupported && (
@@ -410,10 +506,10 @@ export default function InterviewPage() {
                 aria-pressed={listening}
                 aria-label={listening ? "Stop the microphone" : "Answer by voice"}
                 className={cn(
-                  "flex size-11 shrink-0 items-center justify-center rounded-full border-2 transition-colors",
+                  "flex size-12 shrink-0 items-center justify-center rounded-full border-2 transition-colors",
                   listening
                     ? "border-danger bg-danger/10 text-danger [animation:pulse-soft_1.6s_ease-in-out_infinite]"
-                    : "border-border-strong text-fg-muted hover:border-accent hover:text-accent",
+                    : "border-accent bg-accent text-accent-fg hover:bg-accent-hover",
                 )}
               >
                 {listening ? <MicOff className="size-5" /> : <Mic className="size-5" />}
@@ -429,7 +525,7 @@ export default function InterviewPage() {
                 }
               }}
               rows={2}
-              placeholder={listening ? "Listening — speak your answer…" : "Type or speak your answer…"}
+              placeholder={listening ? "Listening — speak your answer…" : "Type or tap the mic…"}
               aria-label="Your answer"
               className="flex-1 resize-none rounded-md border border-border-strong bg-bg-raised px-3 py-2 text-sm text-fg placeholder:text-fg-subtle"
             />
@@ -437,14 +533,37 @@ export default function InterviewPage() {
               <Send className="size-4" aria-hidden />
             </Button>
           </div>
-          <p className="mt-2 text-[11px] text-fg-subtle">
-            {handsFree && micSupported
-              ? "Hands-free: the mic opens when the interviewer finishes, and ~2 seconds of silence sends your answer. "
-              : ""}
-            Voice runs on your browser&rsquo;s speech engine — free and private.
-            {!micSupported && " Your browser has no speech recognition; typing works fine."}
-          </p>
         </form>
+
+        {/* ---------------------------------------------------- transcript -- */}
+        <button
+          onClick={() => setShowTranscript((v) => !v)}
+          aria-expanded={showTranscript}
+          className="mt-4 flex items-center gap-1.5 self-start text-xs font-semibold text-fg-muted hover:text-fg"
+        >
+          <ChevronDown
+            className={cn("size-3.5 transition-transform", showTranscript && "rotate-180")}
+            aria-hidden
+          />
+          {showTranscript ? "Hide transcript" : `Transcript (${transcript.length})`}
+        </button>
+        {showTranscript && (
+          <div className="mt-2 max-h-72 space-y-2.5 overflow-y-auto rounded-md border border-border bg-bg-raised p-3" ref={scrollRef}>
+            {transcript.map((t, i) => (
+              <div
+                key={i}
+                className={cn(
+                  "max-w-[85%] whitespace-pre-wrap rounded-md px-3 py-2 text-sm leading-relaxed",
+                  t.speaker === "candidate"
+                    ? "ml-auto bg-accent text-accent-fg"
+                    : "border border-border bg-bg-subtle text-fg",
+                )}
+              >
+                {t.text}
+              </div>
+            ))}
+          </div>
+        )}
       </main>
     );
   }
