@@ -22,6 +22,7 @@ export const sources = {
 };
 
 export const getRole = (id: string | null) => roles.find((r) => r.id === id) ?? null;
+export const getEvent = (id: string) => events.find((e) => e.id === id);
 export const getDegree = (id: string | null) => degrees.find((d) => d.id === id) ?? null;
 
 export function unitsFor(profile: StudentProfile): Unit[] {

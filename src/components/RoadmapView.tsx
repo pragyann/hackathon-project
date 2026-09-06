@@ -1,7 +1,9 @@
 "use client";
 
-import { BookOpen, Hammer, Rocket, Users } from "lucide-react";
+import { useState } from "react";
+import { BookOpen, GraduationCap, Hammer, Rocket, Users } from "lucide-react";
 
+import { StudyDrawer, type StudyContext } from "@/components/StudyDrawer";
 import { Badge } from "@/components/ui";
 import type { Roadmap, RoadmapStep } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -24,7 +26,16 @@ const EFFORT_LABEL = {
  * The same visual grammar as the landing hero, now carrying the student's own
  * plan.
  */
-export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
+export function RoadmapView({
+  roadmap,
+  studyContextFor,
+}: {
+  roadmap: Roadmap;
+  /** Supplied by the plan page, which knows the role and the units. */
+  studyContextFor?: (step: RoadmapStep) => StudyContext;
+}) {
+  const [study, setStudy] = useState<StudyContext | null>(null);
+
   return (
     <div>
       <div className="mb-7 rounded-[var(--radius)] border border-route-strong/30 bg-route-subtle p-4">
@@ -61,18 +72,25 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
             <ul className="mt-3 space-y-2.5">
               {sem.steps.map((step) => (
                 <li key={step.id}>
-                  <StepCard step={step} />
+                  <StepCard
+                    step={step}
+                    onStudy={
+                      studyContextFor ? () => setStudy(studyContextFor(step)) : undefined
+                    }
+                  />
                 </li>
               ))}
             </ul>
           </li>
         ))}
       </ol>
+
+      {study && <StudyDrawer context={study} onClose={() => setStudy(null)} />}
     </div>
   );
 }
 
-function StepCard({ step }: { step: RoadmapStep }) {
+function StepCard({ step, onStudy }: { step: RoadmapStep; onStudy?: () => void }) {
   const kind = STEP_KIND[step.type];
   const Icon = kind.icon;
 
@@ -102,6 +120,15 @@ function StepCard({ step }: { step: RoadmapStep }) {
               <span className="font-mono text-[11px] font-medium text-fg-subtle">
                 builds on {step.buildsOnUnitCodes.join(" · ")}
               </span>
+            )}
+            {onStudy && (
+              <button
+                onClick={onStudy}
+                className="ml-auto inline-flex items-center gap-1 rounded-md border border-accent-border bg-accent-subtle px-2 py-0.5 text-[11px] font-semibold text-accent transition-colors hover:bg-accent hover:text-accent-fg"
+              >
+                <GraduationCap className="size-3" aria-hidden />
+                Study this
+              </button>
             )}
           </div>
         </div>

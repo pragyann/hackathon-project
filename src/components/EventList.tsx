@@ -1,10 +1,22 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-import { ChevronDown, ExternalLink, Users } from "lucide-react";
+import {
+  AlertTriangle,
+  CalendarCheck,
+  CalendarPlus,
+  ChevronDown,
+  ExternalLink,
+  Users,
+  X,
+} from "lucide-react";
 
-import { Badge } from "@/components/ui";
+import { Badge, Button, Input } from "@/components/ui";
+import { conflictsFor, formatHour, formatPlanDate, toISODate } from "@/lib/calendar";
 import type { RankedEvent } from "@/lib/data";
+import { saveProfile, useStoredProfile } from "@/lib/store";
+import type { EventPlan } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 const STAGE_COPY = {
@@ -61,8 +73,30 @@ export function EventList({ ranked }: { ranked: RankedEvent[] }) {
 
 function EventCard({ ranked }: { ranked: RankedEvent }) {
   const [open, setOpen] = useState(false);
+  const [planning, setPlanning] = useState(false);
   const { event, reasons, stageFit } = ranked;
   const stage = STAGE_COPY[stageFit];
+
+  const profile = useStoredProfile();
+  const plan = profile?.eventPlans.find((p) => p.eventId === event.id) ?? null;
+  const clashes = plan && profile ? conflictsFor(plan, profile.classBlocks) : [];
+
+  function savePlan(p: EventPlan) {
+    if (!profile) return;
+    saveProfile({
+      ...profile,
+      eventPlans: [...profile.eventPlans.filter((x) => x.eventId !== event.id), p],
+    });
+    setPlanning(false);
+  }
+
+  function removePlan() {
+    if (!profile) return;
+    saveProfile({
+      ...profile,
+      eventPlans: profile.eventPlans.filter((x) => x.eventId !== event.id),
+    });
+  }
 
   return (
     <div className="rounded-md border border-border bg-bg-raised shadow-[var(--shadow-sm)]">
@@ -103,6 +137,53 @@ function EventCard({ ranked }: { ranked: RankedEvent }) {
             </span>
           )}
         </div>
+
+        {/* ------------------------------------------------ going / plan -- */}
+        <div className="mt-3.5">
+          {plan ? (
+            <div
+              className={cn(
+                "flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-md border px-3 py-2 text-xs",
+                clashes.length
+                  ? "border-gap-border border-dashed bg-gap-subtle"
+                  : "border-evidence-border bg-evidence-subtle",
+              )}
+            >
+              <span className="inline-flex items-center gap-1.5 font-semibold text-fg">
+                <CalendarCheck className="size-3.5 text-evidence" aria-hidden />
+                Going — {formatPlanDate(plan.date)}, {formatHour(plan.start)}
+              </span>
+              {clashes.length > 0 && (
+                <span className="inline-flex items-center gap-1.5 font-semibold text-gap">
+                  <AlertTriangle className="size-3.5" aria-hidden />
+                  Clashes with {clashes[0].label}
+                </span>
+              )}
+              <span className="ml-auto flex items-center gap-2">
+                <Link href="/planner" className="font-medium text-accent hover:underline">
+                  View calendar
+                </Link>
+                <button
+                  onClick={removePlan}
+                  aria-label={`Remove ${event.name} from your calendar`}
+                  className="rounded p-0.5 text-fg-subtle hover:text-fg"
+                >
+                  <X className="size-3.5" />
+                </button>
+              </span>
+            </div>
+          ) : planning ? (
+            <PlanForm eventId={event.id} url={event.url} onSave={savePlan} onCancel={() => setPlanning(false)} />
+          ) : (
+            <button
+              onClick={() => setPlanning(true)}
+              className="inline-flex items-center gap-1.5 rounded-md border border-border-strong bg-bg-raised px-3 py-1.5 text-xs font-semibold text-fg transition-colors hover:border-accent hover:text-accent"
+            >
+              <CalendarPlus className="size-3.5" aria-hidden />
+              I&rsquo;m going — add to my calendar
+            </button>
+          )}
+        </div>
       </div>
 
       <button
@@ -127,6 +208,84 @@ function EventCard({ ranked }: { ranked: RankedEvent }) {
           ))}
         </ul>
       )}
+    </div>
+  );
+}
+
+/**
+ * Most organisers publish the next session only on their own page, so the
+ * student confirms it from there. Honest by design: we never invent a
+ * schedule we do not have (`docs/technical/data-sources.md` — events are
+ * curated, not live).
+ */
+function PlanForm({
+  eventId,
+  url,
+  onSave,
+  onCancel,
+}: {
+  eventId: string;
+  url: string;
+  onSave: (p: EventPlan) => void;
+  onCancel: () => void;
+}) {
+  const [date, setDate] = useState(toISODate(new Date()));
+  const [start, setStart] = useState("18:00");
+  const [duration, setDuration] = useState(2);
+
+  return (
+    <div className="rounded-md border border-border bg-bg-subtle p-3">
+      <p className="text-xs text-fg-muted">
+        Grab the next session&rsquo;s date from{" "}
+        <a href={url} target="_blank" rel="noopener noreferrer" className="font-medium text-accent hover:underline">
+          the organiser&rsquo;s listing
+        </a>{" "}
+        — we&rsquo;ll check it against your classes.
+      </p>
+      <div className="mt-2.5 flex flex-wrap items-end gap-2">
+        <label className="text-xs font-semibold text-fg">
+          Date
+          <Input
+            type="date"
+            className="mt-1 h-9 w-40"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+        </label>
+        <label className="text-xs font-semibold text-fg">
+          Starts
+          <Input
+            type="time"
+            className="mt-1 h-9 w-28"
+            value={start}
+            onChange={(e) => setStart(e.target.value)}
+          />
+        </label>
+        <label className="text-xs font-semibold text-fg">
+          Hours
+          <Input
+            type="number"
+            min={1}
+            max={8}
+            className="mt-1 h-9 w-20"
+            value={duration}
+            onChange={(e) => setDuration(Number(e.target.value) || 2)}
+          />
+        </label>
+        <Button
+          size="sm"
+          onClick={() => {
+            const [h, m] = start.split(":").map(Number);
+            onSave({ eventId, date, start: h + (m || 0) / 60, durationHours: duration });
+          }}
+          disabled={!date || !start}
+        >
+          Add
+        </Button>
+        <Button size="sm" variant="ghost" onClick={onCancel}>
+          Cancel
+        </Button>
+      </div>
     </div>
   );
 }

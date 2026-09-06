@@ -34,7 +34,15 @@ export const emptyProfile: StudentProfile = {
   resumeSkills: [],
   targetRoleId: null,
   exploring: false,
+  classBlocks: [],
+  eventPlans: [],
 };
+
+/** Profiles saved before a field existed come back without it. */
+function normalizeProfile(p: StudentProfile | null): StudentProfile | null {
+  if (!p) return null;
+  return { ...emptyProfile, ...p };
+}
 
 function read<T>(key: string): T | null {
   if (typeof window === "undefined") return null;
@@ -63,7 +71,7 @@ function write(key: string, value: unknown) {
   }
 }
 
-export const loadProfile = () => read<StudentProfile>(PROFILE_KEY);
+export const loadProfile = () => normalizeProfile(read<StudentProfile>(PROFILE_KEY));
 export const saveProfile = (p: StudentProfile) => write(PROFILE_KEY, p);
 
 export const loadAnalysis = () => read<Analysis>(ANALYSIS_KEY);
@@ -102,6 +110,9 @@ function makeSnapshotReader<T>(key: string) {
         lastValue = raw ? (JSON.parse(raw) as T) : null;
       } catch {
         lastValue = null;
+      }
+      if (lastValue && key === PROFILE_KEY) {
+        lastValue = normalizeProfile(lastValue as unknown as StudentProfile) as unknown as T;
       }
     }
     return lastValue;

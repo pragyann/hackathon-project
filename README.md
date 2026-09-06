@@ -62,6 +62,30 @@ key, and are labelled as precomputed in the UI. Regenerate them against the
 real pipeline with `node scripts/generate-fixtures.mjs` while a keyed dev
 server runs.
 
+### Beyond the plan: calendar, tutor, interview room
+
+Three features close the loop from "here is your roadmap" to "you walked out
+of the interview having practised":
+
+- **Study-safe calendar** (`/planner`). Accepting an event asks you to confirm
+  the session from the organiser's own listing — most publish "see listing",
+  and we do not invent schedules we do not have. Accepted events land on a
+  week grid next to your class timetable, clashes are flagged loudly, and the
+  whole plan exports as an `.ics` into any calendar app. Networking should
+  never cost you a unit.
+- **Study assistant.** Every roadmap step carries a "Study this" button that
+  opens a tutor scoped to that one step (`/api/tutor`): it explains, sets
+  small exercises and reviews attempts, anchored to the units you have done —
+  and it will not write the project for you, because shipping it yourself is
+  the point.
+- **Interview prep** (`/interview`). A simulated interview for your target
+  role, spoken aloud via the browser's built-in speech engines (free, private;
+  a dedicated voice model is the production path). Questions are grounded in
+  the O*NET role profile and, if you paste one, a real job ad — interviewer
+  personas are archetypes (enterprise graduate program, product startup,
+  consultancy), never named companies, because we will not fabricate a real
+  employer's process. It ends in a structured debrief, not a score.
+
 ### The design language
 
 The product maps a route from coursework to a role, it is named after a road

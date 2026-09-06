@@ -28,9 +28,21 @@ export function SiteHeader() {
           </Link>
           <Link
             href="/plan"
-            className="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted transition-colors hover:bg-bg-subtle hover:text-fg sm:block"
+            className="hidden whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-fg-muted transition-colors hover:bg-bg-subtle hover:text-fg sm:block"
           >
             My plan
+          </Link>
+          <Link
+            href="/planner"
+            className="hidden whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-fg-muted transition-colors hover:bg-bg-subtle hover:text-fg md:block"
+          >
+            Calendar
+          </Link>
+          <Link
+            href="/interview"
+            className="hidden whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-fg-muted transition-colors hover:bg-bg-subtle hover:text-fg md:block"
+          >
+            Interview prep
           </Link>
           <Link
             href="/start"

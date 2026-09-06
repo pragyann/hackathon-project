@@ -113,7 +113,7 @@ Rules:
 
 /* ------------------------------------------------------- prompt bodies -- */
 
-function roleCorpus(role: Role): string {
+export function roleCorpus(role: Role): string {
   const tech = role.technologies
     .slice(0, 70)
     .map((t) => `- ${t.name} (${t.category})${t.hot ? " [in demand]" : ""}`)

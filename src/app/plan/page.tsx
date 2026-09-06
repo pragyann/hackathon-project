@@ -349,7 +349,16 @@ export default function PlanPage() {
 
         {tab === "Roadmap" &&
           (roadmapReady ? (
-            <RoadmapView roadmap={analysis!.roadmap!} />
+            <RoadmapView
+              roadmap={analysis!.roadmap!}
+              studyContextFor={(step) => ({
+                stepTitle: step.title,
+                stepRationale: step.rationale,
+                roleTitle: role.title,
+                unitCodes: analysis!.grounding.unitCodes,
+                yearLevel: profile.yearLevel,
+              })}
+            />
           ) : (
             <PendingPanel
               spinning={phase !== "error"}
