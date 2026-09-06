@@ -16,7 +16,9 @@ import type {
   Unit,
 } from "@/lib/types";
 
-const MODEL = "claude-opus-5";
+// Opus by default for demo-quality output; teammates can drop to Sonnet for
+// cheap development runs via ANTHROPIC_MODEL in .env.local.
+const MODEL = process.env.ANTHROPIC_MODEL || "claude-opus-5";
 
 const client = new Anthropic();
 
