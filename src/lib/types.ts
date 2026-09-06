@@ -64,6 +64,33 @@ export type NetworkingEvent = {
   memberCount: number | null;
 };
 
+/* ------------------------------------------------------------ calendar -- */
+
+/** A weekly recurring university commitment: a lecture, tute or lab. */
+export type ClassBlock = {
+  id: string;
+  /** 0 = Monday … 6 = Sunday. */
+  day: number;
+  /** 24h start hour, halves allowed (17.5 = 5:30pm). */
+  start: number;
+  end: number;
+  label: string;
+};
+
+/**
+ * An event the student has decided to attend. Most organisers publish the
+ * next session only on their own listing, so the student confirms the date
+ * and time from there — we never invent a schedule we do not have.
+ */
+export type EventPlan = {
+  eventId: string;
+  /** yyyy-mm-dd, local. */
+  date: string;
+  /** 24h start hour, halves allowed. */
+  start: number;
+  durationHours: number;
+};
+
 /* ------------------------------------------------------------- student -- */
 
 export type StudentProfile = {
@@ -80,6 +107,12 @@ export type StudentProfile = {
   targetRoleId: string | null;
   /** Set when the student chose "I'm not sure yet" and is exploring. */
   exploring: boolean;
+  /** Weekly class timetable, used to keep events from eating study time. */
+  classBlocks: ClassBlock[];
+  /** Events accepted, each with the session the student confirmed. */
+  eventPlans: EventPlan[];
+  /** Roadmap steps ticked off — the progress the semester loop returns to. */
+  completedStepIds: string[];
 };
 
 /* -------------------------------------------------------- analysis out -- */
@@ -126,11 +159,14 @@ export type Roadmap = {
 
 export type Analysis = {
   gap: GapAnalysis;
-  roadmap: Roadmap;
+  /** Null while the sequencing call is still running — the gap renders first. */
+  roadmap: Roadmap | null;
   /** Recorded so the UI can show what the recommendation was grounded in. */
   grounding: {
     roleId: string;
     unitCodes: string[];
     droppedUngrounded: number;
   };
+  /** True for the shipped worked examples, and said so in the UI. */
+  precomputed?: boolean;
 };

@@ -1,16 +1,33 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Newsreader, Overpass, Overpass_Mono } from "next/font/google";
 import "./globals.css";
 
-const sans = Inter({
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+
+/*
+  Overpass descends from Highway Gothic, the letterform of road signage — the
+  right voice for a product named after a road element that draws routes.
+  Overpass Mono carries unit codes and statistics; Newsreader is the
+  editorial display voice, and its italic is reserved for text quoted
+  verbatim from university handbooks.
+*/
+const sans = Overpass({
   variable: "--font-sans-var",
   subsets: ["latin"],
   display: "swap",
 });
 
-const mono = JetBrains_Mono({
+const mono = Overpass_Mono({
   variable: "--font-mono-var",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const serif = Newsreader({
+  variable: "--font-serif-var",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -26,8 +43,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en-AU" className={`${sans.variable} ${mono.variable} h-full`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+    // suppressHydrationWarning: browser extensions inject attributes into
+    // <html> before React hydrates (e.g. bbai-tooltip-injected), which is
+    // noise, not a bug. Applies to this element's attributes only.
+    <html
+      lang="en-AU"
+      data-scroll-behavior="smooth"
+      className={`${sans.variable} ${mono.variable} ${serif.variable} h-full`}
+      suppressHydrationWarning
+    >
+      <body className="min-h-full flex flex-col">
+        <SiteHeader />
+        {children}
+        <SiteFooter />
+      </body>
     </html>
   );
 }

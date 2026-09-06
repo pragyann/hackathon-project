@@ -1,0 +1,539 @@
+{
+  "gap": {
+    "headline": "You have solid first-year programming and algorithm foundations in C and a high-level language, but almost none of the professional tooling, web, database and cloud skills that software developer roles ask for — which is expected at this stage with six semesters left.",
+    "capabilities": [
+      {
+        "id": "c-programming",
+        "name": "C / systems programming",
+        "category": "language",
+        "importance": "core",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "Read, write, test and debug typical small-scale programs in a system programming language such as C"
+          }
+        ],
+        "rationale": "You can write and debug small C programs, which covers the C listed in employer technology lists at an introductory level."
+      },
+      {
+        "id": "high-level-language",
+        "name": "Python or equivalent high-level language",
+        "category": "language",
+        "importance": "core",
+        "status": "partial",
+        "evidence": [
+          {
+            "unitCode": "COMP10001",
+            "unitTitle": "Foundations of Computing",
+            "quote": "how to design and write basic programs using a high-level procedural programming language"
+          }
+        ],
+        "rationale": "You have written basic programs in a high-level language, but the subject description does not name Python specifically and stays at introductory scale, so you should confirm the language and build larger projects in it."
+      },
+      {
+        "id": "data-structures",
+        "name": "Data structures",
+        "category": "foundation",
+        "importance": "core",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "implement, and apply standard data structures such as linked lists, binary search trees, and hash tables"
+          },
+          {
+            "unitCode": "COMP10001",
+            "unitTitle": "Foundations of Computing",
+            "quote": "Use the fundamental data structures (arrays, records, lists, associative arrays)"
+          }
+        ],
+        "rationale": "You can implement and choose between the core data structures that technical interviews and day-to-day coding rely on."
+      },
+      {
+        "id": "algorithms",
+        "name": "Algorithms (sorting, searching, recursion)",
+        "category": "foundation",
+        "importance": "core",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "Discuss, analyse, and apply a range of sorting and searching algorithms"
+          },
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "Induction and recursion"
+          }
+        ],
+        "rationale": "You have covered the standard algorithm toolkit, which is the basis of the analytical side of developer work."
+      },
+      {
+        "id": "complexity-analysis",
+        "name": "Complexity analysis and performance reasoning",
+        "category": "foundation",
+        "importance": "common",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "Choose between different algorithms and data structures for simple problems by analysing their complexity and relative cost"
+          }
+        ],
+        "rationale": "You can reason about the cost of a design choice, which supports the role's task of determining performance standards."
+      },
+      {
+        "id": "memory-low-level",
+        "name": "Memory management and machine-level understanding",
+        "category": "foundation",
+        "importance": "common",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "Pointers and dynamic memory allocation"
+          },
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "Introduction to computer organization"
+          }
+        ],
+        "rationale": "You understand how data is represented and managed in memory, which matters for performance work and for roles close to hardware."
+      },
+      {
+        "id": "problem-solving",
+        "name": "Problem decomposition and critical thinking",
+        "category": "practice",
+        "importance": "core",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP10001",
+            "unitTitle": "Foundations of Computing",
+            "quote": "Understand and employ some basic algorithmic problem-solving techniques"
+          },
+          {
+            "unitCode": "COMP10001",
+            "unitTitle": "Foundations of Computing",
+            "quote": "A video recommender system, broken down into a series of functions"
+          }
+        ],
+        "rationale": "You have practice breaking a problem into functions and solving it step by step, the skill employers rate highest for this role."
+      },
+      {
+        "id": "debugging",
+        "name": "Debugging",
+        "category": "practice",
+        "importance": "core",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "Standard software development tools such as debuggers"
+          },
+          {
+            "unitCode": "COMP10001",
+            "unitTitle": "Foundations of Computing",
+            "quote": "Read, write, and debug simple, small programs"
+          }
+        ],
+        "rationale": "You have used a debugger and fixed faults in your own code, which is a daily part of modifying existing software."
+      },
+      {
+        "id": "testing",
+        "name": "Software testing and validation",
+        "category": "practice",
+        "importance": "core",
+        "status": "partial",
+        "evidence": [
+          {
+            "unitCode": "COMP10001",
+            "unitTitle": "Foundations of Computing",
+            "quote": "algorithmic problem solving, testing and debugging"
+          },
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "Read, write, test and debug typical small-scale programs"
+          }
+        ],
+        "rationale": "You have tested your own small programs, but the role expects test frameworks, unit tests and formal validation procedures that your units do not describe."
+      },
+      {
+        "id": "cli-linux",
+        "name": "Command line and Linux environment",
+        "category": "tool",
+        "importance": "core",
+        "status": "partial",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "Use a command line interface and standard development tools for programming"
+          }
+        ],
+        "rationale": "You can work in a terminal, but there is no evidence of Linux system administration, shell scripting or Bash, which appear often in job ads."
+      },
+      {
+        "id": "version-control",
+        "name": "Version control with Git and GitHub",
+        "category": "tool",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Nothing in your completed units mentions Git, branching or pull requests, and almost every developer job assumes them, so set up a GitHub account and use it for your own projects."
+      },
+      {
+        "id": "oop",
+        "name": "Object-oriented programming (Java, C#, C++)",
+        "category": "language",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Your units cover procedural and systems programming only, so classes, inheritance and design in an object-oriented language is still ahead of you."
+      },
+      {
+        "id": "sql-databases",
+        "name": "SQL and relational databases",
+        "category": "domain",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "No unit so far covers database design or querying, yet storing and retrieving data is listed directly among the role's tasks."
+      },
+      {
+        "id": "web-frontend",
+        "name": "Web development (HTML, CSS, JavaScript)",
+        "category": "domain",
+        "importance": "core",
+        "status": "partial",
+        "evidence": [
+          {
+            "unitCode": "COMP10001",
+            "unitTitle": "Foundations of Computing",
+            "quote": "introduction to the Web, multimedia and visualisation"
+          }
+        ],
+        "rationale": "You have had a brief introduction to the web, but not enough to build a page or an interface, so treat HTML, CSS and JavaScript as still to learn."
+      },
+      {
+        "id": "js-frameworks",
+        "name": "Front-end frameworks (React, Angular, Node.js, TypeScript)",
+        "category": "tool",
+        "importance": "common",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "These frameworks dominate Australian job ads and none of them appear in your coursework yet."
+      },
+      {
+        "id": "cloud",
+        "name": "Cloud platforms (AWS, Azure)",
+        "category": "tool",
+        "importance": "common",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Cloud deployment is not part of your completed units, and it is one of the most requested skills in this role."
+      },
+      {
+        "id": "containers-cicd",
+        "name": "Containers and CI/CD (Docker, Kubernetes, Jenkins)",
+        "category": "tool",
+        "importance": "common",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Building, packaging and automatically deploying software is not covered by anything you have studied so far."
+      },
+      {
+        "id": "requirements-analysis",
+        "name": "Requirements analysis and working with stakeholders",
+        "category": "practice",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Your units give you problems that are already specified, whereas the role expects you to work out what users need and what is feasible within time and cost."
+      },
+      {
+        "id": "technical-communication",
+        "name": "Technical writing and documentation",
+        "category": "practice",
+        "importance": "common",
+        "status": "partial",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "Develop and present logical arguments for the correctness of a given algorithm"
+          }
+        ],
+        "rationale": "You have practised writing a clear technical argument, but not the project reports, specifications and status updates the role asks for."
+      },
+      {
+        "id": "agile-collaboration",
+        "name": "Team software practice and issue tracking (Agile, JIRA)",
+        "category": "practice",
+        "importance": "common",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Your completed units describe individual programming work, so collaborative development in a tracked backlog is still untested for you."
+      }
+    ]
+  },
+  "roadmap": {
+    "headline": "Six semesters is a luxury: spend the first two building the habits (Git, tests, Linux, OOP) that only pay off with years of compounding, then layer databases, web, teamwork, containers and cloud onto one project you keep growing until it is an internship-worthy system.",
+    "stageNote": "With six semesters left, this plan deliberately front-loads slow-burn foundations — version control discipline, unit testing, Linux fluency, object-oriented design — at two to three light steps per semester, because a first-year's advantage is time to let habits accumulate and to have a two-year-old GitHub history by graduation; a final-year student with one semester left would get none of this and instead a single deployed full-stack project plus industry rooms, with cloud and CI cut entirely.",
+    "semesters": [
+      {
+        "label": "Semester 1 of 6 remaining (next semester, Year 1/2)",
+        "focus": "Version control and real Python at project scale",
+        "steps": [
+          {
+            "id": "s1-git",
+            "title": "Create a GitHub account and move your COMP10001 and COMP10002 assignment code into three clean repos, each with a README, .gitignore and at least 20 meaningful commits made on feature branches merged via pull requests",
+            "type": "build",
+            "effort": "light",
+            "addressesCapabilityIds": [
+              "version-control",
+              "technical-communication"
+            ],
+            "buildsOnUnitCodes": [
+              "COMP10001",
+              "COMP10002"
+            ],
+            "rationale": "You already have working code sitting on your laptop, so the cheapest possible way to start a two-year commit history is to version-control what you have this week rather than waiting for a bigger project."
+          },
+          {
+            "id": "s1-python",
+            "title": "Rewrite your COMP10001 text-analytics functions as a proper Python package (modules, argparse command-line entry point, requirements.txt) that processes a 50MB+ real dataset instead of a toy file",
+            "type": "build",
+            "effort": "moderate",
+            "addressesCapabilityIds": [
+              "high-level-language"
+            ],
+            "buildsOnUnitCodes": [
+              "COMP10001"
+            ],
+            "rationale": "Your intro programming was real but small-scale and language-unconfirmed; re-implementing something you already understand in Python at ten times the data size makes the language explicit on your CV and teaches you structure without inventing a new problem."
+          }
+        ]
+      },
+      {
+        "label": "Semester 2 of 6 remaining",
+        "focus": "Testing discipline, Linux fluency, first student event",
+        "steps": [
+          {
+            "id": "s2-pytest",
+            "title": "Add a pytest suite to your Python text-analytics package: at least 25 unit tests including edge cases, plus a coverage report you commit to the README badge",
+            "type": "learn",
+            "effort": "moderate",
+            "addressesCapabilityIds": [
+              "testing",
+              "high-level-language"
+            ],
+            "buildsOnUnitCodes": [
+              "COMP10001"
+            ],
+            "rationale": "You have only ever tested by running the program and eyeballing output; formal test frameworks are named directly in the role's tasks and are far easier to learn on code you wrote yourself."
+          },
+          {
+            "id": "s2-linux",
+            "title": "Install Linux (native, VM or WSL) as your daily dev environment and write a Bash script that compiles, runs and regression-tests your COMP10002 C programs against saved expected-output files",
+            "type": "learn",
+            "effort": "moderate",
+            "addressesCapabilityIds": [
+              "cli-linux",
+              "testing"
+            ],
+            "buildsOnUnitCodes": [
+              "COMP10002"
+            ],
+            "rationale": "COMP10002 already put you on the command line with gcc and a debugger, so extending that into shell scripting and a Linux daily driver is a small step now and the base for Docker and cloud work two years out."
+          },
+          {
+            "id": "s2-hack",
+            "title": "Enter one student hackathon or coding competition in Melbourne (CISSA CodeBrew, UniMelb Hackathon, or a Melbourne uni CTF) as part of a team of three or four",
+            "type": "connect",
+            "effort": "light",
+            "addressesCapabilityIds": [
+              "agile-collaboration",
+              "technical-communication"
+            ],
+            "buildsOnUnitCodes": [],
+            "rationale": "Low-stakes student events are the right room at this stage: you get a first taste of building with other people under a deadline, and the teammates you meet in year one are the referrals you use in year three."
+          }
+        ]
+      },
+      {
+        "label": "Semester 3 of 6 remaining",
+        "focus": "Object-oriented design and relational data",
+        "steps": [
+          {
+            "id": "s3-oop",
+            "title": "Take the object-oriented programming subject in your major (SWEN20003 Object Oriented Software Development, Java) and, outside class, port your COMP10001 card-game AI player into Java classes with an interface, inheritance and a strategy per player type",
+            "type": "learn",
+            "effort": "substantial",
+            "addressesCapabilityIds": [
+              "oop"
+            ],
+            "buildsOnUnitCodes": [
+              "COMP10001",
+              "COMP10002"
+            ],
+            "rationale": "Your two units are purely procedural and systems-level, and Java/C# OOP is the single largest structural gap for graduate developer roles in Australia; doing the port alongside the subject converts coursework into a portfolio repo."
+          },
+          {
+            "id": "s3-sql",
+            "title": "Install PostgreSQL locally, design a normalised schema for the documents and word statistics your text-analytics tool produces, load it, and write 15 queries including joins, aggregates and an index you can show sped a query up",
+            "type": "build",
+            "effort": "moderate",
+            "addressesCapabilityIds": [
+              "sql-databases"
+            ],
+            "buildsOnUnitCodes": [
+              "COMP10001"
+            ],
+            "rationale": "Storing and retrieving data is listed explicitly in the role's tasks and no unit covers it yet; attaching a real database to data you already generate makes SQL concrete rather than abstract."
+          }
+        ]
+      },
+      {
+        "label": "Semester 4 of 6 remaining",
+        "focus": "The web layer and working as a team with a backlog",
+        "steps": [
+          {
+            "id": "s4-web",
+            "title": "Build a plain HTML/CSS/JavaScript page (no framework) that calls a small Flask or FastAPI endpoint over your PostgreSQL database and renders the top-terms results in a table with a search box",
+            "type": "build",
+            "effort": "moderate",
+            "addressesCapabilityIds": [
+              "web-frontend",
+              "sql-databases",
+              "high-level-language"
+            ],
+            "buildsOnUnitCodes": [
+              "COMP10001"
+            ],
+            "rationale": "You need raw HTML, CSS, JS and HTTP in your hands before React will make any sense, and your database from last semester gives the page something real to display."
+          },
+          {
+            "id": "s4-team",
+            "title": "Join a semester-long team project (your software project subject, CISSA/Google Student Club team, or an open-source repo) and run it on a JIRA or GitHub Projects board with sprints, issues, code review on every PR and a stand-up habit",
+            "type": "connect",
+            "effort": "substantial",
+            "addressesCapabilityIds": [
+              "agile-collaboration",
+              "version-control",
+              "technical-communication"
+            ],
+            "buildsOnUnitCodes": [],
+            "rationale": "Everything you have done so far is individual work, and by mid-degree you need evidence of collaborative development in a tracked backlog because that is what every graduate interview probes."
+          },
+          {
+            "id": "s4-reqs",
+            "title": "Find one real non-technical user (a student club, a tutor, a small community group) and write a two-page requirements document for something they need: user needs, scope, out-of-scope, feasibility within your time budget",
+            "type": "ship",
+            "effort": "light",
+            "addressesCapabilityIds": [
+              "requirements-analysis",
+              "technical-communication"
+            ],
+            "buildsOnUnitCodes": [],
+            "rationale": "Every problem you have been given so far arrived pre-specified; doing this once, early and small, teaches you the interview-and-scope loop that the role's first listed task is entirely about."
+          }
+        ]
+      },
+      {
+        "label": "Semester 5 of 6 remaining",
+        "focus": "Modern front end, containers and CI on your own project",
+        "steps": [
+          {
+            "id": "s5-react",
+            "title": "Replace your plain-JS page with a React + TypeScript front end (Vite, typed API client, component tests with Vitest or React Testing Library) talking to the same API",
+            "type": "build",
+            "effort": "substantial",
+            "addressesCapabilityIds": [
+              "js-frameworks",
+              "web-frontend",
+              "testing"
+            ],
+            "buildsOnUnitCodes": [],
+            "rationale": "React and TypeScript dominate Australian job ads and the rewrite is much faster now that you already know what the page has to do, which is exactly why it was worth building it in plain JS first."
+          },
+          {
+            "id": "s5-docker",
+            "title": "Containerise the stack with a Dockerfile for the API and a docker-compose file running API plus PostgreSQL, then add a GitHub Actions workflow that runs your pytest and front-end tests on every pull request",
+            "type": "build",
+            "effort": "moderate",
+            "addressesCapabilityIds": [
+              "containers-cicd",
+              "testing",
+              "cli-linux"
+            ],
+            "buildsOnUnitCodes": [],
+            "rationale": "Docker and CI only make sense once you have a multi-part app with a test suite worth running automatically — which, after four semesters, you now have."
+          },
+          {
+            "id": "s5-intern",
+            "title": "Apply to summer internship and 2027 graduate programs (Atlassian, REA, Canva, Telstra, CBA, Seek, Culture Amp) and attend two Melbourne industry meetups such as Melbourne Python, React Melbourne or the AWS user group",
+            "type": "connect",
+            "effort": "moderate",
+            "addressesCapabilityIds": [
+              "technical-communication",
+              "requirements-analysis"
+            ],
+            "buildsOnUnitCodes": [],
+            "rationale": "Australian software ads are down 17% year on year, so you need to be in rooms where hiring actually happens with a working deployed project to talk about — and this is the last intake cycle before your final semester."
+          }
+        ]
+      },
+      {
+        "label": "Semester 6 of 6 remaining (final)",
+        "focus": "Cloud deployment and a portfolio that reads like professional work",
+        "steps": [
+          {
+            "id": "s6-cloud",
+            "title": "Deploy the containerised stack to AWS (ECS or EC2 plus RDS PostgreSQL) on a live URL, define the infrastructure in a Terraform file or CloudFormation template, and extend the GitHub Actions workflow to deploy on merge to main",
+            "type": "ship",
+            "effort": "substantial",
+            "addressesCapabilityIds": [
+              "cloud",
+              "containers-cicd"
+            ],
+            "buildsOnUnitCodes": [],
+            "rationale": "Cloud is the most requested skill in these ads and the cheapest credible way to prove it is one URL an interviewer can open, which is only possible because the containers and CI already exist."
+          },
+          {
+            "id": "s6-docs",
+            "title": "Write the project's final documentation set: an architecture decision record explaining why PostgreSQL and React, an API reference, a performance note measuring response times before and after your index, and a one-page status-style project report",
+            "type": "ship",
+            "effort": "moderate",
+            "addressesCapabilityIds": [
+              "technical-communication",
+              "requirements-analysis",
+              "testing"
+            ],
+            "buildsOnUnitCodes": [
+              "COMP10002"
+            ],
+            "rationale": "The role asks explicitly for specifications, performance standards and status reports, and your COMP10002 practice at arguing correctness gives you the writing habit — this turns three years of repos into something a hiring manager can read in ten minutes."
+          }
+        ]
+      }
+    ]
+  },
+  "grounding": {
+    "roleId": "software-developer",
+    "unitCodes": [
+      "COMP10001",
+      "COMP10002"
+    ],
+    "droppedUngrounded": 0
+  }
+}

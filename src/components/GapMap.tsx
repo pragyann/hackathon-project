@@ -1,39 +1,44 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, Quote } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 import { Badge } from "@/components/ui";
 import type { Capability, CapabilityStatus } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
+/* Road-condition language: each column header carries its own road surface, so
+   the three states read at a glance and without colour (solid / half / dashed). */
 const COLUMNS: {
   status: CapabilityStatus;
   title: string;
   blurb: string;
-  dot: string;
-  ring: string;
+  color: string;
+  dash?: string;
+  cardBorder: string;
 }[] = [
   {
     status: "evidenced",
     title: "Evidenced",
     blurb: "Your coursework demonstrates this",
-    dot: "bg-evidence",
-    ring: "border-evidence-border",
+    color: "var(--evidence)",
+    cardBorder: "border-evidence-border",
   },
   {
     status: "partial",
     title: "Partial",
     blurb: "Touched on, not demonstrated",
-    dot: "bg-partial",
-    ring: "border-partial-border",
+    color: "var(--partial)",
+    dash: "22 7",
+    cardBorder: "border-partial-border",
   },
   {
     status: "gap",
     title: "Gap",
     blurb: "What the roadmap is for",
-    dot: "bg-gap",
-    ring: "border-gap-border",
+    color: "var(--gap)",
+    dash: "7 7",
+    cardBorder: "border-gap-border border-dashed",
   },
 ];
 
@@ -49,7 +54,7 @@ export function GapMap({ capabilities }: { capabilities: Capability[] }) {
     <div>
       {/* One bar, so the shape of the answer is legible before any reading. */}
       <div
-        className="mb-6 flex h-2.5 overflow-hidden rounded-full bg-bg-subtle"
+        className="mb-7 flex h-2.5 overflow-hidden rounded-full bg-bg-subtle"
         role="img"
         aria-label={`${counts.evidenced} evidenced, ${counts.partial} partial, ${counts.gap} gaps`}
       >
@@ -57,6 +62,7 @@ export function GapMap({ capabilities }: { capabilities: Capability[] }) {
           <div
             key={s}
             className={cn(
+              "transition-all duration-700",
               s === "evidenced" && "bg-evidence",
               s === "partial" && "bg-partial",
               s === "gap" && "bg-gap",
@@ -66,29 +72,45 @@ export function GapMap({ capabilities }: { capabilities: Capability[] }) {
         ))}
       </div>
 
-      <div className="grid gap-5 lg:grid-cols-3">
+      <div className="grid gap-6 lg:grid-cols-3">
         {COLUMNS.map((col) => {
           const items = capabilities.filter((c) => c.status === col.status);
           return (
             <section key={col.status} aria-labelledby={`col-${col.status}`}>
-              <div className="mb-3 flex items-baseline gap-2">
-                <span className={cn("size-2 rounded-full", col.dot)} aria-hidden />
-                <h3 id={`col-${col.status}`} className="text-sm font-semibold text-fg">
+              <div className="flex items-baseline gap-2.5">
+                <h3
+                  id={`col-${col.status}`}
+                  className="text-sm font-extrabold uppercase tracking-wide text-fg"
+                >
                   {col.title}
                 </h3>
-                <span className="font-mono text-sm text-fg-subtle">{items.length}</span>
+                <span className="font-mono text-sm font-semibold text-fg-subtle">
+                  {items.length}
+                </span>
               </div>
-              <p className="mb-3 text-xs text-fg-subtle">{col.blurb}</p>
+              <svg width="100%" height="6" aria-hidden className="mt-1.5">
+                <line
+                  x1="2"
+                  y1="3"
+                  x2="98%"
+                  y2="3"
+                  stroke={col.color}
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  strokeDasharray={col.dash}
+                />
+              </svg>
+              <p className="mb-3 mt-1.5 text-xs text-fg-subtle">{col.blurb}</p>
 
               {items.length === 0 ? (
-                <p className="rounded-lg border border-dashed border-border p-4 text-xs text-fg-subtle">
+                <p className="rounded-md border border-dashed border-border p-4 text-xs text-fg-subtle">
                   Nothing in this column.
                 </p>
               ) : (
                 <ul className="space-y-2">
                   {items.map((c) => (
                     <li key={c.id}>
-                      <CapabilityCard capability={c} ring={col.ring} />
+                      <CapabilityCard capability={c} border={col.cardBorder} />
                     </li>
                   ))}
                 </ul>
@@ -103,16 +125,16 @@ export function GapMap({ capabilities }: { capabilities: Capability[] }) {
 
 function CapabilityCard({
   capability: c,
-  ring,
+  border,
 }: {
   capability: Capability;
-  ring: string;
+  border: string;
 }) {
   const [open, setOpen] = useState(false);
   const hasWhy = c.evidence.length > 0 || Boolean(c.rationale);
 
   return (
-    <div className={cn("rounded-lg border bg-bg-raised", ring)}>
+    <div className={cn("rounded-md border bg-bg-raised", border)}>
       <button
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
@@ -120,12 +142,12 @@ function CapabilityCard({
         className="flex w-full items-start justify-between gap-3 p-3 text-left"
       >
         <span className="min-w-0">
-          <span className="block text-sm font-medium text-fg">{c.name}</span>
+          <span className="block text-sm font-semibold text-fg">{c.name}</span>
           <span className="mt-1.5 flex flex-wrap items-center gap-1.5">
             {c.importance === "core" && <Badge tone="accent">Core</Badge>}
             <Badge tone="neutral">{c.category}</Badge>
             {c.evidence.length > 0 && (
-              <span className="font-mono text-[11px] text-fg-subtle">
+              <span className="font-mono text-[11px] font-medium text-fg-subtle">
                 {c.evidence.map((e) => e.unitCode).join(" · ")}
               </span>
             )}
@@ -152,16 +174,16 @@ function CapabilityCard({
               {c.evidence.map((e, i) => (
                 <li key={i} className="rounded-md bg-bg-subtle p-2.5">
                   <div className="flex items-center gap-1.5">
-                    <span className="font-mono text-[11px] font-medium text-fg">
+                    <span className="font-mono text-[11px] font-bold text-fg">
                       {e.unitCode}
                     </span>
                     <span className="truncate text-[11px] text-fg-muted">
                       {e.unitTitle}
                     </span>
                   </div>
-                  <p className="mt-1.5 flex gap-1.5 text-xs italic leading-relaxed text-fg-muted">
-                    <Quote className="mt-0.5 size-3 shrink-0 text-fg-subtle" aria-hidden />
-                    {e.quote}
+                  {/* The university's words, in the university's voice. */}
+                  <p className="handbook-quote mt-1.5 text-[13px] leading-relaxed text-fg-muted">
+                    &ldquo;{e.quote}&rdquo;
                   </p>
                 </li>
               ))}

@@ -2,36 +2,46 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { ArrowLeft, ArrowRight, Check, Loader2, Plus, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowLeft, ArrowRight, Check, Plus, X, Zap } from "lucide-react";
 
+import { Sparkline } from "@/components/Sparkline";
 import {
   Badge,
   Button,
   Card,
   CardBody,
+  Eyebrow,
   Input,
   Label,
   Select,
   SectionHeading,
 } from "@/components/ui";
+import arjunFixture from "@/data/fixtures/arjun.json";
+import priyaFixture from "@/data/fixtures/priya.json";
 import { degrees, roles } from "@/lib/data";
-import { emptyProfile, saveAnalysis, saveProfile } from "@/lib/store";
-import type { StudentProfile } from "@/lib/types";
+import { emptyProfile, loadProfile, saveAnalysis, saveProfile, clearAnalysis } from "@/lib/store";
+import type { Analysis, StudentProfile } from "@/lib/types";
 import { cn, formatNumber } from "@/lib/utils";
 
-const STEPS = ["About you", "What you have done", "Where you are heading"] as const;
+const STEPS = ["Where you are", "What you have done", "Where you are heading"] as const;
 
 /**
- * Two profiles differing only in stage. This is the demo: same degree, same
- * target role, materially different roadmap. `open-questions.md` §3 argues this
- * is the single most convincing thing to put in front of a judge, and it proves
- * the personalisation is real rather than a static roadmap with a name on it.
+ * Two profiles differing only in stage, with precomputed analyses. This is the
+ * demo: same degree, same target role, materially different roadmap — and it
+ * loads instantly, with no API key, because judges should not wait on a model
+ * to see the thesis. Honest labelling: the plan page says it is precomputed.
  */
-const DEMO_PROFILES: { label: string; note: string; profile: StudentProfile }[] = [
+const DEMO_PROFILES: {
+  label: string;
+  note: string;
+  profile: StudentProfile;
+  fixture: Analysis;
+}[] = [
   {
     label: "Arjun, first year",
     note: "6 semesters left · 2 units done",
+    fixture: arjunFixture as unknown as Analysis,
     profile: {
       ...emptyProfile,
       name: "Arjun",
@@ -45,6 +55,7 @@ const DEMO_PROFILES: { label: string; note: string; profile: StudentProfile }[] 
   {
     label: "Priya, final year",
     note: "1 semester left · 4 units done",
+    fixture: priyaFixture as unknown as Analysis,
     profile: {
       ...emptyProfile,
       name: "Priya",
@@ -63,8 +74,16 @@ export default function StartPage() {
   const [profile, setProfile] = useState<StudentProfile>(emptyProfile);
   const [manualCode, setManualCode] = useState("");
   const [manualTitle, setManualTitle] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [skillDraft, setSkillDraft] = useState("");
+
+  // Returning students edit their saved profile rather than starting over.
+  // localStorage is unreadable during SSR, so this must wait for the client;
+  // a one-shot post-mount sync is the intended pattern here.
+  useEffect(() => {
+    const saved = loadProfile();
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (saved) setProfile(saved);
+  }, []);
 
   const degree = degrees.find((d) => d.id === profile.degreeId) ?? null;
   const patch = (p: Partial<StudentProfile>) => setProfile((prev) => ({ ...prev, ...p }));
@@ -76,46 +95,37 @@ export default function StartPage() {
     Boolean(profile.targetRoleId),
   ][step];
 
-  async function run() {
-    setBusy(true);
-    setError(null);
-    try {
-      const res = await fetch("/api/analyse", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(profile),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Something went wrong.");
-      saveProfile(profile);
-      saveAnalysis(data);
-      router.push("/plan");
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Something went wrong.");
-      setBusy(false);
-    }
+  /** Save and hand over to /plan, which runs the two-call pipeline visibly. */
+  function run() {
+    saveProfile(profile);
+    clearAnalysis();
+    router.push("/plan?run=1");
+  }
+
+  function loadDemo(demo: (typeof DEMO_PROFILES)[number]) {
+    saveProfile(demo.profile);
+    saveAnalysis({ ...demo.fixture, precomputed: true });
+    router.push("/plan");
+  }
+
+  function addSkill() {
+    const s = skillDraft.trim();
+    if (!s || profile.resumeSkills.includes(s)) return;
+    patch({ resumeSkills: [...profile.resumeSkills, s] });
+    setSkillDraft("");
   }
 
   return (
     <main className="flex-1">
-      <header className="border-b border-border">
-        <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
-          <Link href="/" className="text-sm font-semibold tracking-tight">
-            Onramp
-          </Link>
-          <span className="text-xs text-fg-subtle">
-            Step {step + 1} of {STEPS.length}
-          </span>
-        </div>
-      </header>
-
       <div className="mx-auto max-w-3xl px-6 py-10">
+        <Eyebrow className="mb-2">Under three minutes, three steps</Eyebrow>
         <Stepper step={step} />
 
         {/* ------------------------------------------------ 1. about you -- */}
         {step === 0 && (
-          <div className="mt-10">
+          <div className="mt-10 fade-up">
             <SectionHeading
+              eyebrow="Step 01"
               title="Tell us where you are in your degree"
               description="Year level is the input that changes everything downstream — it decides whether you get a three-year arc or a triage list. Nothing here is used to rank or score you."
             />
@@ -203,9 +213,10 @@ export default function StartPage() {
               </CardBody>
             </Card>
 
-            <div className="mt-6 rounded-[var(--radius)] border border-border bg-bg-subtle p-4">
-              <p className="text-xs font-medium uppercase tracking-wide text-fg-subtle">
-                Or load a worked example
+            <div className="mt-6 rounded-[var(--radius)] border border-route-strong/30 bg-route-subtle p-4">
+              <p className="eyebrow text-route-fg">
+                <Zap className="mr-1 inline size-3" aria-hidden />
+                Or load a worked example — instant, precomputed
               </p>
               <p className="mt-1.5 text-sm text-fg-muted">
                 Same degree, same target role, different stage. That contrast is the
@@ -216,14 +227,11 @@ export default function StartPage() {
                   <button
                     key={d.label}
                     aria-label={`Load worked example: ${d.label}, ${d.note}`}
-                    onClick={() => {
-                      setProfile(d.profile);
-                      setStep(2);
-                    }}
-                    className="rounded-lg border border-border-strong bg-bg-raised px-3 py-2 text-left transition-colors hover:border-accent-border hover:bg-accent-subtle"
+                    onClick={() => loadDemo(d)}
+                    className="rounded-md border border-border-strong bg-bg-raised px-3 py-2 text-left transition-colors hover:border-route-strong hover:shadow-sm"
                   >
-                    <div className="text-sm font-medium text-fg">{d.label}</div>
-                    <div className="text-xs text-fg-subtle">{d.note}</div>
+                    <div className="text-sm font-semibold text-fg">{d.label}</div>
+                    <div className="font-mono text-[11px] text-fg-subtle">{d.note}</div>
                   </button>
                 ))}
               </div>
@@ -233,8 +241,9 @@ export default function StartPage() {
 
         {/* ------------------------------------------------- 2. coursework -- */}
         {step === 1 && (
-          <div className="mt-10">
+          <div className="mt-10 fade-up">
             <SectionHeading
+              eyebrow="Step 02"
               title="Confirm what you have completed"
               description="Tick what you have finished. This should feel like confirming, not data entry — and every recommendation you get will trace back to something on this list."
             />
@@ -257,7 +266,7 @@ export default function StartPage() {
                           }
                           aria-pressed={on}
                           className={cn(
-                            "flex w-full items-start gap-3 rounded-lg border p-3 text-left transition-colors",
+                            "flex w-full items-start gap-3 rounded-md border p-3 text-left transition-colors",
                             on
                               ? "border-evidence-border bg-evidence-subtle"
                               : "border-border hover:border-border-strong hover:bg-bg-subtle",
@@ -276,10 +285,10 @@ export default function StartPage() {
                           </span>
                           <span className="min-w-0">
                             <span className="flex flex-wrap items-center gap-2">
-                              <span className="font-mono text-xs text-fg-muted">
+                              <span className="font-mono text-xs font-semibold text-fg-muted">
                                 {u.code}
                               </span>
-                              <span className="text-sm font-medium text-fg">{u.title}</span>
+                              <span className="text-sm font-semibold text-fg">{u.title}</span>
                               <Badge tone="neutral">Year {u.yearLevel}</Badge>
                             </span>
                           </span>
@@ -295,9 +304,7 @@ export default function StartPage() {
                 and with only two degrees seeded it is the path most students take. */}
             <Card className="mt-5">
               <CardBody className="pt-5">
-                <h3 className="text-sm font-semibold text-fg">
-                  Add a unit we do not have
-                </h3>
+                <h3 className="text-sm font-bold text-fg">Add a unit we do not have</h3>
                 <p className="mt-1 text-xs text-fg-muted">
                   Studying elsewhere, or took an elective outside this list? Type it in.
                   We will match on the title, and we will be more cautious about it
@@ -341,8 +348,8 @@ export default function StartPage() {
                   <ul className="mt-3 flex flex-wrap gap-2">
                     {profile.manualUnits.map((u, i) => (
                       <li key={`${u.code}-${i}`}>
-                        <span className="inline-flex items-center gap-2 rounded-md border border-border bg-bg-subtle py-1 pl-2.5 pr-1 text-xs">
-                          <span className="font-mono">{u.code}</span>
+                        <span className="inline-flex items-center gap-2 rounded border border-border bg-bg-subtle py-1 pl-2.5 pr-1 text-xs">
+                          <span className="font-mono font-semibold">{u.code}</span>
                           <span className="text-fg-muted">{u.title}</span>
                           <button
                             aria-label={`Remove ${u.code}`}
@@ -362,13 +369,66 @@ export default function StartPage() {
                 )}
               </CardBody>
             </Card>
+
+            {/* Skills outside coursework — the input the prompt already accepts. */}
+            <Card className="mt-5">
+              <CardBody className="pt-5">
+                <h3 className="text-sm font-bold text-fg">
+                  Anything you have picked up outside the degree?
+                </h3>
+                <p className="mt-1 text-xs text-fg-muted">
+                  A language from a side project, a tool from a part-time job. Optional,
+                  and it sharpens the gap map.
+                </p>
+                <div className="mt-3 flex gap-2">
+                  <Input
+                    className="flex-1"
+                    placeholder="e.g. Python side projects, Figma, retail POS systems"
+                    aria-label="A skill"
+                    value={skillDraft}
+                    onChange={(e) => setSkillDraft(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        addSkill();
+                      }
+                    }}
+                  />
+                  <Button variant="secondary" disabled={!skillDraft.trim()} onClick={addSkill}>
+                    <Plus className="size-4" aria-hidden />
+                    Add
+                  </Button>
+                </div>
+                {profile.resumeSkills.length > 0 && (
+                  <ul className="mt-3 flex flex-wrap gap-2">
+                    {profile.resumeSkills.map((s) => (
+                      <li key={s}>
+                        <span className="inline-flex items-center gap-1.5 rounded border border-border bg-bg-subtle py-1 pl-2.5 pr-1 text-xs">
+                          {s}
+                          <button
+                            aria-label={`Remove ${s}`}
+                            onClick={() =>
+                              patch({ resumeSkills: profile.resumeSkills.filter((x) => x !== s) })
+                            }
+                            className="rounded p-0.5 text-fg-subtle hover:bg-bg hover:text-fg"
+                          >
+                            <X className="size-3" />
+                          </button>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </CardBody>
+            </Card>
           </div>
         )}
 
         {/* ------------------------------------------------------ 3. role -- */}
         {step === 2 && (
-          <div className="mt-10">
+          <div className="mt-10 fade-up">
             <SectionHeading
+              eyebrow="Step 03"
               title="What are you aiming at?"
               description="Not sure? That is the normal answer, especially early on. Pick anything that sounds plausible — you can change it, and seeing the requirements is often how people work out what they want."
             />
@@ -379,23 +439,32 @@ export default function StartPage() {
                 return (
                   <button
                     key={r.id}
-                    onClick={() => patch({ targetRoleId: r.id, exploring: false })}
+                    onClick={() => patch({ targetRoleId: r.id })}
                     aria-pressed={on}
                     className={cn(
-                      "rounded-[var(--radius)] border p-4 text-left transition-colors",
+                      "rounded-[var(--radius)] border p-4 text-left transition-all",
                       on
-                        ? "border-accent bg-accent-subtle"
+                        ? "border-accent bg-accent-subtle shadow-sm"
                         : "border-border bg-bg-raised hover:border-border-strong",
                     )}
                   >
                     <div className="flex items-start justify-between gap-2">
-                      <span className="text-sm font-semibold text-fg">{r.title}</span>
+                      <span className="text-sm font-bold text-fg">{r.title}</span>
                       {on && <Check className="size-4 shrink-0 text-accent" aria-hidden />}
                     </div>
                     {r.demand && (
-                      <p className="mt-2 font-mono text-xs text-fg-muted">
-                        {formatNumber(r.demand.latestAds)} ads · {r.demand.latestMonth}
-                      </p>
+                      <div className="mt-2 flex items-end justify-between gap-3">
+                        <p className="font-mono text-xs text-fg-muted">
+                          {formatNumber(r.demand.latestAds)} ads
+                          <span className="text-fg-subtle"> · {r.demand.latestMonth}</span>
+                        </p>
+                        <Sparkline
+                          data={r.demand.trend}
+                          width={84}
+                          height={24}
+                          label={`Five-year demand trend for ${r.title}`}
+                        />
+                      </div>
                     )}
                     <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-fg-subtle">
                       {r.description}
@@ -408,12 +477,12 @@ export default function StartPage() {
             <label className="mt-5 flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-border bg-bg-subtle p-4">
               <input
                 type="checkbox"
-                className="mt-0.5 size-4"
+                className="mt-0.5 size-4 accent-[var(--accent)]"
                 checked={profile.exploring}
                 onChange={(e) => patch({ exploring: e.target.checked })}
               />
               <span>
-                <span className="block text-sm font-medium text-fg">
+                <span className="block text-sm font-semibold text-fg">
                   I am still working out what I want
                 </span>
                 <span className="mt-1 block text-xs text-fg-muted">
@@ -422,28 +491,25 @@ export default function StartPage() {
                 </span>
               </span>
             </label>
-
-            {error && (
-              <div
-                role="alert"
-                className="mt-5 rounded-[var(--radius)] border border-danger/30 bg-danger/5 p-4 text-sm text-danger"
-              >
-                {error}
-              </div>
-            )}
           </div>
         )}
 
         {/* ------------------------------------------------------- footer -- */}
         <div className="mt-8 flex items-center justify-between">
-          <Button
-            variant="ghost"
-            onClick={() => setStep((s) => Math.max(0, s - 1))}
-            disabled={step === 0 || busy}
-          >
-            <ArrowLeft className="size-4" aria-hidden />
-            Back
-          </Button>
+          {step === 0 ? (
+            <Link
+              href="/"
+              className="inline-flex h-10 items-center gap-2 rounded-md px-4 text-sm font-semibold text-fg-muted hover:bg-bg-subtle hover:text-fg"
+            >
+              <ArrowLeft className="size-4" aria-hidden />
+              Home
+            </Link>
+          ) : (
+            <Button variant="ghost" onClick={() => setStep((s) => Math.max(0, s - 1))}>
+              <ArrowLeft className="size-4" aria-hidden />
+              Back
+            </Button>
+          )}
 
           {step < STEPS.length - 1 ? (
             <Button onClick={() => setStep((s) => s + 1)} disabled={!canContinue}>
@@ -451,33 +517,18 @@ export default function StartPage() {
               <ArrowRight className="size-4" aria-hidden />
             </Button>
           ) : (
-            <Button onClick={run} disabled={!canContinue || busy} size="lg">
-              {busy ? (
-                <>
-                  <Loader2 className="size-4 animate-spin" aria-hidden />
-                  Mapping your gap…
-                </>
-              ) : (
-                <>
-                  Show me the gap
-                  <ArrowRight className="size-4" aria-hidden />
-                </>
-              )}
+            <Button onClick={run} disabled={!canContinue} size="lg">
+              Map my gap
+              <ArrowRight className="size-4" aria-hidden />
             </Button>
           )}
         </div>
-
-        {busy && (
-          <p className="mt-3 text-right text-xs text-fg-subtle">
-            Reading your units against what the role actually requires. Takes around a
-            minute.
-          </p>
-        )}
       </div>
     </main>
   );
 }
 
+/** The three steps drawn as a route: markers joined by road, gold when live. */
 function Stepper({ step }: { step: number }) {
   return (
     <ol className="flex items-center gap-2" aria-label="Progress">
@@ -485,13 +536,13 @@ function Stepper({ step }: { step: number }) {
         const done = i < step;
         const now = i === step;
         return (
-          <li key={label} className="flex flex-1 items-center gap-2">
+          <li key={label} className="flex flex-1 items-center gap-2 last:flex-none">
             <span
               className={cn(
-                "flex size-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold",
-                done && "bg-evidence text-white",
-                now && "bg-accent text-accent-fg",
-                !done && !now && "bg-bg-subtle text-fg-subtle",
+                "flex size-7 shrink-0 items-center justify-center rounded-[5px] border-2 font-mono text-xs font-bold",
+                done && "border-evidence bg-evidence-subtle text-evidence",
+                now && "border-route-fg/60 bg-route text-route-fg",
+                !done && !now && "border-border bg-bg-subtle text-fg-subtle",
               )}
               aria-hidden
             >
@@ -500,14 +551,17 @@ function Stepper({ step }: { step: number }) {
             <span
               className={cn(
                 "hidden truncate text-xs sm:block",
-                now ? "font-medium text-fg" : "text-fg-subtle",
+                now ? "font-semibold text-fg" : "text-fg-subtle",
               )}
               aria-current={now ? "step" : undefined}
             >
               {label}
             </span>
             {i < STEPS.length - 1 && (
-              <span className="h-px flex-1 bg-border" aria-hidden />
+              <span
+                className={cn("h-0.5 flex-1 rounded", done ? "bg-evidence" : "bg-border")}
+                aria-hidden
+              />
             )}
           </li>
         );

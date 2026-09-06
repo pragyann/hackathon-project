@@ -1,10 +1,22 @@
 "use client";
 
-import { useState } from "react";
-import { ChevronDown, ExternalLink, Users } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import {
+  AlertTriangle,
+  CalendarCheck,
+  CalendarPlus,
+  ChevronDown,
+  ExternalLink,
+  Users,
+  X,
+} from "lucide-react";
 
-import { Badge } from "@/components/ui";
+import { Badge, Button, Input } from "@/components/ui";
+import { conflictsFor, formatHour, formatPlanDate, toISODate } from "@/lib/calendar";
 import type { RankedEvent } from "@/lib/data";
+import { saveProfile, useStoredProfile } from "@/lib/store";
+import type { EventPlan } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 const STAGE_COPY = {
@@ -61,11 +73,33 @@ export function EventList({ ranked }: { ranked: RankedEvent[] }) {
 
 function EventCard({ ranked }: { ranked: RankedEvent }) {
   const [open, setOpen] = useState(false);
-  const { event, reasons, stageFit } = ranked;
+  const [planning, setPlanning] = useState(false);
+  const { event, reasons, contributions, stageFit } = ranked;
   const stage = STAGE_COPY[stageFit];
 
+  const profile = useStoredProfile();
+  const plan = profile?.eventPlans.find((p) => p.eventId === event.id) ?? null;
+  const clashes = plan && profile ? conflictsFor(plan, profile.classBlocks) : [];
+
+  function savePlan(p: EventPlan) {
+    if (!profile) return;
+    saveProfile({
+      ...profile,
+      eventPlans: [...profile.eventPlans.filter((x) => x.eventId !== event.id), p],
+    });
+    setPlanning(false);
+  }
+
+  function removePlan() {
+    if (!profile) return;
+    saveProfile({
+      ...profile,
+      eventPlans: profile.eventPlans.filter((x) => x.eventId !== event.id),
+    });
+  }
+
   return (
-    <div className="rounded-lg border border-border bg-bg-raised">
+    <div className="rounded-md border border-border bg-bg-raised shadow-[var(--shadow-sm)]">
       <div className="p-4">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
@@ -73,7 +107,7 @@ function EventCard({ ranked }: { ranked: RankedEvent }) {
               href={event.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-fg hover:text-accent"
+              className="group inline-flex items-center gap-1.5 text-sm font-bold text-fg hover:text-accent"
             >
               {event.name}
               <ExternalLink
@@ -81,7 +115,9 @@ function EventCard({ ranked }: { ranked: RankedEvent }) {
                 aria-hidden
               />
             </a>
-            <p className="mt-1 text-xs text-fg-subtle">{event.organiser}</p>
+            {event.organiser !== event.name && (
+              <p className="mt-1 text-xs text-fg-subtle">{event.organiser}</p>
+            )}
           </div>
           <Badge tone={stage.tone} className="shrink-0">
             {stage.label}
@@ -101,6 +137,53 @@ function EventCard({ ranked }: { ranked: RankedEvent }) {
             </span>
           )}
         </div>
+
+        {/* ------------------------------------------------ going / plan -- */}
+        <div className="mt-3.5">
+          {plan ? (
+            <div
+              className={cn(
+                "flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-md border px-3 py-2 text-xs",
+                clashes.length
+                  ? "border-gap-border border-dashed bg-gap-subtle"
+                  : "border-evidence-border bg-evidence-subtle",
+              )}
+            >
+              <span className="inline-flex items-center gap-1.5 font-semibold text-fg">
+                <CalendarCheck className="size-3.5 text-evidence" aria-hidden />
+                Going — {formatPlanDate(plan.date)}, {formatHour(plan.start)}
+              </span>
+              {clashes.length > 0 && (
+                <span className="inline-flex items-center gap-1.5 font-semibold text-gap">
+                  <AlertTriangle className="size-3.5" aria-hidden />
+                  Clashes with {clashes[0].label}
+                </span>
+              )}
+              <span className="ml-auto flex items-center gap-2">
+                <Link href="/planner" className="font-medium text-accent hover:underline">
+                  View calendar
+                </Link>
+                <button
+                  onClick={removePlan}
+                  aria-label={`Remove ${event.name} from your calendar`}
+                  className="rounded p-0.5 text-fg-subtle hover:text-fg"
+                >
+                  <X className="size-3.5" />
+                </button>
+              </span>
+            </div>
+          ) : planning ? (
+            <PlanForm eventId={event.id} url={event.url} onSave={savePlan} onCancel={() => setPlanning(false)} />
+          ) : (
+            <button
+              onClick={() => setPlanning(true)}
+              className="inline-flex items-center gap-1.5 rounded-md border border-border-strong bg-bg-raised px-3 py-1.5 text-xs font-semibold text-fg transition-colors hover:border-accent hover:text-accent"
+            >
+              <CalendarPlus className="size-3.5" aria-hidden />
+              I&rsquo;m going — add to my calendar
+            </button>
+          )}
+        </div>
       </div>
 
       <button
@@ -115,16 +198,175 @@ function EventCard({ ranked }: { ranked: RankedEvent }) {
         Why this one?
       </button>
 
-      {open && (
-        <ul className="space-y-1.5 border-t border-border bg-bg-subtle px-4 py-3">
-          {reasons.map((r, i) => (
-            <li key={i} className="flex gap-2 text-xs leading-relaxed text-fg-muted">
-              <span className="mt-1.5 size-1 shrink-0 rounded-full bg-fg-subtle" aria-hidden />
-              {r}
-            </li>
+      {open && <ScoreAnatomy contributions={contributions} reasons={reasons} />}
+    </div>
+  );
+}
+
+/* Scoring term → segment colour. Labels come verbatim from rankEvents(). */
+const TERM_COLOURS: Record<string, string> = {
+  "Stage fit": "var(--evidence)",
+  "Gap relevance": "var(--gap)",
+  "Role topics": "var(--partial)",
+  "In Melbourne": "var(--accent)",
+  Free: "var(--route-strong)",
+  "Community size": "var(--fg-subtle)",
+};
+
+/**
+ * The score anatomy: a stacked bar of the positive scoring terms, then one row
+ * per term pairing its points with the prose reason. Penalties cannot occupy a
+ * share of a positive-only bar, so they appear as struck-out notes below it.
+ */
+function ScoreAnatomy({
+  contributions,
+  reasons,
+}: {
+  contributions: RankedEvent["contributions"];
+  reasons: string[];
+}) {
+  // Segments grow from 0 on expansion. CSS transitions are not zeroed by the
+  // global reduced-motion rule, so check matchMedia and skip the grow ourselves.
+  // Reduced-motion users start fully grown, so there is no width transition
+  // to skip. Only rendered client-side (behind a toggle), so reading
+  // matchMedia in the initialiser is safe.
+  const [grown, setGrown] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setGrown(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  const positives = contributions.filter((c) => c.points > 0);
+  const totalPositive = positives.reduce((sum, c) => sum + c.points, 0);
+
+  return (
+    <div className="border-t border-border bg-bg-subtle px-4 py-3">
+      {totalPositive > 0 && (
+        <div className="flex h-2.5 overflow-hidden rounded-full bg-border" aria-hidden>
+          {positives.map((c) => (
+            <div
+              key={c.label}
+              className="h-full transition-[width] duration-500 ease-out"
+              style={{
+                width: grown ? `${(c.points / totalPositive) * 100}%` : "0%",
+                backgroundColor: TERM_COLOURS[c.label] ?? "var(--fg-subtle)",
+              }}
+            />
           ))}
-        </ul>
+        </div>
       )}
+
+      <ul className="mt-2.5 space-y-1.5">
+        {contributions.map((c, i) =>
+          c.points > 0 ? (
+            <li
+              key={c.label}
+              className="flex items-baseline gap-2 text-xs leading-relaxed text-fg-muted"
+            >
+              <span
+                className="size-2 shrink-0 self-center rounded-full"
+                style={{ backgroundColor: TERM_COLOURS[c.label] ?? "var(--fg-subtle)" }}
+                aria-hidden
+              />
+              <span className="shrink-0 font-semibold text-fg">{c.label}</span>
+              <span className="min-w-0 flex-1">{reasons[i]}</span>
+              <span className="shrink-0 font-mono text-fg">+{c.points}</span>
+            </li>
+          ) : (
+            <li
+              key={c.label}
+              className="flex items-baseline gap-2 text-xs leading-relaxed text-fg-muted"
+            >
+              <span className="size-2 shrink-0 self-center rounded-full bg-danger" aria-hidden />
+              <span className="shrink-0 font-semibold text-danger">{c.label}</span>
+              <span className="min-w-0 flex-1 line-through opacity-70">{reasons[i]}</span>
+              <span className="shrink-0 font-mono text-danger">&minus;{Math.abs(c.points)}</span>
+            </li>
+          ),
+        )}
+      </ul>
+    </div>
+  );
+}
+
+/**
+ * Most organisers publish the next session only on their own page, so the
+ * student confirms it from there. Honest by design: we never invent a
+ * schedule we do not have (`docs/technical/data-sources.md` — events are
+ * curated, not live).
+ */
+function PlanForm({
+  eventId,
+  url,
+  onSave,
+  onCancel,
+}: {
+  eventId: string;
+  url: string;
+  onSave: (p: EventPlan) => void;
+  onCancel: () => void;
+}) {
+  const [date, setDate] = useState(toISODate(new Date()));
+  const [start, setStart] = useState("18:00");
+  const [duration, setDuration] = useState(2);
+
+  return (
+    <div className="rounded-md border border-border bg-bg-subtle p-3">
+      <p className="text-xs text-fg-muted">
+        Grab the next session&rsquo;s date from{" "}
+        <a href={url} target="_blank" rel="noopener noreferrer" className="font-medium text-accent hover:underline">
+          the organiser&rsquo;s listing
+        </a>{" "}
+        — we&rsquo;ll check it against your classes.
+      </p>
+      <div className="mt-2.5 flex flex-wrap items-end gap-2">
+        <label className="text-xs font-semibold text-fg">
+          Date
+          <Input
+            type="date"
+            className="mt-1 h-9 w-40"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+        </label>
+        <label className="text-xs font-semibold text-fg">
+          Starts
+          <Input
+            type="time"
+            className="mt-1 h-9 w-28"
+            value={start}
+            onChange={(e) => setStart(e.target.value)}
+          />
+        </label>
+        <label className="text-xs font-semibold text-fg">
+          Hours
+          <Input
+            type="number"
+            min={1}
+            max={8}
+            className="mt-1 h-9 w-20"
+            value={duration}
+            onChange={(e) => setDuration(Number(e.target.value) || 2)}
+          />
+        </label>
+        <Button
+          size="sm"
+          onClick={() => {
+            const [h, m] = start.split(":").map(Number);
+            onSave({ eventId, date, start: h + (m || 0) / 60, durationHours: duration });
+          }}
+          disabled={!date || !start}
+        >
+          Add
+        </Button>
+        <Button size="sm" variant="ghost" onClick={onCancel}>
+          Cancel
+        </Button>
+      </div>
     </div>
   );
 }

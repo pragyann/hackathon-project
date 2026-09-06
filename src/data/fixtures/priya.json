@@ -1,0 +1,408 @@
+{
+  "gap": {
+    "headline": "You have unusually strong low-level programming, algorithms and complexity foundations in C, but almost nothing yet in the web, database, cloud and team-workflow tooling that most Australian software developer ads list.",
+    "capabilities": [
+      {
+        "id": "dsa",
+        "name": "Data structures and algorithms",
+        "category": "foundation",
+        "importance": "core",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP20003",
+            "unitTitle": "Algorithms and Data Structures",
+            "quote": "algorithms for sorting and searching, including fundamental data structures such as trees and hash tables; and graph algorithms"
+          },
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "Discuss, analyse, implement, and apply standard data structures such as linked lists, binary search trees, and hash tables"
+          }
+        ],
+        "rationale": "You can implement and choose between the core data structures that technical interviews and day-to-day coding rely on."
+      },
+      {
+        "id": "complexity",
+        "name": "Algorithmic complexity and performance analysis",
+        "category": "foundation",
+        "importance": "core",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP20003",
+            "unitTitle": "Algorithms and Data Structures",
+            "quote": "asymptotic and empirical analysis of algorithm performance"
+          },
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "analysing their complexity and relative cost when given a description of an application scenario"
+          }
+        ],
+        "rationale": "You can reason about whether code will be fast enough, which is what employers mean by determining performance standards."
+      },
+      {
+        "id": "c-programming",
+        "name": "C / systems programming",
+        "category": "language",
+        "importance": "core",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "Read, write, test and debug typical small-scale programs in a system programming language such as C"
+          },
+          {
+            "unitCode": "COMP20005",
+            "unitTitle": "Intro. to Numerical Computation in C",
+            "quote": "Design, develop, and implement typical small-scale numerical programs in a high-level programming language"
+          }
+        ],
+        "rationale": "You have written real C across two subjects, which covers the C requirement that appears in embedded, performance and infrastructure roles."
+      },
+      {
+        "id": "memory-management",
+        "name": "Pointers and memory management",
+        "category": "foundation",
+        "importance": "common",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "Pointers and dynamic memory allocation"
+          }
+        ],
+        "rationale": "You understand how memory is allocated and freed manually, which helps you debug and reason about performance in any language."
+      },
+      {
+        "id": "python",
+        "name": "Python",
+        "category": "language",
+        "importance": "core",
+        "status": "partial",
+        "evidence": [
+          {
+            "unitCode": "COMP10001",
+            "unitTitle": "Foundations of Computing",
+            "quote": "how to design and write basic programs using a high-level procedural programming language"
+          }
+        ],
+        "rationale": "Your first subject taught a high-level procedural language but the description does not name it, so only claim Python if that is what you actually used."
+      },
+      {
+        "id": "oop",
+        "name": "Object-oriented programming (Java, C#, C++)",
+        "category": "language",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Nothing in your completed units covers classes, inheritance or object-oriented design, and most graduate developer ads assume it."
+      },
+      {
+        "id": "debugging-testing",
+        "name": "Testing and debugging",
+        "category": "practice",
+        "importance": "core",
+        "status": "partial",
+        "evidence": [
+          {
+            "unitCode": "COMP20005",
+            "unitTitle": "Intro. to Numerical Computation in C",
+            "quote": "Plan, design, and implement appropriate testing regimes to allow validation and debugging of those programs"
+          },
+          {
+            "unitCode": "COMP10001",
+            "unitTitle": "Foundations of Computing",
+            "quote": "algorithmic problem solving, testing and debugging"
+          }
+        ],
+        "rationale": "You have tested and debugged your own assignment code, but not written automated test suites in a framework the way teams do."
+      },
+      {
+        "id": "correctness-reasoning",
+        "name": "Reasoning about program correctness",
+        "category": "practice",
+        "importance": "common",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "Develop and present logical arguments for the correctness of a given algorithm"
+          },
+          {
+            "unitCode": "COMP20005",
+            "unitTitle": "Intro. to Numerical Computation in C",
+            "quote": "Develop and present arguments relating to the correctness of such programs"
+          }
+        ],
+        "rationale": "You can justify why code is correct rather than only checking that it runs, which is valued in code review."
+      },
+      {
+        "id": "cli-linux",
+        "name": "Command line and Linux tooling",
+        "category": "tool",
+        "importance": "core",
+        "status": "partial",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "Use a command line interface and standard development tools for programming"
+          }
+        ],
+        "rationale": "You have used a command line and a debugger, but there is no evidence of shell scripting or working in a Linux server environment."
+      },
+      {
+        "id": "version-control",
+        "name": "Git and GitHub",
+        "category": "tool",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "No unit description mentions version control, so branching, commits and pull requests are something you will need to show through your own projects."
+      },
+      {
+        "id": "sql-databases",
+        "name": "SQL and relational databases",
+        "category": "tool",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Storing and querying data in a database is listed in the role's core tasks and does not appear anywhere in your completed units."
+      },
+      {
+        "id": "web-frontend",
+        "name": "Web front-end (HTML, CSS, JavaScript, React)",
+        "category": "language",
+        "importance": "core",
+        "status": "partial",
+        "evidence": [
+          {
+            "unitCode": "COMP10001",
+            "unitTitle": "Foundations of Computing",
+            "quote": "introduction to the Web, multimedia and visualisation"
+          }
+        ],
+        "rationale": "Your first subject only introduced the web at a concept level, so you cannot yet claim front-end development."
+      },
+      {
+        "id": "backend-apis",
+        "name": "Backend services and APIs (Node.js, Spring Boot, Django)",
+        "category": "practice",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Building and running a server application that other systems call is not covered by any of your units."
+      },
+      {
+        "id": "cloud",
+        "name": "Cloud platforms (AWS, Azure)",
+        "category": "tool",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Cloud services are the most frequently requested technology group in these job ads and are absent from your coursework."
+      },
+      {
+        "id": "containers-cicd",
+        "name": "Containers and CI/CD (Docker, Jenkins, pipelines)",
+        "category": "practice",
+        "importance": "common",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Packaging and automatically building or deploying software is a workplace practice your assignments would not have required."
+      },
+      {
+        "id": "requirements",
+        "name": "Requirements analysis and working with users",
+        "category": "practice",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "The role starts with understanding what users need, and your units give you problems that are already fully specified."
+      },
+      {
+        "id": "teamwork-tracking",
+        "name": "Team development workflow (Jira, Confluence, agile)",
+        "category": "practice",
+        "importance": "common",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "There is no evidence of working in a development team with issue tracking, which most graduate roles expect you to step into quickly."
+      },
+      {
+        "id": "numerical-maths",
+        "name": "Numerical methods and applied mathematics",
+        "category": "domain",
+        "importance": "nice-to-have",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP20005",
+            "unitTitle": "Intro. to Numerical Computation in C",
+            "quote": "Numerical differentiation and integration"
+          },
+          {
+            "unitCode": "COMP20005",
+            "unitTitle": "Intro. to Numerical Computation in C",
+            "quote": "being able to calculate floating point and integer representations"
+          }
+        ],
+        "rationale": "You can apply mathematical models and understand floating point behaviour, which suits scientific, engineering or quantitative software teams."
+      },
+      {
+        "id": "modular-design",
+        "name": "Modular program design and abstraction",
+        "category": "practice",
+        "importance": "common",
+        "status": "partial",
+        "evidence": [
+          {
+            "unitCode": "COMP10001",
+            "unitTitle": "Foundations of Computing",
+            "quote": "Use abstraction constructs such as functions"
+          },
+          {
+            "unitCode": "COMP10001",
+            "unitTitle": "Foundations of Computing",
+            "quote": "A video recommender system, broken down into a series of functions"
+          }
+        ],
+        "rationale": "You break problems into functions, but you have not yet designed a larger system with multiple components."
+      },
+      {
+        "id": "data-handling",
+        "name": "Data manipulation and analysis",
+        "category": "domain",
+        "importance": "common",
+        "status": "partial",
+        "evidence": [
+          {
+            "unitCode": "COMP10001",
+            "unitTitle": "Foundations of Computing",
+            "quote": "manipulating, analysing, and visualising data through computer programming"
+          },
+          {
+            "unitCode": "COMP10001",
+            "unitTitle": "Foundations of Computing",
+            "quote": "A text analytics “library” consisting of a series of independent functions"
+          }
+        ],
+        "rationale": "You have processed and analysed data in code, though without the databases or large-scale tools employers name."
+      }
+    ]
+  },
+  "roadmap": {
+    "headline": "One semester left: build and ship a single deployed full-stack project that converts your strong C/algorithms record into the Git, OOP, database, API and cloud evidence graduate ads screen for.",
+    "stageNote": "With one semester before graduation you cannot close eleven gaps, so this plan deliberately funnels almost everything into one deployable Java + PostgreSQL + AWS project that doubles as your portfolio and interview story — a first-year with six semesters would instead take a formal OOP subject, a databases subject and a team-project subject and let coursework do this work, while you are explicitly leaving out Kubernetes, Terraform, Kafka, deep React and formal agile tooling because they cannot be learned credibly in twelve weeks and are not what graduate screens actually test.",
+    "semesters": [
+      {
+        "label": "Year 3, Semester 2 (final semester)",
+        "focus": "Triage: one shipped project, plus the rooms where graduate hiring happens",
+        "steps": [
+          {
+            "id": "s1-git",
+            "title": "Put your existing COMP20003 and COMP10002 C assignments on GitHub as three cleaned-up repos, each with a README, .gitignore and at least one feature branch merged via pull request",
+            "type": "build",
+            "effort": "light",
+            "addressesCapabilityIds": [
+              "version-control",
+              "cli-linux"
+            ],
+            "buildsOnUnitCodes": [
+              "COMP20003",
+              "COMP10002"
+            ],
+            "rationale": "Do this in week one because an empty GitHub profile is the fastest way a graduate application gets skipped, and you already own the code — it just needs version history and a readable front page."
+          },
+          {
+            "id": "s2-java-oop",
+            "title": "Rewrite your COMP20003 graph or hash-table assignment in Java as a proper class hierarchy (interface + two implementations), with a JUnit 5 test suite covering edge cases and a Maven build",
+            "type": "learn",
+            "effort": "moderate",
+            "addressesCapabilityIds": [
+              "oop",
+              "debugging-testing",
+              "modular-design"
+            ],
+            "buildsOnUnitCodes": [
+              "COMP20003",
+              "COMP10002"
+            ],
+            "rationale": "You already understand the algorithms cold, so re-implementing them is the cheapest possible way to learn classes, interfaces, inheritance and automated testing without also learning a new problem domain."
+          },
+          {
+            "id": "s3-flagship",
+            "title": "Build a Spring Boot REST API over PostgreSQL for a domain you can describe in one sentence (e.g. a unit-review or bike-route tracker), starting by interviewing three real users and writing a one-page requirements and API-contract doc before any code",
+            "type": "build",
+            "effort": "substantial",
+            "addressesCapabilityIds": [
+              "backend-apis",
+              "sql-databases",
+              "requirements",
+              "modular-design",
+              "data-handling",
+              "debugging-testing"
+            ],
+            "buildsOnUnitCodes": [
+              "COMP20005",
+              "COMP10001"
+            ],
+            "rationale": "This is the centre of the semester: it closes your three biggest gaps at once (databases, backend services, requirements) and gives you the 'tell me about a system you designed' answer that every graduate interview asks for."
+          },
+          {
+            "id": "s4-deploy",
+            "title": "Dockerise the API and its Postgres instance with docker-compose, add a GitHub Actions workflow that runs your JUnit tests on every push, and deploy the container to AWS free tier (EC2 or App Runner) on a URL you can put in your CV",
+            "type": "ship",
+            "effort": "moderate",
+            "addressesCapabilityIds": [
+              "cloud",
+              "containers-cicd",
+              "cli-linux",
+              "version-control"
+            ],
+            "buildsOnUnitCodes": [],
+            "rationale": "AWS and Docker are the most-requested technologies in these ads and a live URL is disproportionately persuasive — but only attempt it once the API works locally, so schedule it for the middle of semester."
+          },
+          {
+            "id": "s5-frontend",
+            "title": "Add a deliberately small React + TypeScript single page that lists and creates records through your API, styled with plain CSS, deployed as static files alongside the backend",
+            "type": "build",
+            "effort": "light",
+            "addressesCapabilityIds": [
+              "web-frontend"
+            ],
+            "buildsOnUnitCodes": [],
+            "rationale": "Keep this thin on purpose: you need enough front-end to demo the system end-to-end and claim React honestly, not a second project competing with your backend work in your final semester."
+          },
+          {
+            "id": "s6-connect",
+            "title": "Attend one Melbourne Java/JVM or AWS User Group meetup per month, do a five-minute lightning demo of your deployed project at one of them, and apply to 15 graduate programs with the repo link in the first line of your application",
+            "type": "connect",
+            "effort": "moderate",
+            "addressesCapabilityIds": [
+              "teamwork-tracking",
+              "requirements"
+            ],
+            "buildsOnUnitCodes": [],
+            "rationale": "With ads down 17% year on year you need referrals as well as applications, and industry meetups (not student clubs) are where engineers who can forward your CV actually are — start in week two, since graduate intakes close early."
+          }
+        ]
+      }
+    ]
+  },
+  "grounding": {
+    "roleId": "software-developer",
+    "unitCodes": [
+      "COMP10001",
+      "COMP10002",
+      "COMP20003",
+      "COMP20005"
+    ],
+    "droppedUngrounded": 0
+  }
+}
