@@ -1,3 +1,5 @@
+import { JoinFlow } from "@/components/JoinFlow";
+import { Reveal } from "@/components/Reveal";
 import { Badge, Card, CardBody, Eyebrow } from "@/components/ui";
 import { roles, sources } from "@/lib/data";
 
@@ -41,7 +43,7 @@ export default function MethodPage() {
     <main className="flex-1">
       <div className="mx-auto max-w-3xl px-6 py-12">
         <Eyebrow className="mb-3">The whole mechanism</Eyebrow>
-        <h1 className="display text-3xl text-fg sm:text-4xl">
+        <h1 className="display text-4xl text-fg sm:text-5xl">
           How it works, including the parts that do not
         </h1>
         <p className="mt-4 text-base leading-relaxed text-fg-muted">
@@ -55,8 +57,9 @@ export default function MethodPage() {
           Four inputs, and the product is the join
         </h2>
         <div className="mt-5 space-y-3">
-          {STEPS.map((s) => (
-            <Card key={s.n}>
+          {STEPS.map((s, i) => (
+            <Reveal key={s.n} delay={i * 90}>
+              <Card className="lift">
               <CardBody className="pt-5">
                 <div className="flex gap-4">
                   <span className="font-mono text-sm font-bold text-route-strong">{s.n}</span>
@@ -69,7 +72,8 @@ export default function MethodPage() {
                   </div>
                 </div>
               </CardBody>
-            </Card>
+              </Card>
+            </Reveal>
           ))}
         </div>
 
@@ -88,7 +92,14 @@ export default function MethodPage() {
           classical matching genuinely cannot do.
         </p>
 
-        <div className="mt-5 space-y-3">
+        <Reveal className="mt-6">
+          <JoinFlow />
+          <p className="mt-2 font-mono text-[10px] uppercase tracking-widest text-fg-subtle">
+            The pipeline, whole — gold edges run through the model, green edges never do
+          </p>
+        </Reveal>
+
+        <div className="mt-8 grid gap-3 sm:grid-cols-2">
           <Rule
             label="Grounded, and checked in code"
             body="Every claim that you already have a capability must quote the unit description you confirmed. Citations that name a unit you did not list are dropped by the server before the page renders — this is a filter in the code, not an instruction in a prompt. The page tells you how many were dropped."
@@ -116,7 +127,7 @@ export default function MethodPage() {
           trust than one that names them.
         </p>
 
-        <div className="mt-5 space-y-3">
+        <div className="mt-5 grid gap-3 sm:grid-cols-2">
           <Limit
             tone="gap"
             label="The ANZSCO mapping is approximate"
@@ -166,10 +177,12 @@ export default function MethodPage() {
 
 function Rule({ label, body }: { label: string; body: string }) {
   return (
-    <div className="rounded-md border border-border bg-bg-raised p-4">
-      <h3 className="text-sm font-bold text-fg">{label}</h3>
-      <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">{body}</p>
-    </div>
+    <Reveal>
+      <div className="lift h-full rounded-md border border-border bg-bg-raised p-4">
+        <h3 className="text-sm font-bold text-fg">{label}</h3>
+        <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">{body}</p>
+      </div>
+    </Reveal>
   );
 }
 
@@ -182,9 +195,11 @@ function Limit({
   body: string;
 }) {
   return (
-    <div className="rounded-md border border-dashed border-gap-border bg-gap-subtle p-4">
-      <h3 className="text-sm font-bold text-fg">{label}</h3>
-      <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">{body}</p>
-    </div>
+    <Reveal>
+      <div className="lift h-full rounded-md border border-dashed border-gap-border bg-gap-subtle p-4">
+        <h3 className="text-sm font-bold text-fg">{label}</h3>
+        <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">{body}</p>
+      </div>
+    </Reveal>
   );
 }

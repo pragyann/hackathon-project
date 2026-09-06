@@ -87,7 +87,7 @@ export default function Home() {
 
           {/* FIELD-style HUD */}
           <div className="pointer-events-none absolute inset-x-6 bottom-6 flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-fg-subtle">
-            <span>36,000 particles · zero assets · scroll to merge onto the route</span>
+            <span>24,200 particles · 48 glyphs of maths and code · zero assets · scroll to merge onto the route</span>
             <span>
               {demand ? `${formatNumber(demand.latestAds)} ${headline.title} ads · ${demand.latestMonth}` : ""}
             </span>

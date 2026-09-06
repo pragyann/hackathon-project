@@ -48,6 +48,7 @@ export default function RootLayout({
     // noise, not a bug. Applies to this element's attributes only.
     <html
       lang="en-AU"
+      data-scroll-behavior="smooth"
       className={`${sans.variable} ${mono.variable} ${serif.variable} h-full`}
       suppressHydrationWarning
     >
