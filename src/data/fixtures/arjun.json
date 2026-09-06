@@ -1,0 +1,335 @@
+{
+  "gap": {
+    "headline": "Two first-year units already give you real programming fundamentals \u2014 your advantage is six semesters of runway, and the plan spends it deliberately.",
+    "capabilities": [
+      {
+        "id": "procedural-programming",
+        "name": "Programming fundamentals",
+        "category": "foundation",
+        "importance": "core",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP10001",
+            "unitTitle": "Foundations of Computing",
+            "quote": "design and write basic programs using a high-level procedural programming language"
+          }
+        ],
+        "rationale": "Your first programming unit covers exactly what employers mean by fundamentals, and you can point to it."
+      },
+      {
+        "id": "c-systems-programming",
+        "name": "C and systems-level programming",
+        "category": "language",
+        "importance": "common",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "introduces students to a system programming language that gives programmers this kind of control"
+          }
+        ],
+        "rationale": "You have written real C, which is more low-level exposure than most graduates bring."
+      },
+      {
+        "id": "data-structures",
+        "name": "Data structures and algorithms",
+        "category": "foundation",
+        "importance": "core",
+        "status": "partial",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "explores a range of standard data structures and algorithmic techniques"
+          }
+        ],
+        "rationale": "One unit has introduced the standard structures; a second pass will make this solid."
+      },
+      {
+        "id": "algorithm-analysis",
+        "name": "Reasoning about performance and correctness",
+        "category": "foundation",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Nothing you have done yet asks you to argue an algorithm is correct or efficient \u2014 that comes in second year."
+      },
+      {
+        "id": "testing",
+        "name": "Testing discipline",
+        "category": "practice",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Assignments so far have not asked you to design tests, and employers treat testing as non-negotiable."
+      },
+      {
+        "id": "debugging",
+        "name": "Debugging real programs",
+        "category": "practice",
+        "importance": "common",
+        "status": "partial",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "Read, write, test and debug typical small-scale programs"
+          }
+        ],
+        "rationale": "You debug your own small programs; production debugging in an unfamiliar codebase is a step further."
+      },
+      {
+        "id": "git-version-control",
+        "name": "Git and version control",
+        "category": "tool",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "No unit teaches it, every team expects it, and it is the single cheapest gap on this list to close."
+      },
+      {
+        "id": "web-fundamentals",
+        "name": "JavaScript, HTML and CSS",
+        "category": "language",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Software developer ads in Australia ask for the web stack more than any other technology, and your degree has not touched it yet."
+      },
+      {
+        "id": "sql-databases",
+        "name": "SQL and relational databases",
+        "category": "tool",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Almost every backend role assumes you can model and query data; nothing on your transcript covers it yet."
+      },
+      {
+        "id": "cloud-platform",
+        "name": "A cloud platform (AWS or Azure)",
+        "category": "tool",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "In-demand in the ads and absent from coursework \u2014 one deployed project is how students usually close this."
+      },
+      {
+        "id": "containers-ci",
+        "name": "Docker, containers and CI",
+        "category": "tool",
+        "importance": "common",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "This is production practice, not course content; a small pipeline on your own project is enough to talk about it."
+      },
+      {
+        "id": "linux-cli",
+        "name": "Linux and the command line",
+        "category": "tool",
+        "importance": "common",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "You will meet it properly the first time you deploy something."
+      },
+      {
+        "id": "collaboration",
+        "name": "Working in a team codebase",
+        "category": "practice",
+        "importance": "common",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Group work is not the same as branching, code review and merging \u2014 the workflow every employer runs."
+      },
+      {
+        "id": "communication",
+        "name": "Explaining technical decisions",
+        "category": "domain",
+        "importance": "common",
+        "status": "partial",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "Read, write, test and debug typical small-scale programs"
+          }
+        ],
+        "rationale": "Coursework makes you justify decisions in writing; doing it for a non-technical audience is the remaining step."
+      }
+    ]
+  },
+  "roadmap": {
+    "headline": "Six semesters is enough to close every core gap without ever rushing \u2014 foundations first, habits that compound.",
+    "stageNote": "This plan is built for a first-year: light load, breadth before depth, and events with students in the room. A final-year with the same gaps would get a one-semester triage list instead.",
+    "semesters": [
+      {
+        "label": "Year 1, Semester 2",
+        "focus": "Habits that compound",
+        "steps": [
+          {
+            "id": "s1-git",
+            "title": "Put every assignment from now on in Git, pushed to GitHub",
+            "type": "learn",
+            "effort": "light",
+            "addressesCapabilityIds": [
+              "git-version-control"
+            ],
+            "buildsOnUnitCodes": [
+              "COMP10001"
+            ],
+            "rationale": "Version control is learned by habit, not by course \u2014 starting now means three years of history by graduation."
+          },
+          {
+            "id": "s1-python-project",
+            "title": "Rebuild your favourite COMP10001 project as a small command-line tool anyone can run",
+            "type": "build",
+            "effort": "light",
+            "addressesCapabilityIds": [
+              "procedural-programming"
+            ],
+            "buildsOnUnitCodes": [
+              "COMP10001"
+            ],
+            "rationale": "Extending a unit you just finished, while it is fresh, is the cheapest first project you will ever build."
+          }
+        ]
+      },
+      {
+        "label": "Year 2, Semester 1",
+        "focus": "The web stack, gently",
+        "steps": [
+          {
+            "id": "s2-web",
+            "title": "Learn enough HTML, CSS and JavaScript to build one page that fetches and displays data",
+            "type": "learn",
+            "effort": "moderate",
+            "addressesCapabilityIds": [
+              "web-fundamentals"
+            ],
+            "buildsOnUnitCodes": [],
+            "rationale": "The web stack tops Australian software ads and nothing in your degree will teach it \u2014 one page is the honest start."
+          },
+          {
+            "id": "s2-event",
+            "title": "Go to one student-friendly tech event this semester \u2014 CISSA industry night or a beginner meetup",
+            "type": "connect",
+            "effort": "light",
+            "addressesCapabilityIds": [
+              "collaboration"
+            ],
+            "buildsOnUnitCodes": [],
+            "rationale": "The habit of walking into rooms is easier to build when the rooms are full of other students."
+          }
+        ]
+      },
+      {
+        "label": "Year 2, Semester 2",
+        "focus": "Deepen the core",
+        "steps": [
+          {
+            "id": "s3-dsa",
+            "title": "Take COMP20003 and keep a public repo of the data structures you implement",
+            "type": "learn",
+            "effort": "substantial",
+            "addressesCapabilityIds": [
+              "data-structures",
+              "algorithm-analysis"
+            ],
+            "buildsOnUnitCodes": [
+              "COMP10002"
+            ],
+            "rationale": "The unit does the teaching; the public repo turns coursework into evidence an employer can open."
+          },
+          {
+            "id": "s3-sql",
+            "title": "Learn SQL by putting a real dataset into SQLite and answering ten questions of your own",
+            "type": "learn",
+            "effort": "light",
+            "addressesCapabilityIds": [
+              "sql-databases"
+            ],
+            "buildsOnUnitCodes": [],
+            "rationale": "Databases will not appear until later in your degree, and every role you are considering assumes them."
+          }
+        ]
+      },
+      {
+        "label": "Year 3, Semester 1",
+        "focus": "Ship something real",
+        "steps": [
+          {
+            "id": "s4-ship",
+            "title": "Build and deploy a web app with a database to a cloud free tier, end to end",
+            "type": "ship",
+            "effort": "substantial",
+            "addressesCapabilityIds": [
+              "cloud-platform",
+              "web-fundamentals",
+              "sql-databases"
+            ],
+            "buildsOnUnitCodes": [
+              "COMP20003"
+            ],
+            "rationale": "One deployed project closes three gaps at once and becomes the centrepiece of every application you send."
+          }
+        ]
+      },
+      {
+        "label": "Year 3, Semester 2",
+        "focus": "Production practice",
+        "steps": [
+          {
+            "id": "s5-ci",
+            "title": "Add tests and a CI pipeline to your deployed project, then containerise it",
+            "type": "build",
+            "effort": "moderate",
+            "addressesCapabilityIds": [
+              "testing",
+              "containers-ci"
+            ],
+            "buildsOnUnitCodes": [],
+            "rationale": "This is the difference between 'I built a thing' and 'I run a thing' \u2014 the sentence internship interviews reward."
+          },
+          {
+            "id": "s5-meetup",
+            "title": "Start attending MelbJS or a practitioner meetup in your target stack",
+            "type": "connect",
+            "effort": "light",
+            "addressesCapabilityIds": [
+              "collaboration"
+            ],
+            "buildsOnUnitCodes": [],
+            "rationale": "By now you are past student events \u2014 the people at practitioner meetups are the ones who refer interns."
+          }
+        ]
+      },
+      {
+        "label": "Final semester",
+        "focus": "Applications from strength",
+        "steps": [
+          {
+            "id": "s6-apply",
+            "title": "Apply to graduate programs with the deployed project first on the resume, transcript second",
+            "type": "ship",
+            "effort": "moderate",
+            "addressesCapabilityIds": [
+              "communication"
+            ],
+            "buildsOnUnitCodes": [],
+            "rationale": "You will be applying with three years of Git history, one production project and a network \u2014 the position this plan was pointed at all along."
+          }
+        ]
+      }
+    ]
+  },
+  "grounding": {
+    "roleId": "software-developer",
+    "unitCodes": [
+      "COMP10001",
+      "COMP10002"
+    ],
+    "droppedUngrounded": 0
+  }
+}

@@ -1,7 +1,4 @@
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-
-import { Badge, Card, CardBody } from "@/components/ui";
+import { Badge, Card, CardBody, Eyebrow } from "@/components/ui";
 import { roles, sources } from "@/lib/data";
 
 export const metadata = {
@@ -43,15 +40,8 @@ export default function MethodPage() {
   return (
     <main className="flex-1">
       <div className="mx-auto max-w-3xl px-6 py-12">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-fg-muted hover:text-fg"
-        >
-          <ArrowLeft className="size-4" aria-hidden />
-          Back
-        </Link>
-
-        <h1 className="mt-8 text-3xl font-semibold tracking-tight text-balance">
+        <Eyebrow className="mb-3">The whole mechanism</Eyebrow>
+        <h1 className="display text-3xl text-fg sm:text-4xl">
           How it works, including the parts that do not
         </h1>
         <p className="mt-4 text-base leading-relaxed text-fg-muted">
@@ -61,7 +51,7 @@ export default function MethodPage() {
         </p>
 
         {/* ------------------------------------------------------ the join -- */}
-        <h2 className="mt-12 text-xl font-semibold tracking-tight">
+        <h2 className="display mt-14 text-2xl text-fg">
           Four inputs, and the product is the join
         </h2>
         <div className="mt-5 space-y-3">
@@ -69,9 +59,9 @@ export default function MethodPage() {
             <Card key={s.n}>
               <CardBody className="pt-5">
                 <div className="flex gap-4">
-                  <span className="font-mono text-sm text-fg-subtle">{s.n}</span>
+                  <span className="font-mono text-sm font-bold text-route-strong">{s.n}</span>
                   <div>
-                    <h3 className="text-sm font-semibold text-fg">{s.title}</h3>
+                    <h3 className="text-sm font-bold text-fg">{s.title}</h3>
                     <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">
                       {s.body}
                     </p>
@@ -84,7 +74,7 @@ export default function MethodPage() {
         </div>
 
         {/* --------------------------------------------------- the ai part -- */}
-        <h2 className="mt-12 text-xl font-semibold tracking-tight">
+        <h2 className="display mt-14 text-2xl text-fg">
           What the model actually does
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-fg-muted">
@@ -118,7 +108,7 @@ export default function MethodPage() {
         </div>
 
         {/* ------------------------------------------------------- limits -- */}
-        <h2 className="mt-12 text-xl font-semibold tracking-tight">
+        <h2 className="display mt-14 text-2xl text-fg">
           What is wrong with it
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-fg-muted">
@@ -176,8 +166,8 @@ export default function MethodPage() {
 
 function Rule({ label, body }: { label: string; body: string }) {
   return (
-    <div className="rounded-lg border border-border bg-bg-raised p-4">
-      <h3 className="text-sm font-semibold text-fg">{label}</h3>
+    <div className="rounded-md border border-border bg-bg-raised p-4">
+      <h3 className="text-sm font-bold text-fg">{label}</h3>
       <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">{body}</p>
     </div>
   );
@@ -192,8 +182,8 @@ function Limit({
   body: string;
 }) {
   return (
-    <div className="rounded-lg border border-gap-border bg-gap-subtle p-4">
-      <h3 className="text-sm font-semibold text-fg">{label}</h3>
+    <div className="rounded-md border border-dashed border-gap-border bg-gap-subtle p-4">
+      <h3 className="text-sm font-bold text-fg">{label}</h3>
       <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">{body}</p>
     </div>
   );

@@ -9,6 +9,7 @@ import { z } from "zod";
 import type {
   Analysis,
   Capability,
+  Roadmap,
   Degree,
   Role,
   StudentProfile,
@@ -207,12 +208,21 @@ function enforceGrounding(
 
 /* ---------------------------------------------------------------- calls -- */
 
-export async function analyse(
+export type GapResult = {
+  gap: { headline: string; capabilities: Capability[] };
+  grounding: Analysis["grounding"];
+};
+
+/**
+ * Call 1: the semantic join. Fast enough to show on its own — the UI renders
+ * the gap map the moment this returns, while the sequencing call still runs.
+ */
+export async function analyseGap(
   profile: StudentProfile,
   role: Role,
   degree: Degree | null,
   units: Unit[],
-): Promise<Analysis> {
+): Promise<GapResult> {
   const corpus = roleCorpus(role);
   const brief = studentBrief(profile, degree, units);
 
@@ -247,13 +257,34 @@ export async function analyse(
     validCodes,
   );
 
-  const outstanding = kept.filter((c) => c.status !== "evidenced");
+  return {
+    gap: { headline: parsedGap.headline, capabilities: kept },
+    grounding: {
+      roleId: role.id,
+      unitCodes: [...validCodes],
+      droppedUngrounded: dropped,
+    },
+  };
+}
+
+/**
+ * Call 2: sequencing — the genuinely hard reasoning step, so it runs with
+ * adaptive thinking and arrives second. Takes the outstanding capabilities the
+ * gap call produced (as re-sent by the client, then re-checked server-side).
+ */
+export async function planRoadmap(
+  profile: StudentProfile,
+  role: Role,
+  degree: Degree | null,
+  units: Unit[],
+  outstanding: Capability[],
+): Promise<Roadmap> {
+  const corpus = roleCorpus(role);
+  const brief = studentBrief(profile, degree, units);
 
   const roadmap = await client.messages.parse({
     model: MODEL,
     max_tokens: 16000,
-    // The sequencing call is the one genuinely hard reasoning step: it has to
-    // trade off breadth against the time actually available.
     thinking: { type: "adaptive" },
     system: [{ type: "text", text: ROADMAP_SYSTEM, cache_control: { type: "ephemeral" } }],
     messages: [
@@ -285,14 +316,5 @@ Produce a plan covering exactly ${profile.semestersRemaining} semester${
 
   const parsedRoadmap = roadmap.parsed_output;
   if (!parsedRoadmap) throw new Error("Roadmap returned no structured output");
-
-  return {
-    gap: { headline: parsedGap.headline, capabilities: kept },
-    roadmap: parsedRoadmap,
-    grounding: {
-      roleId: role.id,
-      unitCodes: [...validCodes],
-      droppedUngrounded: dropped,
-    },
-  };
+  return parsedRoadmap;
 }

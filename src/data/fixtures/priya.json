@@ -1,0 +1,279 @@
+{
+  "gap": {
+    "headline": "Your four units add up to genuinely strong fundamentals; what stands between you and a Software Developer offer is production practice \u2014 Git, the web stack, one deployed project.",
+    "capabilities": [
+      {
+        "id": "procedural-programming",
+        "name": "Programming fundamentals",
+        "category": "foundation",
+        "importance": "core",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP10001",
+            "unitTitle": "Foundations of Computing",
+            "quote": "design and write basic programs using a high-level procedural programming language"
+          }
+        ],
+        "rationale": "Your first programming unit covers exactly what employers mean by fundamentals, and you can point to it."
+      },
+      {
+        "id": "c-systems-programming",
+        "name": "C and systems-level programming",
+        "category": "language",
+        "importance": "common",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "introduces students to a system programming language that gives programmers this kind of control"
+          },
+          {
+            "unitCode": "COMP20005",
+            "unitTitle": "Intro. to Numerical Computation in C",
+            "quote": "key elements of programming in a high level language"
+          }
+        ],
+        "rationale": "You have written real C, which is more low-level exposure than most graduates bring."
+      },
+      {
+        "id": "data-structures",
+        "name": "Data structures and algorithms",
+        "category": "foundation",
+        "importance": "core",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "explores a range of standard data structures and algorithmic techniques"
+          },
+          {
+            "unitCode": "COMP20003",
+            "unitTitle": "Algorithms and Data Structures",
+            "quote": "introduced to the most frequently used data structures and their associated algorithms"
+          }
+        ],
+        "rationale": "Two units of data structures and algorithms is genuine depth \u2014 interviewers call this 'strong DSA fundamentals'."
+      },
+      {
+        "id": "algorithm-analysis",
+        "name": "Reasoning about performance and correctness",
+        "category": "foundation",
+        "importance": "core",
+        "status": "evidenced",
+        "evidence": [
+          {
+            "unitCode": "COMP20003",
+            "unitTitle": "Algorithms and Data Structures",
+            "quote": "justification of algorithm correctness, on analysis of algorithm performance"
+          }
+        ],
+        "rationale": "You have been examined on arguing correctness and analysing performance, which is what technical interviews test."
+      },
+      {
+        "id": "testing",
+        "name": "Testing discipline",
+        "category": "practice",
+        "importance": "core",
+        "status": "partial",
+        "evidence": [
+          {
+            "unitCode": "COMP20005",
+            "unitTitle": "Intro. to Numerical Computation in C",
+            "quote": "implement appropriate testing regimes to allow validation and debugging of those programs"
+          }
+        ],
+        "rationale": "You have planned testing regimes for numerical code, but not with a framework or in a team codebase."
+      },
+      {
+        "id": "debugging",
+        "name": "Debugging real programs",
+        "category": "practice",
+        "importance": "common",
+        "status": "partial",
+        "evidence": [
+          {
+            "unitCode": "COMP10002",
+            "unitTitle": "Foundations of Algorithms",
+            "quote": "Read, write, test and debug typical small-scale programs"
+          }
+        ],
+        "rationale": "You debug your own small programs; production debugging in an unfamiliar codebase is a step further."
+      },
+      {
+        "id": "git-version-control",
+        "name": "Git and version control",
+        "category": "tool",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "No unit teaches it, every team expects it, and it is the single cheapest gap on this list to close."
+      },
+      {
+        "id": "web-fundamentals",
+        "name": "JavaScript, HTML and CSS",
+        "category": "language",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Software developer ads in Australia ask for the web stack more than any other technology, and your degree has not touched it yet."
+      },
+      {
+        "id": "sql-databases",
+        "name": "SQL and relational databases",
+        "category": "tool",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Almost every backend role assumes you can model and query data; nothing on your transcript covers it yet."
+      },
+      {
+        "id": "cloud-platform",
+        "name": "A cloud platform (AWS or Azure)",
+        "category": "tool",
+        "importance": "core",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "In-demand in the ads and absent from coursework \u2014 one deployed project is how students usually close this."
+      },
+      {
+        "id": "containers-ci",
+        "name": "Docker, containers and CI",
+        "category": "tool",
+        "importance": "common",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "This is production practice, not course content; a small pipeline on your own project is enough to talk about it."
+      },
+      {
+        "id": "linux-cli",
+        "name": "Linux and the command line",
+        "category": "tool",
+        "importance": "common",
+        "status": "partial",
+        "evidence": [
+          {
+            "unitCode": "COMP20005",
+            "unitTitle": "Intro. to Numerical Computation in C",
+            "quote": "Design, develop, and implement typical small-scale numerical programs"
+          }
+        ],
+        "rationale": "Working in C puts you near the command line, but day-to-day Linux fluency is still assumed, not taught."
+      },
+      {
+        "id": "collaboration",
+        "name": "Working in a team codebase",
+        "category": "practice",
+        "importance": "common",
+        "status": "gap",
+        "evidence": [],
+        "rationale": "Group work is not the same as branching, code review and merging \u2014 the workflow every employer runs."
+      },
+      {
+        "id": "communication",
+        "name": "Explaining technical decisions",
+        "category": "domain",
+        "importance": "common",
+        "status": "partial",
+        "evidence": [
+          {
+            "unitCode": "COMP20005",
+            "unitTitle": "Intro. to Numerical Computation in C",
+            "quote": "Develop and present arguments relating to the correctness of such programs"
+          }
+        ],
+        "rationale": "Coursework makes you justify decisions in writing; doing it for a non-technical audience is the remaining step."
+      }
+    ]
+  },
+  "roadmap": {
+    "headline": "One semester left means triage: only what makes you credible for the roles you are applying to right now.",
+    "stageNote": "This plan is built for a final-year with one semester: it drops foundations there is no longer time for and spends everything on evidence employers can open. A first-year with the same gaps would get a six-semester arc instead.",
+    "semesters": [
+      {
+        "label": "Final semester",
+        "focus": "Shortest path to credible",
+        "steps": [
+          {
+            "id": "t1-git",
+            "title": "Move your COMP20003 and COMP20005 work into Git this week and make the repos public",
+            "type": "learn",
+            "effort": "light",
+            "addressesCapabilityIds": [
+              "git-version-control"
+            ],
+            "buildsOnUnitCodes": [
+              "COMP20003",
+              "COMP20005"
+            ],
+            "rationale": "A day of work that converts four units of coursework into evidence a recruiter can actually open."
+          },
+          {
+            "id": "t1-ship",
+            "title": "Build one small web app on top of your algorithms work \u2014 a route-finder or data explorer \u2014 and deploy it to a free cloud tier",
+            "type": "ship",
+            "effort": "substantial",
+            "addressesCapabilityIds": [
+              "web-fundamentals",
+              "cloud-platform",
+              "sql-databases"
+            ],
+            "buildsOnUnitCodes": [
+              "COMP20003"
+            ],
+            "rationale": "One deployed project is the single strongest signal you can add in a semester, and it reuses the unit you are best at."
+          },
+          {
+            "id": "t1-tests",
+            "title": "Write tests for that project with a real framework and wire up CI on the repo",
+            "type": "build",
+            "effort": "moderate",
+            "addressesCapabilityIds": [
+              "testing",
+              "containers-ci"
+            ],
+            "buildsOnUnitCodes": [
+              "COMP20005"
+            ],
+            "rationale": "You already know testing regimes from numerical computing \u2014 naming the framework is what job ads screen for."
+          },
+          {
+            "id": "t1-connect",
+            "title": "Attend MelbJS and one Junior Dev meetup before applications close, and talk about the project you just shipped",
+            "type": "connect",
+            "effort": "light",
+            "addressesCapabilityIds": [
+              "collaboration",
+              "communication"
+            ],
+            "buildsOnUnitCodes": [],
+            "rationale": "Referrals beat cold applications, these rooms contain the people who give them, and you now have something concrete to say."
+          },
+          {
+            "id": "t1-left-out",
+            "title": "Deliberately left out: Docker depth, Linux fluency, a second language \u2014 name them in interviews as next",
+            "type": "learn",
+            "effort": "light",
+            "addressesCapabilityIds": [
+              "linux-cli"
+            ],
+            "buildsOnUnitCodes": [],
+            "rationale": "Saying plainly what you cut and why reads as judgement, not weakness \u2014 the thing one semester cannot buy is breadth."
+          }
+        ]
+      }
+    ]
+  },
+  "grounding": {
+    "roleId": "software-developer",
+    "unitCodes": [
+      "COMP10001",
+      "COMP10002",
+      "COMP20003",
+      "COMP20005"
+    ],
+    "droppedUngrounded": 0
+  }
+}

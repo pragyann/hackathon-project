@@ -126,11 +126,14 @@ export type Roadmap = {
 
 export type Analysis = {
   gap: GapAnalysis;
-  roadmap: Roadmap;
+  /** Null while the sequencing call is still running — the gap renders first. */
+  roadmap: Roadmap | null;
   /** Recorded so the UI can show what the recommendation was grounded in. */
   grounding: {
     roleId: string;
     unitCodes: string[];
     droppedUngrounded: number;
   };
+  /** True for the shipped worked examples, and said so in the UI. */
+  precomputed?: boolean;
 };

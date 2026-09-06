@@ -1,91 +1,121 @@
 @import "tailwindcss";
 
 /*
-  Onramp design tokens.
+  Onramp design tokens — the "wayfinding" system.
 
-  Light is the primary surface: this is a product a student opens between
-  classes, and a university career service would put it on a projector. Dark is
-  fully supported because a lot of the target user's screen time is at night.
+  The product maps a route from completed coursework to a target role, it is
+  named after a road element, and its event data is Melbourne street-level.
+  The visual language follows: street-directory paper, ink-navy cartography,
+  Australian signage green for "go this way", and a gold route line as the
+  signature element (used for the route, shields and position markers only).
+
+  Light is primary (career services put this on projectors); dark is the
+  night-driving version of the same map.
 
   Three semantic colours carry the core idea and are used nowhere else, so the
   gap map reads without a legend:
-    evidence  - you already have this, traced to a unit
-    partial   - touched on, not demonstrated
-    gap       - the delta, the thing the roadmap is about
+    evidence  - sealed road: you already have this, traced to a unit
+    partial   - half-sealed: touched on, not demonstrated
+    gap       - roadworks ahead: the delta the roadmap exists to close
 */
 
 :root {
-  --bg: oklch(99% 0.004 265);
-  --bg-subtle: oklch(97.2% 0.005 265);
-  --bg-raised: oklch(100% 0 0);
-  --border: oklch(91% 0.007 265);
-  --border-strong: oklch(84% 0.011 265);
+  --bg: oklch(97.8% 0.005 95);
+  --bg-subtle: oklch(95.4% 0.007 95);
+  --bg-raised: oklch(99.6% 0.002 95);
+  --border: oklch(89.5% 0.009 95);
+  --border-strong: oklch(80% 0.013 95);
 
-  --fg: oklch(21% 0.02 265);
-  --fg-muted: oklch(48% 0.017 265);
-  --fg-subtle: oklch(62% 0.014 265);
+  --fg: oklch(25% 0.028 255);
+  --fg-muted: oklch(45% 0.02 255);
+  --fg-subtle: oklch(58% 0.015 255);
 
-  --accent: oklch(51% 0.19 274);
-  --accent-hover: oklch(45% 0.19 274);
-  --accent-fg: oklch(99% 0 0);
-  --accent-subtle: oklch(96% 0.024 274);
-  --accent-border: oklch(88% 0.06 274);
+  /* Signage green: primary actions and links. */
+  --accent: oklch(44% 0.1 162);
+  --accent-hover: oklch(38% 0.1 162);
+  --accent-fg: oklch(99% 0.003 95);
+  --accent-subtle: oklch(95% 0.022 162);
+  --accent-border: oklch(85% 0.055 162);
 
-  --evidence: oklch(52% 0.13 172);
-  --evidence-subtle: oklch(96% 0.03 172);
-  --evidence-border: oklch(86% 0.07 172);
+  /* Route gold: the signature. Route line, shields, current position. */
+  --route: oklch(76% 0.135 82);
+  --route-strong: oklch(66% 0.135 78);
+  --route-subtle: oklch(95.5% 0.035 88);
+  --route-fg: oklch(30% 0.05 78);
 
-  --partial: oklch(56% 0.13 245);
-  --partial-subtle: oklch(96% 0.03 245);
-  --partial-border: oklch(87% 0.06 245);
+  /* Ink: the destination-sign surface (deep signage panel). */
+  --sign: oklch(35% 0.06 165);
+  --sign-raised: oklch(40% 0.065 165);
+  --sign-border: oklch(48% 0.07 165);
+  --sign-fg: oklch(98% 0.005 95);
+  --sign-fg-muted: oklch(84% 0.03 160);
 
-  --gap: oklch(60% 0.15 62);
-  --gap-subtle: oklch(97% 0.035 75);
-  --gap-border: oklch(88% 0.08 70);
+  --evidence: oklch(50% 0.09 190);
+  --evidence-subtle: oklch(95% 0.025 190);
+  --evidence-border: oklch(84% 0.055 190);
 
-  --danger: oklch(55% 0.2 25);
+  --partial: oklch(52% 0.1 250);
+  --partial-subtle: oklch(95% 0.02 250);
+  --partial-border: oklch(85% 0.05 250);
 
-  --radius: 0.75rem;
-  --shadow-sm: 0 1px 2px oklch(21% 0.02 265 / 0.05);
-  --shadow: 0 1px 3px oklch(21% 0.02 265 / 0.07), 0 4px 16px oklch(21% 0.02 265 / 0.05);
-  --shadow-lg: 0 2px 6px oklch(21% 0.02 265 / 0.06), 0 12px 40px oklch(21% 0.02 265 / 0.09);
+  --gap: oklch(58% 0.14 55);
+  --gap-subtle: oklch(96% 0.03 70);
+  --gap-border: oklch(86% 0.07 65);
+
+  --danger: oklch(53% 0.19 27);
+
+  --radius: 0.625rem;
+  --shadow-sm: 0 1px 2px oklch(25% 0.028 255 / 0.05);
+  --shadow: 0 1px 3px oklch(25% 0.028 255 / 0.06), 0 4px 18px oklch(25% 0.028 255 / 0.05);
+  --shadow-lg: 0 2px 6px oklch(25% 0.028 255 / 0.06), 0 14px 44px oklch(25% 0.028 255 / 0.09);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: oklch(17% 0.014 265);
-    --bg-subtle: oklch(20.5% 0.016 265);
-    --bg-raised: oklch(23% 0.017 265);
-    --border: oklch(30% 0.017 265);
-    --border-strong: oklch(38% 0.02 265);
+    --bg: oklch(19% 0.014 255);
+    --bg-subtle: oklch(22.5% 0.016 255);
+    --bg-raised: oklch(25% 0.017 255);
+    --border: oklch(32% 0.017 255);
+    --border-strong: oklch(41% 0.02 255);
 
-    --fg: oklch(96% 0.005 265);
-    --fg-muted: oklch(72% 0.014 265);
-    --fg-subtle: oklch(58% 0.015 265);
+    --fg: oklch(95.5% 0.006 95);
+    --fg-muted: oklch(73% 0.013 255);
+    --fg-subtle: oklch(58% 0.014 255);
 
-    --accent: oklch(70% 0.16 274);
-    --accent-hover: oklch(77% 0.15 274);
-    --accent-fg: oklch(17% 0.02 274);
-    --accent-subtle: oklch(28% 0.06 274);
-    --accent-border: oklch(40% 0.09 274);
+    --accent: oklch(72% 0.12 162);
+    --accent-hover: oklch(79% 0.12 162);
+    --accent-fg: oklch(20% 0.04 162);
+    --accent-subtle: oklch(29% 0.05 162);
+    --accent-border: oklch(41% 0.07 162);
 
-    --evidence: oklch(72% 0.13 172);
-    --evidence-subtle: oklch(27% 0.05 172);
-    --evidence-border: oklch(38% 0.07 172);
+    --route: oklch(80% 0.135 85);
+    --route-strong: oklch(85% 0.13 88);
+    --route-subtle: oklch(30% 0.05 82);
+    --route-fg: oklch(93% 0.06 88);
 
-    --partial: oklch(72% 0.12 245);
-    --partial-subtle: oklch(27% 0.05 245);
-    --partial-border: oklch(38% 0.07 245);
+    --sign: oklch(30% 0.05 165);
+    --sign-raised: oklch(34% 0.055 165);
+    --sign-border: oklch(44% 0.065 165);
+    --sign-fg: oklch(97% 0.005 95);
+    --sign-fg-muted: oklch(82% 0.03 160);
 
-    --gap: oklch(78% 0.14 72);
-    --gap-subtle: oklch(29% 0.055 70);
-    --gap-border: oklch(40% 0.08 70);
+    --evidence: oklch(74% 0.1 190);
+    --evidence-subtle: oklch(28% 0.045 190);
+    --evidence-border: oklch(40% 0.06 190);
 
-    --danger: oklch(68% 0.17 25);
+    --partial: oklch(74% 0.09 250);
+    --partial-subtle: oklch(28% 0.045 250);
+    --partial-border: oklch(40% 0.06 250);
+
+    --gap: oklch(76% 0.13 62);
+    --gap-subtle: oklch(29% 0.05 62);
+    --gap-border: oklch(42% 0.075 62);
+
+    --danger: oklch(68% 0.17 27);
 
     --shadow-sm: 0 1px 2px oklch(0% 0 0 / 0.3);
-    --shadow: 0 1px 3px oklch(0% 0 0 / 0.4), 0 4px 16px oklch(0% 0 0 / 0.3);
-    --shadow-lg: 0 2px 6px oklch(0% 0 0 / 0.45), 0 12px 40px oklch(0% 0 0 / 0.4);
+    --shadow: 0 1px 3px oklch(0% 0 0 / 0.4), 0 4px 18px oklch(0% 0 0 / 0.3);
+    --shadow-lg: 0 2px 6px oklch(0% 0 0 / 0.45), 0 14px 44px oklch(0% 0 0 / 0.4);
   }
 }
 
@@ -103,6 +133,15 @@
   --color-accent-fg: var(--accent-fg);
   --color-accent-subtle: var(--accent-subtle);
   --color-accent-border: var(--accent-border);
+  --color-route: var(--route);
+  --color-route-strong: var(--route-strong);
+  --color-route-subtle: var(--route-subtle);
+  --color-route-fg: var(--route-fg);
+  --color-sign: var(--sign);
+  --color-sign-raised: var(--sign-raised);
+  --color-sign-border: var(--sign-border);
+  --color-sign-fg: var(--sign-fg);
+  --color-sign-fg-muted: var(--sign-fg-muted);
   --color-evidence: var(--evidence);
   --color-evidence-subtle: var(--evidence-subtle);
   --color-evidence-border: var(--evidence-border);
@@ -116,12 +155,21 @@
 
   --font-sans: var(--font-sans-var);
   --font-mono: var(--font-mono-var);
+  --font-serif: var(--font-serif-var);
 
   --radius-card: var(--radius);
 }
 
-* {
-  border-color: var(--border);
+/* In @layer base so Tailwind border-colour utilities (which live in the
+   utilities layer) can actually override it — unlayered rules would win. */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -129,6 +177,31 @@ body {
   color: var(--fg);
   font-family: var(--font-sans-var), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01";
+}
+
+/* Signage voice: heavy, tight, uppercase eyebrows in mono. */
+.display {
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.eyebrow {
+  font-family: var(--font-mono-var), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Quotes lifted from university handbook text get an editorial voice, so the
+   university's words are visibly not our words. */
+.handbook-quote {
+  font-family: var(--font-serif-var), ui-serif, Georgia, serif;
+  font-style: italic;
+  letter-spacing: 0.005em;
 }
 
 /* Accessibility: a visible, consistent focus ring everywhere. prd.md §8 commits
@@ -137,6 +210,41 @@ body {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* The route line draws itself once on the landing page. */
+@keyframes route-draw {
+  from {
+    stroke-dashoffset: var(--route-length, 1200);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

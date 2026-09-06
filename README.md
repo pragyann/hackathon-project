@@ -36,16 +36,43 @@ Next.js 16 (App Router) · TypeScript · Tailwind v4 · Claude `claude-opus-5` v
 ```
 src/
   app/            landing · /start onboarding · /plan the output · /method how it works
-      api/analyse the two-call pipeline (server-only; the API key never reaches the browser)
-  components/     GapMap · RoadmapView · EventList · ui primitives
+      api/gap     call 1: coursework -> capability map (server-only; the key never reaches the browser)
+      api/roadmap call 2: outstanding capabilities -> semester-paced plan
+  components/     GapMap · RoadmapView · EventList · RouteHero · Sparkline · ui primitives
   lib/
-      ai/analyse  gap analysis, then stage-aware roadmap sequencing
+      ai/analyse  the two pipeline calls: analyseGap, then planRoadmap
       data        role/degree/event loaders and the deterministic event ranker
       store       the student profile, kept in the browser
-  data/           generated corpora (roles, degrees, events)
+  data/           generated corpora (roles, degrees, events) + precomputed demo fixtures
 scripts/etl/      the generators; source files live in data/sources/
 docs/             the hackathon spec, the PRD, and technical write-ups
 ```
+
+### The pipeline is split, and the UI shows it
+
+The analysis is two model calls with different characters, so they are two
+endpoints. `/plan` runs them in sequence and renders progressively: the gap map
+appears the moment call 1 lands, the roadmap streams in behind it, and each
+phase fails and retries independently. The active tab lives in the URL
+(`/plan?tab=roadmap`), so any view can be deep-linked in a demo.
+
+The two worked examples (Arjun, first year; Priya, final year) ship as
+precomputed fixtures in `src/data/fixtures/` — they load instantly, need no API
+key, and are labelled as precomputed in the UI. Regenerate them against the
+real pipeline with `node scripts/generate-fixtures.mjs` while a keyed dev
+server runs.
+
+### The design language
+
+The product maps a route from coursework to a role, it is named after a road
+element, and its events are Melbourne street-level — so the visual system is
+Australian road wayfinding on street-directory paper: signage-green destination
+panels, a gold route line as the signature element, and Overpass (a typeface
+descended from Highway Gothic signage lettering) with Overpass Mono for unit
+codes and statistics. Text quoted from university handbooks is set in
+Newsreader italic so the university's words are visibly not ours. The three
+capability states are drawn as road surfaces — solid, half-sealed, dashed — so
+the gap map still reads without colour.
 
 ### The AI part, briefly
 

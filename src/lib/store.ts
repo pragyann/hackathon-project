@@ -46,10 +46,18 @@ function read<T>(key: string): T | null {
   }
 }
 
+/** Same-tab change signal: `storage` only fires in OTHER tabs, and the plan
+    page now writes progressively while mounted. */
+const CHANGE_EVENT = "onramp:store";
+function announce() {
+  window.dispatchEvent(new Event(CHANGE_EVENT));
+}
+
 function write(key: string, value: unknown) {
   if (typeof window === "undefined") return;
   try {
     window.localStorage.setItem(key, JSON.stringify(value));
+    announce();
   } catch {
     /* quota or private mode — the app still works, it just will not resume */
   }
@@ -60,12 +68,21 @@ export const saveProfile = (p: StudentProfile) => write(PROFILE_KEY, p);
 
 export const loadAnalysis = () => read<Analysis>(ANALYSIS_KEY);
 export const saveAnalysis = (a: Analysis) => write(ANALYSIS_KEY, a);
+export function clearAnalysis() {
+  if (typeof window === "undefined") return;
+  window.localStorage.removeItem(ANALYSIS_KEY);
+  announce();
+}
 
 /* --------------------------------------------------------------- hooks -- */
 
 function subscribe(onChange: () => void) {
   window.addEventListener("storage", onChange);
-  return () => window.removeEventListener("storage", onChange);
+  window.addEventListener(CHANGE_EVENT, onChange);
+  return () => {
+    window.removeEventListener("storage", onChange);
+    window.removeEventListener(CHANGE_EVENT, onChange);
+  };
 }
 
 /**
@@ -122,4 +139,5 @@ export function clearEverything() {
   if (typeof window === "undefined") return;
   window.localStorage.removeItem(PROFILE_KEY);
   window.localStorage.removeItem(ANALYSIS_KEY);
+  announce();
 }

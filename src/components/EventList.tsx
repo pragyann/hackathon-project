@@ -65,7 +65,7 @@ function EventCard({ ranked }: { ranked: RankedEvent }) {
   const stage = STAGE_COPY[stageFit];
 
   return (
-    <div className="rounded-lg border border-border bg-bg-raised">
+    <div className="rounded-md border border-border bg-bg-raised shadow-[var(--shadow-sm)]">
       <div className="p-4">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
@@ -73,7 +73,7 @@ function EventCard({ ranked }: { ranked: RankedEvent }) {
               href={event.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-fg hover:text-accent"
+              className="group inline-flex items-center gap-1.5 text-sm font-bold text-fg hover:text-accent"
             >
               {event.name}
               <ExternalLink
@@ -81,7 +81,9 @@ function EventCard({ ranked }: { ranked: RankedEvent }) {
                 aria-hidden
               />
             </a>
-            <p className="mt-1 text-xs text-fg-subtle">{event.organiser}</p>
+            {event.organiser !== event.name && (
+              <p className="mt-1 text-xs text-fg-subtle">{event.organiser}</p>
+            )}
           </div>
           <Badge tone={stage.tone} className="shrink-0">
             {stage.label}
