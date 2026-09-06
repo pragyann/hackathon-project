@@ -8,8 +8,9 @@ import { SiteHeader } from "@/components/SiteHeader";
 /*
   Overpass descends from Highway Gothic, the letterform of road signage — the
   right voice for a product named after a road element that draws routes.
-  Overpass Mono carries unit codes and statistics; Newsreader italic is
-  reserved for text quoted verbatim from university handbooks.
+  Overpass Mono carries unit codes and statistics; Newsreader is the
+  editorial display voice, and its italic is reserved for text quoted
+  verbatim from university handbooks.
 */
 const sans = Overpass({
   variable: "--font-sans-var",
@@ -26,7 +27,7 @@ const mono = Overpass_Mono({
 const serif = Newsreader({
   variable: "--font-serif-var",
   subsets: ["latin"],
-  style: ["italic"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 

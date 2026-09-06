@@ -181,7 +181,7 @@ export default function PlanPage() {
                 Destination
                 {profile.exploring && " · exploring, not deciding"}
               </p>
-              <h1 className="display mt-1.5 text-3xl text-sign-fg sm:text-4xl">
+              <h1 className="display-sign mt-1.5 text-3xl text-sign-fg sm:text-4xl">
                 {role.title}
               </h1>
               <p className="mt-3 text-sm leading-relaxed text-sign-fg-muted">

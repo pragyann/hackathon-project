@@ -180,8 +180,17 @@ body {
   font-feature-settings: "ss01";
 }
 
-/* Signage voice: heavy, tight, uppercase eyebrows in mono. */
+/* Editorial display voice: Newsreader over signage-mono eyebrows. */
 .display {
+  font-family: var(--font-serif-var), ui-serif, Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+/* The signage voice, kept for destination panels and wayfinding moments. */
+.display-sign {
   font-weight: 800;
   letter-spacing: -0.025em;
   line-height: 1.02;

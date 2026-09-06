@@ -86,6 +86,19 @@ of the interview having practised":
   consultancy), never named companies, because we will not fabricate a real
   employer's process. It ends in a structured debrief, not a score.
 
+### The front of house
+
+The landing hero is ~36,000 GPU particles in raw WebGL2 — zero assets, zero
+dependencies. Every dot is a student: scattered at the top of the page,
+merging onto the gold route as you scroll, arriving in formation at the
+destination. `prefers-reduced-motion` gets a still frame; no WebGL2 gets the
+DOM hero alone. Below it, an interactive chart suite drawn from the shipped
+data: 60-month demand lifelines for all five roles, by-state splits with
+Victoria highlighted, and year-on-year deltas — dependency-free SVG with a
+hover scrubber. The calendar is a month view with event and clash dots, a
+selected-day timeline, a roadmap progress ring fed by step tick-offs, and a
+12-week load heatmap derived from the student's own classes and events.
+
 ### The design language
 
 The product maps a route from coursework to a role, it is named after a road

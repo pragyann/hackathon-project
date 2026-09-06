@@ -111,6 +111,8 @@ export type StudentProfile = {
   classBlocks: ClassBlock[];
   /** Events accepted, each with the session the student confirmed. */
   eventPlans: EventPlan[];
+  /** Roadmap steps ticked off — the progress the semester loop returns to. */
+  completedStepIds: string[];
 };
 
 /* -------------------------------------------------------- analysis out -- */

@@ -36,6 +36,7 @@ export const emptyProfile: StudentProfile = {
   exploring: false,
   classBlocks: [],
   eventPlans: [],
+  completedStepIds: [],
 };
 
 /** Profiles saved before a field existed come back without it. */

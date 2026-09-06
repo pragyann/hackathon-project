@@ -5,6 +5,7 @@ import { BookOpen, GraduationCap, Hammer, Rocket, Users } from "lucide-react";
 
 import { StudyDrawer, type StudyContext } from "@/components/StudyDrawer";
 import { Badge } from "@/components/ui";
+import { saveProfile, useStoredProfile } from "@/lib/store";
 import type { Roadmap, RoadmapStep } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -35,6 +36,24 @@ export function RoadmapView({
   studyContextFor?: (step: RoadmapStep) => StudyContext;
 }) {
   const [study, setStudy] = useState<StudyContext | null>(null);
+  const profile = useStoredProfile();
+  const done = new Set(profile?.completedStepIds ?? []);
+
+  function toggleStep(id: string) {
+    if (!profile) return;
+    saveProfile({
+      ...profile,
+      completedStepIds: done.has(id)
+        ? profile.completedStepIds.filter((x) => x !== id)
+        : [...profile.completedStepIds, id],
+    });
+  }
+
+  const total = roadmap.semesters.reduce((n, s) => n + s.steps.length, 0);
+  const doneCount = roadmap.semesters.reduce(
+    (n, s) => n + s.steps.filter((st) => done.has(st.id)).length,
+    0,
+  );
 
   return (
     <div>
@@ -43,6 +62,12 @@ export function RoadmapView({
         {/* The stage claim, stated by the product rather than left implicit —
             this is the sentence that proves the plan is paced, not generic. */}
         <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">{roadmap.stageNote}</p>
+        {total > 0 && (
+          <p className="mt-2.5 font-mono text-[11px] uppercase tracking-widest text-fg-subtle">
+            {doneCount}/{total} steps done — ticking them is what the semester loop
+            comes back to
+          </p>
+        )}
       </div>
 
       <ol className="relative ml-1.5 border-l-[3px] border-route-strong/70 pb-2">
@@ -74,6 +99,8 @@ export function RoadmapView({
                 <li key={step.id}>
                   <StepCard
                     step={step}
+                    done={done.has(step.id)}
+                    onToggle={() => toggleStep(step.id)}
                     onStudy={
                       studyContextFor ? () => setStudy(studyContextFor(step)) : undefined
                     }
@@ -90,27 +117,49 @@ export function RoadmapView({
   );
 }
 
-function StepCard({ step, onStudy }: { step: RoadmapStep; onStudy?: () => void }) {
+function StepCard({
+  step,
+  done,
+  onToggle,
+  onStudy,
+}: {
+  step: RoadmapStep;
+  done: boolean;
+  onToggle: () => void;
+  onStudy?: () => void;
+}) {
   const kind = STEP_KIND[step.type];
   const Icon = kind.icon;
 
   return (
-    <div className="rounded-md border border-border bg-bg-raised p-3.5 shadow-[var(--shadow-sm)]">
+    <div
+      className={cn(
+        "rounded-md border bg-bg-raised p-3.5 shadow-[var(--shadow-sm)] transition-colors",
+        done ? "border-evidence-border bg-evidence-subtle/50" : "border-border",
+      )}
+    >
       <div className="flex items-start gap-3">
-        <span
+        <button
+          onClick={onToggle}
+          role="checkbox"
+          aria-checked={done}
+          aria-label={`Mark "${step.title}" ${done ? "not done" : "done"}`}
           className={cn(
-            "mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-md",
-            step.type === "connect"
-              ? "bg-evidence-subtle text-evidence"
-              : "bg-accent-subtle text-accent",
+            "mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-md border transition-colors",
+            done
+              ? "border-evidence bg-evidence text-white"
+              : step.type === "connect"
+                ? "border-transparent bg-evidence-subtle text-evidence hover:border-evidence"
+                : "border-transparent bg-accent-subtle text-accent hover:border-accent",
           )}
-          aria-hidden
         >
-          <Icon className="size-3.5" />
-        </span>
+          <Icon className="size-3.5" aria-hidden />
+        </button>
 
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold text-fg">{step.title}</p>
+          <p className={cn("text-sm font-semibold text-fg", done && "line-through opacity-60")}>
+            {step.title}
+          </p>
           <p className="mt-1.5 text-xs leading-relaxed text-fg-muted">{step.rationale}</p>
 
           <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
