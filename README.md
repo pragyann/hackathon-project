@@ -99,6 +99,31 @@ hover scrubber. The calendar is a month view with event and clash dots, a
 selected-day timeline, a roadmap progress ring fed by step tick-offs, and a
 12-week load heatmap derived from the student's own classes and events.
 
+### The plan page, competition grade
+
+The gap map's default view is a terrain chart — every capability plotted by
+evidence (x) against importance (y), the top-left corner annotated "close
+these first", with hover tooltips, click-through to the handbook evidence,
+and pointer parallax. Above it, a KPI strip: a weighted readiness gauge,
+core coverage, the "cheapest win" (highest value, lightest lift, named), and
+the grounding stat as a trust metric. The roadmap is a scroll-drawn journey
+with a "you are here" marker and a gold particle burst when a step is
+ticked; event rankings expose their score anatomy as a stacked contribution
+bar. Hovering a terrain marker highlights the roadmap steps that close it,
+and vice versa. A ⌘K command palette navigates everything, and the Onramp
+copilot — a floating assistant grounded in the student's own live plan —
+answers "what should I do this week?" from their actual data.
+
+### Accounts, opt-in (local Postgres)
+
+Local-first stays the default and the privacy promise. After the analysis
+lands, a nudge offers to keep the plan: a real account (scrypt-hashed
+credentials, HttpOnly session cookies) that syncs the profile and analysis
+to a local PostgreSQL database (`DATABASE_URL`, schema auto-migrates:
+users / sessions / profiles-as-JSONB) so the plan follows the student across
+devices and the semester check-in loop has somewhere to live. Setup:
+`brew install postgresql@17 && createdb onramp`, then `npm run db:check`.
+
 ### The design language
 
 The product maps a route from coursework to a role, it is named after a road

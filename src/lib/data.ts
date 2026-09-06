@@ -39,6 +39,8 @@ export type RankedEvent = {
   score: number;
   /** Every reason that contributed, shown verbatim in the UI. P0-7. */
   reasons: string[];
+  /** Points per scoring term, aligned 1:1 with `reasons` for the score anatomy UI. */
+  contributions: { label: string; points: number }[];
   /** Named so the student can see the judgement, not just the ranking. */
   stageFit: "ideal" | "reachable" | "advanced";
 };
@@ -68,11 +70,14 @@ export function rankEvents(
 
   const ranked = events.map((event): RankedEvent => {
     const reasons: string[] = [];
+    // Each entry pairs with reasons[i], so the UI can show points beside prose.
+    const contributions: RankedEvent["contributions"] = [];
     let score = 0;
 
     if (event.city.toLowerCase() === profile.city.toLowerCase()) {
       score += 20;
       reasons.push(`In ${event.city}, where you are studying`);
+      contributions.push({ label: "In Melbourne", points: 20 });
     }
 
     // Topic relevance to the target role.
@@ -86,6 +91,7 @@ export function rankEvents(
           role ? `${role.title} roles ask for` : "your target roles ask for"
         }`,
       );
+      contributions.push({ label: "Role topics", points: 12 * topicHit.length });
     }
 
     // Relevance to what the roadmap says is still missing. This is the signal a
@@ -96,6 +102,7 @@ export function rankEvents(
     if (gapHit.length) {
       score += 18 * gapHit.length;
       reasons.push(`Directly relevant to a gap on your roadmap: ${gapHit.slice(0, 2).join(", ")}`);
+      contributions.push({ label: "Gap relevance", points: 18 * gapHit.length });
     }
 
     // Stage appropriateness.
@@ -108,30 +115,36 @@ export function rankEvents(
       score += 28;
       stageFit = "ideal";
       reasons.push("Welcomes students and beginners, so a good first room to walk into");
+      contributions.push({ label: "Stage fit", points: 28 });
     } else if (early && isSenior) {
       score -= 25;
       stageFit = "advanced";
       reasons.push("Aimed at experienced practitioners — worth knowing about, but not your first event");
+      contributions.push({ label: "Stage fit", points: -25 });
     } else if (!early && event.audience.includes("practitioner")) {
       score += 26;
       stageFit = "ideal";
       reasons.push("The people in this room are the people who hire for the roles you are applying to");
+      contributions.push({ label: "Stage fit", points: 26 });
     } else if (!early && isStudentFriendly && !event.audience.includes("practitioner")) {
       score += 6;
       reasons.push("Beginner-focused — useful, though you are past the introductory stage");
+      contributions.push({ label: "Stage fit", points: 6 });
     }
 
     if (event.cost === "free") {
       score += 8;
       reasons.push("Free to attend");
+      contributions.push({ label: "Free", points: 8 });
     }
 
     if (event.memberCount && event.memberCount > 2000) {
       score += 5;
       reasons.push(`An established community (${event.memberCount.toLocaleString("en-AU")} members)`);
+      contributions.push({ label: "Community size", points: 5 });
     }
 
-    return { event, score, reasons, stageFit };
+    return { event, score, reasons, contributions, stageFit };
   });
 
   return ranked.sort((a, b) => b.score - a.score);

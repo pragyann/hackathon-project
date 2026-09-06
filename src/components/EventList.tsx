@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AlertTriangle,
   CalendarCheck,
@@ -74,7 +74,7 @@ export function EventList({ ranked }: { ranked: RankedEvent[] }) {
 function EventCard({ ranked }: { ranked: RankedEvent }) {
   const [open, setOpen] = useState(false);
   const [planning, setPlanning] = useState(false);
-  const { event, reasons, stageFit } = ranked;
+  const { event, reasons, contributions, stageFit } = ranked;
   const stage = STAGE_COPY[stageFit];
 
   const profile = useStoredProfile();
@@ -198,16 +198,97 @@ function EventCard({ ranked }: { ranked: RankedEvent }) {
         Why this one?
       </button>
 
-      {open && (
-        <ul className="space-y-1.5 border-t border-border bg-bg-subtle px-4 py-3">
-          {reasons.map((r, i) => (
-            <li key={i} className="flex gap-2 text-xs leading-relaxed text-fg-muted">
-              <span className="mt-1.5 size-1 shrink-0 rounded-full bg-fg-subtle" aria-hidden />
-              {r}
-            </li>
+      {open && <ScoreAnatomy contributions={contributions} reasons={reasons} />}
+    </div>
+  );
+}
+
+/* Scoring term → segment colour. Labels come verbatim from rankEvents(). */
+const TERM_COLOURS: Record<string, string> = {
+  "Stage fit": "var(--evidence)",
+  "Gap relevance": "var(--gap)",
+  "Role topics": "var(--partial)",
+  "In Melbourne": "var(--accent)",
+  Free: "var(--route-strong)",
+  "Community size": "var(--fg-subtle)",
+};
+
+/**
+ * The score anatomy: a stacked bar of the positive scoring terms, then one row
+ * per term pairing its points with the prose reason. Penalties cannot occupy a
+ * share of a positive-only bar, so they appear as struck-out notes below it.
+ */
+function ScoreAnatomy({
+  contributions,
+  reasons,
+}: {
+  contributions: RankedEvent["contributions"];
+  reasons: string[];
+}) {
+  // Segments grow from 0 on expansion. CSS transitions are not zeroed by the
+  // global reduced-motion rule, so check matchMedia and skip the grow ourselves.
+  // Reduced-motion users start fully grown, so there is no width transition
+  // to skip. Only rendered client-side (behind a toggle), so reading
+  // matchMedia in the initialiser is safe.
+  const [grown, setGrown] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setGrown(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  const positives = contributions.filter((c) => c.points > 0);
+  const totalPositive = positives.reduce((sum, c) => sum + c.points, 0);
+
+  return (
+    <div className="border-t border-border bg-bg-subtle px-4 py-3">
+      {totalPositive > 0 && (
+        <div className="flex h-2.5 overflow-hidden rounded-full bg-border" aria-hidden>
+          {positives.map((c) => (
+            <div
+              key={c.label}
+              className="h-full transition-[width] duration-500 ease-out"
+              style={{
+                width: grown ? `${(c.points / totalPositive) * 100}%` : "0%",
+                backgroundColor: TERM_COLOURS[c.label] ?? "var(--fg-subtle)",
+              }}
+            />
           ))}
-        </ul>
+        </div>
       )}
+
+      <ul className="mt-2.5 space-y-1.5">
+        {contributions.map((c, i) =>
+          c.points > 0 ? (
+            <li
+              key={c.label}
+              className="flex items-baseline gap-2 text-xs leading-relaxed text-fg-muted"
+            >
+              <span
+                className="size-2 shrink-0 self-center rounded-full"
+                style={{ backgroundColor: TERM_COLOURS[c.label] ?? "var(--fg-subtle)" }}
+                aria-hidden
+              />
+              <span className="shrink-0 font-semibold text-fg">{c.label}</span>
+              <span className="min-w-0 flex-1">{reasons[i]}</span>
+              <span className="shrink-0 font-mono text-fg">+{c.points}</span>
+            </li>
+          ) : (
+            <li
+              key={c.label}
+              className="flex items-baseline gap-2 text-xs leading-relaxed text-fg-muted"
+            >
+              <span className="size-2 shrink-0 self-center rounded-full bg-danger" aria-hidden />
+              <span className="shrink-0 font-semibold text-danger">{c.label}</span>
+              <span className="min-w-0 flex-1 line-through opacity-70">{reasons[i]}</span>
+              <span className="shrink-0 font-mono text-danger">&minus;{Math.abs(c.points)}</span>
+            </li>
+          ),
+        )}
+      </ul>
     </div>
   );
 }

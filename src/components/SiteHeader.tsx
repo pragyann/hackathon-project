@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+import { AccountMenu } from "@/components/AccountMenu";
 import { RouteShield } from "@/components/RouteShield";
 
 /**
@@ -44,6 +45,7 @@ export function SiteHeader() {
           >
             Interview prep
           </Link>
+          <AccountMenu />
           <Link
             href="/start"
             className="ml-1 inline-flex h-9 items-center gap-1.5 whitespace-nowrap rounded-md bg-accent px-3.5 text-sm font-semibold text-accent-fg shadow-sm transition-colors hover:bg-accent-hover"

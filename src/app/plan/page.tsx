@@ -5,12 +5,17 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Check, Loader2, PencilLine, RefreshCw, ShieldCheck, Trash2, Zap } from "lucide-react";
 
+import { CommandPalette, type PaletteAction } from "@/components/CommandPalette";
+import { Copilot, type CopilotContext } from "@/components/Copilot";
+import { AccountNudge } from "@/components/AccountNudge";
 import { EventList } from "@/components/EventList";
 import { GapMap } from "@/components/GapMap";
-import { RoadmapView } from "@/components/RoadmapView";
+import { GapTerrain } from "@/components/GapTerrain";
+import { KpiStrip } from "@/components/KpiStrip";
+import { RoadmapJourney } from "@/components/RoadmapJourney";
 import { Sparkline } from "@/components/Sparkline";
 import { Button, Card, CardBody, Eyebrow, Skeleton } from "@/components/ui";
-import { getDegree, getRole, rankEvents } from "@/lib/data";
+import { getDegree, getEvent, getRole, rankEvents } from "@/lib/data";
 import {
   clearEverything,
   loadAnalysis,
@@ -98,6 +103,11 @@ export default function PlanPage() {
   const profile = useStoredProfile();
   const analysis = useStoredAnalysis();
   const [tab, setTabState] = useState<Tab>("Gap map");
+  // Gap tab has two renderings of the same data: terrain (default) and list.
+  const [gapView, setGapView] = useState<"terrain" | "list">("terrain");
+  // Shared cross-highlight: hovering a terrain marker lights matching roadmap
+  // steps and vice versa. One state, both directions.
+  const [hlCaps, setHlCaps] = useState<string[]>([]);
   const ready = useHydrated();
 
   // The active tab lives in the URL (?tab=roadmap), so a judge can deep-link
@@ -169,6 +179,49 @@ export default function PlanPage() {
   const demand = role.demand;
   const gapReady = Boolean(analysis);
   const roadmapReady = Boolean(analysis?.roadmap);
+
+  // Everything the copilot is allowed to know: what is already on this page.
+  const allSteps = analysis?.roadmap?.semesters.flatMap((s) => s.steps) ?? [];
+  const stepIds = new Set(allSteps.map((s) => s.id));
+  const copilotContext: CopilotContext | null = analysis
+    ? {
+        roleTitle: role.title,
+        headline: analysis.gap.headline,
+        yearLevel: profile.yearLevel,
+        semestersRemaining: profile.semestersRemaining,
+        capabilities: analysis.gap.capabilities.map((c) => ({
+          name: c.name,
+          status: c.status,
+          importance: c.importance,
+        })),
+        upcomingEvents: profile.eventPlans.map((p) => ({
+          name: getEvent(p.eventId)?.name ?? p.eventId,
+          date: p.date,
+        })),
+        classHoursPerWeek: profile.classBlocks.reduce((h, b) => h + (b.end - b.start), 0),
+        stepsDone: profile.completedStepIds.filter((id) => stepIds.has(id)).length,
+        stepsTotal: allSteps.length,
+      }
+    : null;
+
+  // ⌘K palette: every reachable surface, one keystroke away.
+  const paletteActions: PaletteAction[] = [
+    { id: "tab-gap", label: "Gap map", hint: "tab", run: () => setTab("Gap map") },
+    { id: "tab-roadmap", label: "Roadmap", hint: "tab", run: () => setTab("Roadmap") },
+    { id: "tab-events", label: "Events", hint: "tab", run: () => setTab("Events") },
+    { id: "calendar", label: "Open calendar", hint: "/planner", run: () => router.push("/planner") },
+    { id: "interview", label: "Interview prep", hint: "/interview", run: () => router.push("/interview") },
+    { id: "edit", label: "Edit my details", hint: "/start", run: () => router.push("/start") },
+    { id: "ics", label: "Export events .ics", hint: "/planner", run: () => router.push("/planner") },
+    {
+      id: "delete",
+      label: "Delete my data",
+      run: () => {
+        clearEverything();
+        router.push("/");
+      },
+    },
+  ];
 
   return (
     <main className="flex-1">
@@ -303,8 +356,8 @@ export default function PlanPage() {
 
       {/* ------------------------------------------------------------ tabs -- */}
       <div className="sticky top-14 z-30 border-b border-border bg-bg">
-        <div className="mx-auto max-w-6xl px-6">
-          <nav className="scroll-x flex gap-1" aria-label="Sections">
+        <div className="mx-auto flex max-w-6xl items-center px-6">
+          <nav className="scroll-x flex flex-1 gap-1" aria-label="Sections">
             {TABS.map((t) => (
               <button
                 key={t}
@@ -329,13 +382,65 @@ export default function PlanPage() {
               </button>
             ))}
           </nav>
+          {/* Discoverability nudge for the command palette. */}
+          <span
+            className="hidden shrink-0 rounded border border-border bg-bg-subtle px-1.5 py-0.5 font-mono text-[11px] text-fg-subtle sm:inline"
+            title="Command palette"
+          >
+            ⌘K
+          </span>
         </div>
       </div>
 
       <div className="mx-auto w-full max-w-6xl px-6 py-8">
+        {/* The page's scoreboard: visible on every tab once the gap is in. */}
+        {gapReady && (
+          <div className="mb-8">
+            <KpiStrip
+              capabilities={analysis!.gap.capabilities}
+              droppedUngrounded={analysis!.grounding.droppedUngrounded}
+              roadmap={analysis!.roadmap}
+              completedStepIds={profile.completedStepIds}
+            />
+          </div>
+        )}
+
         {tab === "Gap map" &&
           (gapReady ? (
-            <GapMap capabilities={analysis!.gap.capabilities} />
+            <>
+              {/* Terrain | List — two views of the same capabilities. */}
+              <div
+                className="mb-4 inline-flex rounded-md border border-border bg-bg-subtle p-0.5"
+                role="tablist"
+                aria-label="Gap map view"
+              >
+                {(["terrain", "list"] as const).map((v) => (
+                  <button
+                    key={v}
+                    role="tab"
+                    aria-selected={gapView === v}
+                    onClick={() => setGapView(v)}
+                    className={cn(
+                      "rounded px-3 py-1 text-xs font-semibold capitalize transition-colors",
+                      gapView === v
+                        ? "bg-bg-raised text-fg shadow-[var(--shadow-sm)]"
+                        : "text-fg-muted hover:text-fg",
+                    )}
+                  >
+                    {v}
+                  </button>
+                ))}
+              </div>
+              {gapView === "terrain" ? (
+                <GapTerrain
+                  capabilities={analysis!.gap.capabilities}
+                  highlightedIds={hlCaps}
+                  onHoverCapability={setHlCaps}
+                />
+              ) : (
+                <GapMap capabilities={analysis!.gap.capabilities} />
+              )}
+            </>
           ) : (
             <PendingPanel
               spinning={phase !== "error"}
@@ -349,7 +454,7 @@ export default function PlanPage() {
 
         {tab === "Roadmap" &&
           (roadmapReady ? (
-            <RoadmapView
+            <RoadmapJourney
               roadmap={analysis!.roadmap!}
               studyContextFor={(step) => ({
                 stepTitle: step.title,
@@ -358,6 +463,8 @@ export default function PlanPage() {
                 unitCodes: analysis!.grounding.unitCodes,
                 yearLevel: profile.yearLevel,
               })}
+              highlightedCapabilityIds={hlCaps}
+              onHoverStep={setHlCaps}
             />
           ) : (
             <PendingPanel
@@ -421,6 +528,11 @@ export default function PlanPage() {
           </Card>
         )}
       </div>
+
+      {/* ---------------------------------------------- global affordances -- */}
+      <CommandPalette actions={paletteActions} />
+      {copilotContext && <Copilot context={copilotContext} />}
+      {gapReady && <AccountNudge getSnapshot={() => ({ profile, analysis })} />}
     </main>
   );
 }
