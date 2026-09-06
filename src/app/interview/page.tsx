@@ -16,7 +16,7 @@ import {
 
 import { Badge, Button, Card, CardBody, Eyebrow, Select, Skeleton } from "@/components/ui";
 import { getRole, roles } from "@/lib/data";
-import { ARCHETYPES, type ArchetypeId, type Debrief, type InterviewTurn } from "@/lib/interview";
+import { ARCHETYPES, COMPANIES, type ArchetypeId, type CompanyId, type Debrief, type InterviewTurn } from "@/lib/interview";
 import { useHydrated, useStoredProfile } from "@/lib/store";
 import { cn } from "@/lib/utils";
 
@@ -52,6 +52,20 @@ function makeRecognition(): SpeechRecognitionLike | null {
   return r;
 }
 
+/** The most natural English voice the system offers, Australian first. */
+function pickVoice(): SpeechSynthesisVoice | null {
+  const voices = window.speechSynthesis?.getVoices() ?? [];
+  const score = (v: SpeechSynthesisVoice) => {
+    let n = 0;
+    if (v.lang === "en-AU") n += 4;
+    else if (v.lang.startsWith("en")) n += 2;
+    if (/premium|enhanced|natural|neural/i.test(v.name)) n += 3;
+    if (/karen|matilda|lee/i.test(v.name)) n += 2; // macOS AU voices
+    return n;
+  };
+  return voices.sort((a, b) => score(b) - score(a))[0] ?? null;
+}
+
 function speak(text: string, enabled: boolean, onDone?: () => void) {
   if (!enabled || typeof window === "undefined" || !window.speechSynthesis) {
     onDone?.();
@@ -59,10 +73,12 @@ function speak(text: string, enabled: boolean, onDone?: () => void) {
   }
   window.speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
-  const au = window.speechSynthesis.getVoices().find((v) => v.lang === "en-AU");
-  if (au) u.voice = au;
-  u.rate = 1.02;
+  const v = pickVoice();
+  if (v) u.voice = v;
+  u.rate = 1.03;
+  u.pitch = 1.0;
   u.onend = () => onDone?.();
+  u.onerror = () => onDone?.();
   window.speechSynthesis.speak(u);
 }
 
@@ -77,7 +93,9 @@ export default function InterviewPage() {
   const [stage, setStage] = useState<Stage>("setup");
   const [roleId, setRoleId] = useState<string>("");
   const [archetype, setArchetype] = useState<ArchetypeId>("enterprise");
+  const [company, setCompany] = useState<CompanyId | null>(null);
   const [jobAd, setJobAd] = useState("");
+  const [handsFree, setHandsFree] = useState(true);
 
   const [transcript, setTranscript] = useState<InterviewTurn[]>([]);
   const [draft, setDraft] = useState("");
@@ -121,14 +139,14 @@ export default function InterviewPage() {
       const res = await fetch("/api/interview", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ roleId, archetype, jobAd, candidate, transcript: turns, action }),
+        body: JSON.stringify({ roleId, archetype, company, jobAd, candidate, transcript: turns, action }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "The interview engine failed.");
       return data;
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [roleId, archetype, jobAd, profile],
+    [roleId, archetype, company, jobAd, profile],
   );
 
   async function begin() {
@@ -138,7 +156,7 @@ export default function InterviewPage() {
     try {
       const { turn } = await callEngine([], "next");
       setTranscript([{ speaker: "interviewer", text: turn }]);
-      speak(turn, voiceOut);
+      speak(turn, voiceOut, () => autoListen());
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong.");
     } finally {
@@ -158,7 +176,7 @@ export default function InterviewPage() {
     try {
       const { turn } = await callEngine(next, "next");
       setTranscript([...next, { speaker: "interviewer", text: turn }]);
-      speak(turn, voiceOut);
+      speak(turn, voiceOut, () => autoListen());
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong.");
     } finally {
@@ -182,12 +200,36 @@ export default function InterviewPage() {
     }
   }
 
+  // Latest answer() for timers set inside older closures.
+  const answerRef = useRef<() => void>(() => {});
+  useEffect(() => {
+    answerRef.current = answer;
+  });
+
+  /** Hands-free: the interviewer stops talking, your mic opens. */
+  function autoListen() {
+    if (handsFree) startListening();
+  }
+
   function startListening() {
     const rec = makeRecognition();
     if (!rec) return;
     recRef.current?.stop();
     recRef.current = rec;
     let finalText = draft ? `${draft} ` : "";
+    let heardAnything = false;
+    let silence: ReturnType<typeof setTimeout> | null = null;
+
+    // In hands-free mode, ~2.2s of silence after speech ends the turn.
+    const armSilenceTimer = () => {
+      if (!handsFree) return;
+      if (silence) clearTimeout(silence);
+      silence = setTimeout(() => {
+        rec.stop();
+        if (heardAnything) answerRef.current();
+      }, 2200);
+    };
+
     rec.onresult = (e) => {
       let interim = "";
       for (let i = 0; i < e.results.length; i++) {
@@ -195,10 +237,18 @@ export default function InterviewPage() {
         if (r.isFinal) finalText += `${r[0].transcript} `;
         else interim += r[0].transcript;
       }
+      heardAnything = true;
       setDraft((finalText + interim).trim());
+      armSilenceTimer();
     };
-    rec.onerror = () => setListening(false);
-    rec.onend = () => setListening(false);
+    rec.onerror = () => {
+      if (silence) clearTimeout(silence);
+      setListening(false);
+    };
+    rec.onend = () => {
+      if (silence) clearTimeout(silence);
+      setListening(false);
+    };
     rec.start();
     setListening(true);
   }
@@ -288,7 +338,9 @@ export default function InterviewPage() {
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-6 py-8">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <Eyebrow>Mock interview · {ARCHETYPES[archetype].label}</Eyebrow>
+            <Eyebrow>
+              Mock interview · {company ? COMPANIES[company].name : ARCHETYPES[archetype].label}
+            </Eyebrow>
             <h1 className="mt-1 text-xl font-extrabold tracking-tight text-fg">
               {role?.title ?? "Interview"}
             </h1>
@@ -386,7 +438,10 @@ export default function InterviewPage() {
             </Button>
           </div>
           <p className="mt-2 text-[11px] text-fg-subtle">
-            Voice runs on your browser&rsquo;s built-in speech engine — free and private.
+            {handsFree && micSupported
+              ? "Hands-free: the mic opens when the interviewer finishes, and ~2 seconds of silence sends your answer. "
+              : ""}
+            Voice runs on your browser&rsquo;s speech engine — free and private.
             {!micSupported && " Your browser has no speech recognition; typing works fine."}
           </p>
         </form>
@@ -426,15 +481,56 @@ export default function InterviewPage() {
           </div>
 
           <div>
-            <p className="mb-1.5 text-sm font-semibold text-fg">Who is interviewing you?</p>
-            <div className="grid gap-2.5 sm:grid-cols-3">
-              {(Object.keys(ARCHETYPES) as ArchetypeId[]).map((id) => {
-                const a = ARCHETYPES[id];
-                const on = archetype === id;
+            <p className="mb-1.5 text-sm font-semibold text-fg">
+              Simulate a company that hires this role
+            </p>
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
+              {(Object.keys(COMPANIES) as CompanyId[]).map((id) => {
+                const c = COMPANIES[id];
+                const on = company === id;
                 return (
                   <button
                     key={id}
-                    onClick={() => setArchetype(id)}
+                    onClick={() => setCompany(on ? null : id)}
+                    aria-pressed={on}
+                    title={c.blurb}
+                    className={cn(
+                      "rounded-md border p-2.5 text-left transition-colors",
+                      on
+                        ? "border-accent bg-accent-subtle"
+                        : "border-border bg-bg-raised hover:border-border-strong",
+                    )}
+                  >
+                    <span className="block truncate text-sm font-bold text-fg">{c.name}</span>
+                    <span className="mt-0.5 block truncate font-mono text-[10px] uppercase tracking-wide text-fg-subtle">
+                      {c.sector}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+            <p className="mt-2 text-xs text-fg-subtle">
+              Real employers, public facts only: the interviewer plays their sector and
+              products but never invents internal process details. Paste one of their
+              real ads below and it becomes the source of truth.
+            </p>
+          </div>
+
+          <div>
+            <p className="mb-1.5 text-sm font-semibold text-fg">
+              {company ? "…or clear the company and pick a generic style" : "No company? Pick a style instead"}
+            </p>
+            <div className={cn("grid gap-2.5 sm:grid-cols-3", company && "opacity-45")}>
+              {(Object.keys(ARCHETYPES) as ArchetypeId[]).map((id) => {
+                const a = ARCHETYPES[id];
+                const on = !company && archetype === id;
+                return (
+                  <button
+                    key={id}
+                    onClick={() => {
+                      setCompany(null);
+                      setArchetype(id);
+                    }}
                     aria-pressed={on}
                     className={cn(
                       "rounded-md border p-3 text-left transition-colors",
@@ -449,10 +545,6 @@ export default function InterviewPage() {
                 );
               })}
             </div>
-            <p className="mt-2 text-xs text-fg-subtle">
-              Archetypes, not named companies — we will not invent facts about a real
-              employer&rsquo;s process. Paste a real ad below and it becomes the source of truth.
-            </p>
           </div>
 
           <div>
@@ -470,13 +562,24 @@ export default function InterviewPage() {
           </div>
 
           <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
-            <div className="flex flex-wrap gap-1.5 text-xs">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
               {profile && (
-                <>
+                <span className="flex flex-wrap gap-1.5">
                   <Badge tone="neutral">Year {profile.yearLevel}</Badge>
                   <Badge tone="neutral">{candidate.unitCodes.length} units on record</Badge>
                   <Badge tone="route">Calibrated to graduate level</Badge>
-                </>
+                </span>
+              )}
+              {micSupported && (
+                <label className="flex cursor-pointer items-center gap-2 text-fg-muted">
+                  <input
+                    type="checkbox"
+                    className="size-3.5 accent-[var(--accent)]"
+                    checked={handsFree}
+                    onChange={(e) => setHandsFree(e.target.checked)}
+                  />
+                  Hands-free voice: the mic opens when the interviewer stops talking
+                </label>
               )}
             </div>
             <Button size="lg" onClick={begin} disabled={!roleId || busy}>

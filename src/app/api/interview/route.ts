@@ -12,14 +12,14 @@ export const maxDuration = 90;
 const client = new Anthropic();
 const MODEL = process.env.ANTHROPIC_MODEL || "claude-opus-5";
 
-import { ARCHETYPES, type ArchetypeId } from "@/lib/interview";
+import { ARCHETYPES, COMPANIES, type ArchetypeId, type CompanyId } from "@/lib/interview";
 
 const INTERVIEW_SYSTEM = `You are a realistic job interviewer running a MOCK interview inside Onramp, a career tool for university students. The candidate is a student practising — the point is realistic practice with honest, useful pressure, never humiliation.
 
 Rules:
 
 1. ONE QUESTION PER TURN. Ask it, then stop. No multi-part question dumps. React briefly (one sentence) to their previous answer first — a real interviewer acknowledges what they heard.
-2. GROUND EVERY TECHNICAL QUESTION in the role profile supplied (tasks, technologies, skills) and, when a job ad is supplied, in that ad above all. Never invent facts about a specific company. You are an archetype, not a named employer.
+2. GROUND EVERY TECHNICAL QUESTION in the role profile supplied (tasks, technologies, skills) and, when a job ad is supplied, in that ad above all. When simulating a NAMED company, you may use only the short public description supplied and broadly public knowledge of what the company makes; NEVER invent internal process details, team names, interview stages, salaries or unannounced products. If asked something company-specific you cannot ground, say so in character ("good question — the recruiter covers that stage").
 3. CALIBRATE TO A STUDENT. This is a graduate/junior-level interview. Fundamentals, projects, coursework, reasoning — not system-design trivia for staff engineers.
 4. FOLLOW THE ARC: warm greeting and one opener → one behavioural question → two or three technical questions grounded in the role → one scenario question → ask if they have questions for you, then wrap up. Roughly 6-7 interviewer turns total.
 5. PRESS ONCE, KINDLY. If an answer is vague, follow up once for specifics ("what did you build it with?"), then move on.
@@ -43,6 +43,7 @@ const DebriefSchema = z.object({
 type InterviewRequest = {
   roleId: string;
   archetype: ArchetypeId;
+  company?: CompanyId | null;
   jobAd?: string;
   candidate: { yearLevel: number; unitCodes: string[] };
   transcript: { speaker: "interviewer" | "candidate"; text: string }[];
@@ -67,13 +68,18 @@ export async function POST(request: Request) {
   const role = getRole(body.roleId);
   if (!role) return NextResponse.json({ error: "Unknown role." }, { status: 400 });
   const archetype = ARCHETYPES[body.archetype] ?? ARCHETYPES.enterprise;
+  const company = body.company ? COMPANIES[body.company] : null;
 
   const jobAd = (body.jobAd ?? "").trim().slice(0, 8000);
+  const persona = company
+    ? `You are an interviewer at ${company.name} (${company.sector}). Public description, the only company facts you may rely on: "${company.blurb}" Present yourself in character as a ${company.name} interviewer, reference what the company publicly makes and the sector it works in, and calibrate tone to that sector — but invent nothing internal.`
+    : `Interviewer archetype: ${archetype.label}. ${archetype.style}`;
+
   const setup = `${roleCorpus(role)}
 
 # INTERVIEW SETUP
 
-Interviewer archetype: ${archetype.label}. ${archetype.style}
+${persona}
 ${jobAd ? `\nThe candidate pasted this real job ad. Treat it as the authoritative description of the role and prioritise its stated responsibilities:\n"""\n${jobAd}\n"""\n` : ""}
 # THE CANDIDATE (a practising student)
 
