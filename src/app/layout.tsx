@@ -43,9 +43,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+    // suppressHydrationWarning: browser extensions inject attributes into
+    // <html> before React hydrates (e.g. bbai-tooltip-injected), which is
+    // noise, not a bug. Applies to this element's attributes only.
     <html
       lang="en-AU"
       className={`${sans.variable} ${mono.variable} ${serif.variable} h-full`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
         <SiteHeader />
